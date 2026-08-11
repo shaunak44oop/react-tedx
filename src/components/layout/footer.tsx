@@ -33,11 +33,11 @@ export function Footer() {
               <ul className="space-y-2.5 text-[14.5px]">
                 <li>
                   <a href="mailto:tedxyouth@yourschool.edu" className="hover:underline">
-                    tedxyouth@yourschool.edu
+                    tedx.technology@chirec.ac.in
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:underline">@tedxyouth_yourschool</a>
+                  <a href="#" className="hover:underline">@tedxyouth_chirec</a>
                 </li>
               </ul>
             </div>
@@ -45,7 +45,7 @@ export function Footer() {
         </div>
 
         <div className="flex flex-wrap justify-between gap-2.5 pt-5 text-[12.5px] text-ink/70">
-          <span>© [Year] TEDxYouth@YourSchool. This is an independently organized TED event.</span>
+          <span>© 2026 TEDxYouth@CHIREC. This is an independently organized TED event.</span>
           <span>Built by students, for students.</span>
         </div>
       </div>
