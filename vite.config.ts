@@ -7,5 +7,5 @@ import react from "@vitejs/plugin-react";
 // site will load with broken CSS/JS on GitHub Pages.
 export default defineConfig({
   plugins: [react()],
-  base: "/tedx-site-v1/",
+  base: "/react-tedx/",
 });
