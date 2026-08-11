@@ -11,8 +11,8 @@ export type ScheduleItem = {
 export const schedule: ScheduleItem[] = [
   {
     id: "sc-1",
-    time: "8:30 – 9:00 AM",
-    title: "Doors open & registration",
+    time: "16:00 IST Onwards",
+    title: "Doors open at 15:00 IST",
     subtitle: "Check in, grab a seat, browse the program",
     tag: "Break",
   },
