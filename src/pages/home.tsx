@@ -14,7 +14,7 @@ const aboutCards = [
   },
   {
     num: "02",
-    title: "[X] speakers, one day",
+    title: "4 speakers, one day",
     body: "Short talks from students, faculty, alumni, and guests from the community.",
   },
   {
@@ -39,7 +39,7 @@ export function Home() {
               className="inline-flex items-center gap-2.5 font-mono text-[12.5px] uppercase tracking-[0.14em] text-brand"
             >
               <span className="h-2 w-2 rounded-full bg-current" />
-              TEDxYouth@YourSchool · [Event Year]
+              TEDxYouth@CHIREC · 2026
             </motion.p>
 
             <motion.h1
@@ -48,9 +48,9 @@ export function Home() {
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="mt-3 font-display text-[clamp(40px,7vw,92px)] leading-[0.98] tracking-tight text-brand"
             >
-              Ideas Worth
+              The In-Between
               <br />
-              Sharing.
+              Space.
             </motion.h1>
 
             <motion.hr
@@ -68,20 +68,20 @@ export function Home() {
             >
               <div>
                 <strong className="mb-1 block text-[12px] uppercase tracking-[0.08em] text-brand">Date</strong>
-                [Month Day, Year]
+                October 3, 2026
               </div>
               <div>
                 <strong className="mb-1 block text-[12px] uppercase tracking-[0.08em] text-brand">Location</strong>
-                [School Auditorium, City]
+                CHIREC Kondapur BMPH, Hyderabad
               </div>
               <div>
                 <strong className="mb-1 block text-[12px] uppercase tracking-[0.08em] text-brand">Format</strong>
-                In-person · Doors [Time]
+                In-person · 3:00 pm IST
               </div>
             </motion.div>
 
             <div className="mt-7">
-              <Countdown target="2026-11-14T09:00:00" />
+              <Countdown target="2026-10-03T09:00:00" />
             </div>
 
             <motion.div
@@ -106,7 +106,7 @@ export function Home() {
             }}
           >
             <p className="font-mono text-[11.5px] text-white/55">
-              Drop your event photo here — see README
+              TedX@CHIREC 2026
             </p>
           </motion.div>
         </div>
@@ -117,7 +117,7 @@ export function Home() {
         <Marquee duration={22}>
           {Array.from({ length: 6 }).map((_, i) => (
             <span key={i} className="font-display text-sm tracking-wide">
-              TEDxYOUTH@YOURSCHOOL &nbsp;•&nbsp; IDEAS WORTH SHARING &nbsp;•&nbsp; [MONTH DAY, YEAR] &nbsp;•&nbsp;
+              TEDxYOUTH@CHIREC &nbsp;•&nbsp; The In-Between Space &nbsp;•&nbsp; October 3rd, 2026 &nbsp;•&nbsp;
             </span>
           ))}
         </Marquee>
@@ -134,7 +134,7 @@ export function Home() {
               A student-run stage for the ideas our school isn't done thinking about.
             </h2>
             <p className="mt-5 max-w-[60ch] text-[16.5px] text-muted">
-              TEDxYouth@YourSchool is an independently organized TED event, produced
+              TEDxYouth@CHIREC is an independently organized TED event, produced
               entirely by students. For one afternoon, our auditorium becomes a stage
               for classmates, teachers, and local voices to share the idea they can't
               stop thinking about — in talks capped at 12 minutes, no slideshows
