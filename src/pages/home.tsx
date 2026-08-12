@@ -55,7 +55,7 @@ export function Home() {
 
             <motion.hr
               initial={{ width: 0 }}
-              animate={{ width: "100%" }}
+              animate={{ width: 240 }} // BAR WIDTH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
               transition={{ duration: 1.2, delay: 0.2 }}
               className="mt-[18px] h-[1px] border-none bg-brand"
             />
