@@ -12,9 +12,9 @@ export default {
         muted: "#A6A199",
       },
       fontFamily: {
-        display: ['"Archivo Black"', "Helvetica Neue", "Arial", "sans-serif"],
+        display: ["'Archivo Black'", "Helvetica Neue", "Arial", "sans-serif"],
         sans: ["Inter", "Helvetica Neue", "Arial", "sans-serif"],
-        mono: ['"Space Mono"', '"Courier New"', "monospace"],
+        mono: ["Inter", "Helvetica Neue", "Arial", "sans-serif"],
       },
       maxWidth: {
         container: "1160px",
