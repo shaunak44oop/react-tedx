@@ -8,6 +8,7 @@ html {
 
 body {
   @apply bg-ink text-brand font-sans antialiased;
+  font-family: 'Inter', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* Visible keyboard focus everywhere */
