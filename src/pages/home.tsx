@@ -55,9 +55,9 @@ export function Home() {
 
             <motion.hr
               initial={{ width: 0 }}
-              animate={{ width: 120 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-[18px] h-[6px] border-none bg-brand"
+              animate={{ width: "100%" }}
+              transition={{ duration: 1.2, delay: 0.2 }}
+              className="mt-[18px] h-[1px] border-none bg-brand"
             />
 
             <motion.div
