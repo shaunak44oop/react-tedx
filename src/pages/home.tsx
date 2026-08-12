@@ -55,7 +55,7 @@ export function Home() {
 
             <motion.hr
               initial={{ width: 0 }}
-              animate={{ width: 480 }} 
+              animate={{ width: 960 }} 
               transition={{ duration: 0.6, delay: 0.4 }}
               className="my-6 h-[1px] max-w-[380px] border-none bg-brand"
             />
