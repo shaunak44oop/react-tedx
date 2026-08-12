@@ -55,16 +55,16 @@ export function Home() {
 
             <motion.hr
               initial={{ width: 0 }}
-              animate={{ width: 240 }} // BAR WIDTH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-              transition={{ duration: 1.2, delay: 0.2 }}
-              className="mt-[18px] h-[1px] border-none bg-brand"
+              animate={{ width: 480 }} 
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="my-6 h-[1px] max-w-[380px] border-none bg-brand"
             />
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="mt-7 flex gap-7 font-mono text-[13.5px] text-muted"
+              className="flex gap-7 font-mono text-[13.5px] text-muted"
             >
               <div>
                 <strong className="mb-1 block text-[12px] uppercase tracking-[0.08em] text-brand">Date</strong>
