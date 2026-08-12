@@ -21,6 +21,7 @@ export function Footer() {
               </h4>
               <ul className="space-y-2.5 text-[14.5px]">
                 <li><Link to="/speakers" className="hover:underline">Speakers</Link></li>
+                <li><Link to="/team" className="hover:underline">Team</Link></li>
                 <li><Link to="/schedule" className="hover:underline">Schedule</Link></li>
                 <li><Link to="/venue" className="hover:underline">Venue &amp; FAQ</Link></li>
                 <li><Link to="/register" className="hover:underline">Register</Link></li>
@@ -32,7 +33,7 @@ export function Footer() {
               </h4>
               <ul className="space-y-2.5 text-[14.5px]">
                 <li>
-                  <a href="mailto:tedxyouth@yourschool.edu" className="hover:underline">
+                  <a href="mailto:tedx.technology@chirec.ac.in" className="hover:underline">
                     tedx.technology@chirec.ac.in
                   </a>
                 </li>
