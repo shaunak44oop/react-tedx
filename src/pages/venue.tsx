@@ -23,9 +23,9 @@ export function Venue() {
           <div>
             <h2 className="font-display text-2xl text-brand">BMPH</h2>
             <p className="mt-3 text-muted">
-              [Street Address]
+              CHIREC Avenue, Botanical Garden Road, Kondapur
               <br />
-              [City, State ZIP]
+              Hyderabad, Telangana | 500084
             </p>
             <p className="mt-5 text-[15px] text-muted">
               Enter through Gate 1 — signs will point you to check-in.
