@@ -72,11 +72,11 @@ export function Home() {
               </div>
               <div>
                 <strong className="mb-1 block text-[12px] uppercase tracking-[0.08em] text-brand">Location</strong>
-                CHIREC Kondapur BMPH, Hyderabad
+                CHIREC Kondapur, Hyderabad
               </div>
               <div>
                 <strong className="mb-1 block text-[12px] uppercase tracking-[0.08em] text-brand">Format</strong>
-                In-person · 3:00 pm IST
+                In-person
               </div>
             </motion.div>
 
