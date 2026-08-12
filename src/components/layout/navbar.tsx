@@ -6,9 +6,9 @@ import { SpotlightButton } from "../kokonutui/spotlight-button";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/speakers", label: "Speakers" },
-  { to: "/team", label: "Team" }, // <-- Team added here
-  { to: "/schedule", label: "Schedule" },
+  // { to: "/speakers", label: "Speakers" },
+  { to: "/team", label: "Team" },
+  // { to: "/schedule", label: "Schedule" },
   { to: "/venue", label: "Venue & FAQ" },
 ];
 
