@@ -9,7 +9,7 @@ export default {
           DEFAULT: "#E62B1E",
           dark: "#B8180D",
         },
-        muted: "#A6A199",
+        muted: "#FAFAFA",
       },
       fontFamily: {
         display: ["'Archivo Black'", "Helvetica Neue", "Arial", "sans-serif"],
