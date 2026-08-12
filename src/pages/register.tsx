@@ -17,7 +17,7 @@ export function Register() {
     // Formspree or Google Forms in a few minutes.
     e.preventDefault();
     setStatus(
-      "This form isn't connected yet — see the README to hook it up to Formspree or Google Forms."
+      "Error - Form Not Connected"
     );
   }
 
@@ -34,8 +34,7 @@ export function Register() {
             </h1>
             <hr className="rule mt-[18px]" />
             <p className="mt-6 max-w-[56ch] text-[16.5px] text-muted">
-              [Explain ticket pricing here — e.g. free for students with school ID,
-              $X for guests.] Fill out the form below to reserve a seat. You'll get
+              Fill out the form below to reserve a seat. You'll get
               a confirmation email once your spot is locked in.
             </p>
           </Reveal>
@@ -94,13 +93,13 @@ export function Register() {
             <div className="rounded-sm bg-brand p-8 text-ink">
               <h3 className="font-mono text-xs uppercase tracking-[0.1em]">Before you go</h3>
               <ul className="mt-4.5 flex flex-col gap-3 text-[14.5px]">
-                <li>Doors open at [Time] — arrive 20 minutes early for check-in.</li>
+                <li>Doors open at 15:00 IST — arrive 20 minutes early for check-in.</li>
                 <li>Seats aren't assigned — first come, first seated.</li>
                 <li>Bring a valid school ID if your ticket is student-priced.</li>
                 <li>
                   Questions? Email{" "}
-                  <a href="mailto:tedxyouth@yourschool.edu" className="font-bold underline">
-                    tedxyouth@yourschool.edu
+                  <a href="mailto:tedx.technology@chirec.ac.in" className="font-bold underline">
+                    tedx.technology@chirec.ac.in
                   </a>
                 </li>
               </ul>
