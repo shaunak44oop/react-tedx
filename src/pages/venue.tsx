@@ -21,15 +21,15 @@ export function Venue() {
       <section className="px-[clamp(20px,4vw,56px)] py-14">
         <Reveal className="mx-auto grid max-w-container items-start gap-14 md:grid-cols-2">
           <div>
-            <h2 className="font-display text-2xl text-brand">[School Auditorium Name]</h2>
+            <h2 className="font-display text-2xl text-brand">BMPH</h2>
             <p className="mt-3 text-muted">
               [Street Address]
               <br />
               [City, State ZIP]
             </p>
             <p className="mt-5 text-[15px] text-muted">
-              Enter through [entrance name] — signs will point you to check-in.
-              Parking is available in [lot name]; overflow parking at [location].
+              Enter through Gate 1 — signs will point you to check-in.
+              Parking is available next to the school.
             </p>
             <div className="mt-6">
               <SpotlightButton href="#" variant="outline">Get directions</SpotlightButton>
@@ -37,7 +37,7 @@ export function Venue() {
           </div>
           <iframe
             className="aspect-video w-full rounded-sm border border-brand/20 grayscale contrast-[1.05]"
-            src="https://www.google.com/maps?q=your+school+address&output=embed"
+            src="https://maps.app.goo.gl/vtfypuGhcDMRsKJS7"
             title="Map to venue"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
