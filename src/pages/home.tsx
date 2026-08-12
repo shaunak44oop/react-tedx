@@ -99,15 +99,13 @@ export function Home() {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative flex aspect-[4/5] items-end overflow-hidden rounded-sm border border-brand/30 bg-ink p-5"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(135deg, rgba(230,43,30,0.18) 0 2px, transparent 2px 14px), linear-gradient(160deg, #1a1a1a, #000)",
-            }}
+            className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-sm border border-brand/30 bg-ink p-8 shadow-2xl"
           >
-            <p className="font-mono text-[11.5px] text-white/55">
-              TedX@CHIREC 2026
-            </p>
+            <img
+              src="/tedx-logo.png"
+              alt="TEDxYouth@CHIREC Logo"
+              className="h-full w-full object-contain"
+            />
           </motion.div>
         </div>
       </section>
