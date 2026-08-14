@@ -36,9 +36,8 @@ export function Home() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2.5 font-mono text-[12.5px] uppercase tracking-[0.14em] text-brand"
+              className="font-mono text-[12.5px] uppercase tracking-[0.14em] text-brand"
             >
-              <span className="h-2 w-2 rounded-full bg-current" />
               TEDxYouth@CHIREC · 2026
             </motion.p>
 
@@ -125,8 +124,8 @@ export function Home() {
       <section className="px-[clamp(20px,4vw,56px)] py-[88px]">
         <div className="mx-auto max-w-container">
           <Reveal>
-            <p className="inline-flex items-center gap-2.5 font-mono text-[12.5px] uppercase tracking-[0.14em] text-brand">
-              <span className="h-2 w-2 rounded-full bg-current" /> About the event
+            <p className="font-mono text-[12.5px] uppercase tracking-[0.14em] text-brand">
+              About the event
             </p>
             <h2 className="mt-3.5 max-w-[20ch] font-display text-[clamp(28px,4vw,44px)] leading-[1.05] text-brand">
               A student-run stage for the ideas our school isn't done thinking about.
@@ -156,8 +155,8 @@ export function Home() {
       <section className="bg-brand px-[clamp(20px,4vw,56px)] py-[88px] text-ink">
         <div className="mx-auto max-w-container">
           <Reveal>
-            <p className="inline-flex items-center gap-2.5 font-mono text-[12.5px] uppercase tracking-[0.14em] text-ink">
-              <span className="h-2 w-2 rounded-full bg-current" /> On the stage
+            <p className="font-mono text-[12.5px] uppercase tracking-[0.14em] text-ink">
+              On the stage
             </p>
             <h2 className="mt-3.5 font-display text-[clamp(28px,4vw,44px)] text-ink">This year's speakers</h2>
           </Reveal>
