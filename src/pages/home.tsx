@@ -54,10 +54,10 @@ export function Home() {
             </motion.h1>
 
             <motion.hr
-              initial={{ width: 0 }}
-              animate={{ width: 960 }} 
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="my-6 h-[1px] max-w-[380px] border-none bg-brand"
+              className="my-6 h-[1px] w-full max-w-[380px] border-none bg-brand mx-auto md:mx-0"
             />
 
             <motion.div
@@ -99,12 +99,12 @@ export function Home() {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-sm border border-brand/30 bg-ink p-8 shadow-2xl"
+            className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-sm border border-brand/30 bg-ink shadow-2xl"
           >
             <img
-              src="/tedx-logo.png"
-              alt="TEDxYouth@CHIREC Logo"
-              className="h-full w-full object-contain"
+              src="./tedx-home.png"
+              alt="TEDxYouth@CHIREC"
+              className="h-full w-full object-cover"
             />
           </motion.div>
         </div>
