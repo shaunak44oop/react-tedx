@@ -10,16 +10,18 @@ export function Team() {
   return (
     <div className="min-h-screen px-[clamp(20px,4vw,56px)] py-12 md:py-16">
       <div className="mx-auto max-w-container">
-        {/* Header */}
-        <p className="font-mono text-[12.5px] uppercase tracking-[0.14em] text-brand">
-          Behind the stage
-        </p>
-        <h1 className="mt-3 font-display text-[clamp(36px,6vw,72px)] text-brand">
-          Meet the Core Team
-        </h1>
-        <p className="mt-3 max-w-[50ch] text-[16.5px] text-muted">
-          The student team working behind the scenes to plan, organize, and execute TEDxYouth@CHIREC 2026.
-        </p>
+        {/* Header - Centered */}
+        <div className="text-center">
+          <p className="font-mono text-[12.5px] uppercase tracking-[0.14em] text-brand">
+            Behind the stage
+          </p>
+          <h1 className="mt-3 font-display text-[clamp(36px,6vw,72px)] text-brand">
+            Meet the Core Team
+          </h1>
+          <p className="mx-auto mt-3 max-w-[50ch] text-[16.5px] text-muted">
+            The student team working behind the scenes to plan, organize, and execute TEDxYouth@CHIREC 2026.
+          </p>
+        </div>
 
         {/* Categories & Member Cards */}
         <div className="mt-12 space-y-12">
