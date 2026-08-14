@@ -33,14 +33,15 @@ export function Team() {
                   {category}
                 </h2>
 
-                <div className="mx-auto grid max-w-6xl justify-center gap-4 sm:grid-cols-3 sm:gap-6 md:grid-cols-4 lg:grid-cols-4">
+                {/* Centered Flex Container */}
+                <div className="mx-auto flex flex-wrap justify-center gap-4 sm:gap-6 max-w-6xl">
                   {members.map((member) => (
                     <motion.div
                       key={member.id}
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.25 }}
                       onClick={() => setSelectedMember(member)}
-                      className="group relative cursor-pointer overflow-hidden rounded-[18px] border border-brand/30 bg-ink p-1.5 shadow-xl transition-all duration-300 hover:border-brand"
+                      className="group relative w-[calc(50%-0.5rem)] sm:w-[200px] md:w-[220px] cursor-pointer overflow-hidden rounded-[18px] border border-brand/30 bg-ink p-1.5 shadow-xl transition-all duration-300 hover:border-brand"
                     >
                       <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[13px]">
                         <img
