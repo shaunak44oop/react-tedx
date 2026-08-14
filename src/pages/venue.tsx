@@ -42,7 +42,7 @@ export function Venue() {
               Parking is available next to the school.
             </p>
             <div className="mt-6">
-              <SpotlightButton href="https://share.google/9lqyTxAmB7yLQNhXW" target="_blank" rel="noopener noreferrer" variant="outline">
+              <SpotlightButton href="https://share.google/9lqyTxAmB7yLQNhXW" variant="outline">
                 Get directions
               </SpotlightButton>
             </div>
