@@ -151,7 +151,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* SPEAKER TEASER */}
+      {/* UNCOMMENT WHEN SPEAKERS HAVE BEEN REGISTERED */}
+      {/* 
       <section className="bg-brand px-[clamp(20px,4vw,56px)] py-[88px] text-ink">
         <div className="mx-auto max-w-container">
           <Reveal>
@@ -180,8 +181,10 @@ export function Home() {
           </div>
         </div>
       </section>
+      */}
 
-      {/* CTA */}
+      {/* UNCOMMENT WHEN SPEAKERS HAVE BEEN REGISTERED */}
+      {/* 
       <section className="px-[clamp(20px,4vw,56px)] py-16">
         <div className="mx-auto flex max-w-container flex-wrap items-center justify-between gap-6">
           <h2 className="max-w-[16ch] font-display text-[clamp(28px,4vw,44px)] text-brand">
@@ -190,6 +193,7 @@ export function Home() {
           <SpotlightButton to="/register" variant="outline">Register now</SpotlightButton>
         </div>
       </section>
+      */}
     </>
   );
 }
