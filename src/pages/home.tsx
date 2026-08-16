@@ -83,26 +83,30 @@ export function Home() {
               <Countdown target="2026-10-03T09:00:00" />
             </div>
 
-            {/* EQUALIZED GRID-BASED MOBILE BUTTONS */}
+            {/* BULLETPROOF BUTTON WRAPPERS */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="mt-9 grid max-w-[380px] grid-cols-2 gap-2 sm:gap-3.5"
+              className="mt-9 flex w-full max-w-[380px] items-stretch gap-2 sm:gap-3"
             >
-              <SpotlightButton
-                to="/register"
-                className="flex w-full items-center justify-center !px-1 sm:!px-4 !py-2.5 sm:!py-3 text-center !text-[11px] sm:!text-[13px] whitespace-nowrap"
-              >
-                Reserve your seat
-              </SpotlightButton>
-              <SpotlightButton
-                to="/speakers"
-                variant="outline"
-                className="flex w-full items-center justify-center !px-1 sm:!px-4 !py-2.5 sm:!py-3 text-center !text-[11px] sm:!text-[13px] whitespace-nowrap"
-              >
-                Meet the speakers
-              </SpotlightButton>
+              <div className="flex-1">
+                <SpotlightButton
+                  to="/register"
+                  className="flex h-full w-full items-center justify-center whitespace-nowrap !px-1 sm:!px-4 !py-3 text-[11.5px] tracking-tight sm:text-[13px]"
+                >
+                  Reserve your seat
+                </SpotlightButton>
+              </div>
+              <div className="flex-1">
+                <SpotlightButton
+                  to="/speakers"
+                  variant="outline"
+                  className="flex h-full w-full items-center justify-center whitespace-nowrap !px-1 sm:!px-4 !py-3 text-[11.5px] tracking-tight sm:text-[13px]"
+                >
+                  Meet the speakers
+                </SpotlightButton>
+              </div>
             </motion.div>
           </div>
 
