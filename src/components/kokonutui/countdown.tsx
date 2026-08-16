@@ -37,26 +37,16 @@ export function Countdown({ target }: CountdownProps) {
 
   return (
     <div className="w-full max-w-[380px]">
-      <div className="mb-3 flex items-center gap-2">
-        <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
-        </span>
-        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-brand/90">
-          Countdown to Launch
-        </span>
-      </div>
-
       <div className="grid grid-cols-4 gap-2 sm:gap-2.5">
         {timeUnits.map((unit, i) => (
           <div
             key={i}
-            className="group relative flex flex-col items-center justify-center rounded-md border border-brand/25 bg-brand/[0.04] py-2.5 px-1 sm:py-3.5 backdrop-blur-md transition-all duration-300 hover:border-brand/50 hover:bg-brand/[0.08] hover:shadow-[0_0_15px_rgba(235,0,40,0.18)]"
+            className="group relative flex flex-col items-center justify-center rounded-md border border-brand/25 bg-brand/[0.04] py-2.5 px-1 sm:py-3.5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-brand/60 hover:bg-brand/[0.08] hover:shadow-lg"
           >
-            <span className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-brand drop-shadow-[0_0_8px_rgba(235,0,40,0.35)]">
+            <span className="font-sans text-2xl sm:text-3xl font-bold tracking-tight text-brand">
               {unit.value}
             </span>
-            <span className="mt-1 font-mono text-[9px] sm:text-[10.5px] font-medium tracking-[0.12em] text-muted group-hover:text-brand/90 transition-colors">
+            <span className="mt-1 font-sans text-[9px] sm:text-[10.5px] font-bold tracking-[0.12em] text-muted group-hover:text-brand transition-colors uppercase">
               {unit.label}
             </span>
           </div>
