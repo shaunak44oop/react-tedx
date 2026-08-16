@@ -28,12 +28,11 @@ export function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden px-[clamp(20px,4vw,56px)] pb-24 pt-[72px]">
+      {/* Changed pt-[72px] to pt-[120px] to account for the new fixed navbar! */}
+      <section className="relative overflow-hidden px-[clamp(20px,4vw,56px)] pb-24 pt-[120px]">
         
-        {/* The new glowing silhouette background! */}
         <UnicornBg />
         
-        {/* Added 'relative z-10' here to keep text and buttons clickable on top of the canvas */}
         <div className="relative z-10 mx-auto grid max-w-container items-end gap-12 md:grid-cols-[1.4fr_1fr]">
           <div>
             <motion.p
@@ -67,7 +66,8 @@ export function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex gap-7 font-mono text-[13.5px] text-muted"
+              // Explicitly setting the text values here to white
+              className="flex gap-7 font-mono text-[13.5px] text-white"
             >
               <div>
                 <strong className="mb-1 block text-[12px] uppercase tracking-[0.08em] text-brand">Date</strong>
@@ -83,11 +83,11 @@ export function Home() {
               </div>
             </motion.div>
 
-            <div className="mt-7">
+            {/* Added white text class to force the countdown labels to stand out */}
+            <div className="mt-7 text-white">
               <Countdown target="2026-10-03T09:00:00" />
             </div>
 
-            {/* BULLETPROOF BUTTON WRAPPERS */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -106,7 +106,8 @@ export function Home() {
                 <SpotlightButton
                   to="/speakers"
                   variant="outline"
-                  className="flex h-full w-full items-center justify-center whitespace-nowrap !px-1 sm:!px-4 !py-3 text-[11.5px] tracking-tight sm:text-[13px]"
+                  // Added white border and text that transitions to red on hover
+                  className="flex h-full w-full items-center justify-center whitespace-nowrap !border-white/30 !text-white transition-colors hover:!border-brand hover:!text-brand !px-1 sm:!px-4 !py-3 text-[11.5px] tracking-tight sm:text-[13px]"
                 >
                   Meet the speakers
                 </SpotlightButton>
@@ -121,7 +122,8 @@ export function Home() {
             className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-sm border border-brand/30 bg-ink shadow-2xl"
           >
             <img
-              src="./tedx-home.png"
+              // Removed the './' to fix the broken image deploy!
+              src="tedx-home.png"
               alt="TEDxYouth@CHIREC"
               className="h-full w-full object-cover"
             />
@@ -130,7 +132,8 @@ export function Home() {
       </section>
 
       {/* TICKER */}
-      <div className="bg-brand py-3.5 text-ink">
+      {/* Changed the ticker text to white so it pops over the darker red background */}
+      <div className="bg-brand py-3.5 text-white">
         <Marquee duration={22}>
           {Array.from({ length: 6 }).map((_, i) => (
             <span key={i} className="font-display text-sm tracking-wide">

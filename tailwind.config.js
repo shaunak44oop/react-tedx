@@ -6,8 +6,8 @@ export default {
       colors: {
         ink: "#0A0A0A",
         brand: {
-          DEFAULT: "#E62B1E",
-          dark: "#B8180D",
+          DEFAULT: "#C8102E", 
+          dark: "#A30D25",
         },
         muted: "#FAFAFA",
       },
