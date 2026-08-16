@@ -31,7 +31,7 @@ export function Home() {
       <section className="relative overflow-hidden px-[clamp(20px,4vw,56px)] pb-24 pt-[72px]">
         
         {/* The new glowing silhouette background! */}
-        <UnicornBg projectId="Cy97RtZoaNTOHxoy3dsh" />
+        <UnicornBg />
         
         {/* Added 'relative z-10' here to keep text and buttons clickable on top of the canvas */}
         <div className="relative z-10 mx-auto grid max-w-container items-end gap-12 md:grid-cols-[1.4fr_1fr]">
