@@ -79,12 +79,10 @@ export function Home() {
               </div>
             </motion.div>
 
-            {/* JAZZED UP COUNTDOWN */}
             <div className="mt-7">
               <Countdown target="2026-10-03T09:00:00" />
             </div>
 
-            {/* EQUALIZED SINGLE-LINE MOBILE BUTTONS */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -163,50 +161,6 @@ export function Home() {
           </RevealGroup>
         </div>
       </section>
-
-      {/* UNCOMMENT WHEN SPEAKERS HAVE BEEN REGISTERED */}
-      {/* 
-      <section className="bg-brand px-[clamp(20px,4vw,56px)] py-[88px] text-ink">
-        <div className="mx-auto max-w-container">
-          <Reveal>
-            <p className="font-mono text-[12.5px] uppercase tracking-[0.14em] text-ink">
-              On the stage
-            </p>
-            <h2 className="mt-3.5 font-display text-[clamp(28px,4vw,44px)] text-ink">This year's speakers</h2>
-          </Reveal>
-
-          <RevealGroup className="mt-11 flex gap-7 overflow-x-auto pb-3" stagger={0.06}>
-            {speakers.slice(0, 4).map((speaker) => (
-              <motion.div key={speaker.id} variants={staggerItem} className="w-[150px] shrink-0">
-                <div className="flex aspect-square w-[150px] items-center justify-center rounded-full border-4 border-ink bg-brand">
-                  <span className="font-display text-4xl text-ink">{speaker.initials}</span>
-                </div>
-                <h3 className="mt-5 font-display text-xl text-ink">{speaker.name}</h3>
-                <span className="mt-1 block font-mono text-[12.5px] text-ink/80">{speaker.talkTitle}</span>
-              </motion.div>
-            ))}
-          </RevealGroup>
-
-          <div className="mt-11">
-            <SpotlightButton to="/speakers" variant="outline" className="!border-ink !text-ink hover:!bg-ink hover:!text-brand">
-              View all speakers
-            </SpotlightButton>
-          </div>
-        </div>
-      </section>
-      */}
-
-      {/* UNCOMMENT WHEN SPEAKERS HAVE BEEN REGISTERED */}
-      {/* 
-      <section className="px-[clamp(20px,4vw,56px)] py-16">
-        <div className="mx-auto flex max-w-container flex-wrap items-center justify-between gap-6">
-          <h2 className="max-w-[16ch] font-display text-[clamp(28px,4vw,44px)] text-brand">
-            Seats are limited. Reserve yours.
-          </h2>
-          <SpotlightButton to="/register" variant="outline">Register now</SpotlightButton>
-        </div>
-      </section>
-      */}
     </>
   );
 }
