@@ -4,8 +4,11 @@ import { Link, NavLink } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { SpotlightButton } from "../kokonutui/spotlight-button";
 
+// 👇 We added Schedule and Speakers to this array 👇
 const links = [
   { to: "/", label: "Home" },
+  { to: "/schedule", label: "Schedule" },
+  { to: "/speakers", label: "Speakers" },
   { to: "/team", label: "Team" },
   { to: "/venue", label: "Venue & FAQ" },
 ];
@@ -14,7 +17,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    // Changed to fixed position with a transparent blurred background and subtle white border
+    // Fixed position with a transparent blurred background and subtle white border
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-ink/40 backdrop-blur-md">
       <nav className="mx-auto flex max-w-container items-center justify-between px-[clamp(20px,4vw,56px)] py-[18px]">
         <Link to="/" className="flex items-baseline gap-0.5 font-display text-xl tracking-tight text-brand">
@@ -28,7 +31,7 @@ export function Navbar() {
                 to={link.to}
                 end={link.to === "/"}
                 className={({ isActive }) =>
-                  // Updated to white accents for navigation links
+                  // White accents for navigation links
                   `relative pb-1 transition-colors ${isActive ? "text-white" : "text-white/60 hover:text-white"}`
                 }
               >
@@ -60,7 +63,7 @@ export function Navbar() {
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((o) => !o)}
-          // Changed mobile hamburger menu icon to white
+          // Mobile hamburger menu icon
           className="text-white md:hidden"
         >
           {open ? <X size={26} /> : <Menu size={26} />}
