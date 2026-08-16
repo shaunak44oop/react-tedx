@@ -1,16 +1,16 @@
 import { motion } from "motion/react";
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
-import { SpotlightGlow } from "../components/kokonutui/spotlight-glow";
 import { Countdown } from "../components/kokonutui/countdown";
 import { Marquee } from "../components/kokonutui/marquee";
 import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
 import { speakers } from "../data/speakers";
+import { UnicornBg } from "../components/kokonutui/unicorn-bg";
 
 const aboutCards = [
   {
     num: "01",
     title: "Student-organized",
-    body: "Planned, designed, and run start to finish by a student team — this site included.",
+    body: "Planned, designed and organized from start to finish by a student led team",
   },
   {
     num: "02",
@@ -29,8 +29,12 @@ export function Home() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden px-[clamp(20px,4vw,56px)] pb-24 pt-[72px]">
-        <SpotlightGlow />
-        <div className="mx-auto grid max-w-container items-end gap-12 md:grid-cols-[1.4fr_1fr]">
+        
+        {/* The new glowing silhouette background! */}
+        <UnicornBg projectId="Cy97RtZoaNTOHxoy3dsh" />
+        
+        {/* Added 'relative z-10' here to keep text and buttons clickable on top of the canvas */}
+        <div className="relative z-10 mx-auto grid max-w-container items-end gap-12 md:grid-cols-[1.4fr_1fr]">
           <div>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
