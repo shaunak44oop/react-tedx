@@ -36,11 +36,14 @@ export function Home() {
 
   return (
     <div className="min-h-screen bg-ink text-white overflow-hidden font-['Inter',sans-serif] font-light">
-      {/* Centered Sleek Hero Section (No Glow) */}
+      {/* Centered Sleek Hero Section */}
       <section className="relative flex flex-col items-center justify-center px-[clamp(20px,4vw,56px)] pt-[150px] pb-24 text-center">
-        {/* Subtle Minimalist Grid Background Texture */}
+        {/* Soft Ambient Hero Background Glow */}
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-brand/12 blur-[140px] rounded-full pointer-events-none" />
+
+        {/* Subtle Grid Texture */}
         <div 
-          className="absolute inset-0 pointer-events-none opacity-[0.06]" 
+          className="absolute inset-0 pointer-events-none opacity-[0.05]" 
           style={{ 
             backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, 
             backgroundSize: `24px 24px` 
@@ -53,7 +56,7 @@ export function Home() {
           </p>
 
           {/* Architectural Styled Title Card */}
-          <div className="relative border border-brand/30 bg-ink/70 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full">
+          <div className="relative border border-brand/30 bg-ink/80 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full">
             {/* Corner Crosshair Markers */}
             <span className="absolute -top-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
             <span className="absolute -top-1.5 -right-1.5 text-brand text-xs font-mono">+</span>
@@ -62,10 +65,10 @@ export function Home() {
 
             <div className="flex flex-col items-center leading-none">
               <motion.span 
-                initial={{ opacity: 0, tracking: "0.1em" }}
-                animate={{ opacity: 1, tracking: "0.45em" }}
+                initial={{ opacity: 0, letterSpacing: "0.1em" }}
+                animate={{ opacity: 1, letterSpacing: "0.45em" }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="font-['Helvetica',sans-serif] font-light text-base sm:text-xl uppercase tracking-[0.45em] text-muted/80 mb-2"
+                className="font-['Helvetica',sans-serif] font-light text-base sm:text-xl uppercase text-muted/80 mb-2"
               >
                 the
               </motion.span>
