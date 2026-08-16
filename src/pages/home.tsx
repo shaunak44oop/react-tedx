@@ -1,69 +1,212 @@
-import { useEffect, useState } from "react";
+import { motion } from "motion/react";
+import { SpotlightButton } from "../components/kokonutui/spotlight-button";
+import { SpotlightGlow } from "../components/kokonutui/spotlight-glow";
+import { Countdown } from "../components/kokonutui/countdown";
+import { Marquee } from "../components/kokonutui/marquee";
+import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
+import { speakers } from "../data/speakers";
 
-interface CountdownProps {
-  target: string;
-}
+const aboutCards = [
+  {
+    num: "01",
+    title: "Student-organized",
+    body: "Planned, designed, and run start to finish by a student team — this site included.",
+  },
+  {
+    num: "02",
+    title: "4 speakers, one day",
+    body: "Short talks from students, faculty, alumni, and guests from the community.",
+  },
+  {
+    num: "03",
+    title: "Open to everyone",
+    body: "Free / low-cost tickets for students, families, and anyone curious. Details on the Register page.",
+  },
+];
 
-export function Countdown({ target }: CountdownProps) {
-  const calculateTimeLeft = () => {
-    const difference = +new Date(target) - +new Date();
-    if (difference <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-
-    return {
-      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((difference / 1000 / 60) % 60),
-      seconds: Math.floor((difference / 1000) % 60),
-    };
-  };
-
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [target]);
-
-  const format = (num: number) => String(num).padStart(2, "0");
-
-  const timeUnits = [
-    { label: "DAYS", value: format(timeLeft.days) },
-    { label: "HOURS", value: format(timeLeft.hours) },
-    { label: "MINS", value: format(timeLeft.minutes) },
-    { label: "SECS", value: format(timeLeft.seconds) },
-  ];
-
+export function Home() {
   return (
-    <div className="w-full max-w-[380px]">
-      {/* Live Pulsing Indicator Badge */}
-      <div className="mb-3 flex items-center gap-2">
-        <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-brand" />
-        </span>
-        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-brand/90">
-          Countdown to Launch
-        </span>
+    <>
+      {/* HERO */}
+      <section className="relative overflow-hidden px-[clamp(20px,4vw,56px)] pb-24 pt-[72px]">
+        <SpotlightGlow />
+        <div className="mx-auto grid max-w-container items-end gap-12 md:grid-cols-[1.4fr_1fr]">
+          <div>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="font-mono text-[12.5px] uppercase tracking-[0.14em] text-brand"
+            >
+              TEDxYouth@CHIREC · 2026
+            </motion.p>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-3 font-display text-[clamp(40px,7vw,92px)] leading-[0.98] tracking-tight text-brand"
+            >
+              The In-Between
+              <br />
+              Space.
+            </motion.h1>
+
+            <motion.hr
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="my-6 h-[1px] w-full max-w-[380px] border-none bg-brand mx-auto md:mx-0"
+            />
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex gap-7 font-mono text-[13.5px] text-muted"
+            >
+              <div>
+                <strong className="mb-1 block text-[12px] uppercase tracking-[0.08em] text-brand">Date</strong>
+                October 3, 2026
+              </div>
+              <div>
+                <strong className="mb-1 block text-[12px] uppercase tracking-[0.08em] text-brand">Location</strong>
+                CHIREC Kondapur, Hyderabad
+              </div>
+              <div>
+                <strong className="mb-1 block text-[12px] uppercase tracking-[0.08em] text-brand">Format</strong>
+                In-person
+              </div>
+            </motion.div>
+
+            {/* JAZZED UP COUNTDOWN */}
+            <div className="mt-7">
+              <Countdown target="2026-10-03T09:00:00" />
+            </div>
+
+            {/* EQUALIZED SINGLE-LINE MOBILE BUTTONS */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="mt-9 flex flex-nowrap gap-2 sm:gap-3.5 max-w-[380px]"
+            >
+              <SpotlightButton
+                to="/register"
+                className="flex-1 justify-center text-center !px-2.5 sm:!px-5 !py-2.5 sm:!py-3 !text-[11.5px] sm:!text-[14px] whitespace-nowrap"
+              >
+                Reserve your seat
+              </SpotlightButton>
+              <SpotlightButton
+                to="/speakers"
+                variant="outline"
+                className="flex-1 justify-center text-center !px-2.5 sm:!px-5 !py-2.5 sm:!py-3 !text-[11.5px] sm:!text-[14px] whitespace-nowrap"
+              >
+                Meet the speakers
+              </SpotlightButton>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="relative flex aspect-[4/5] items-center justify-center overflow-hidden rounded-sm border border-brand/30 bg-ink shadow-2xl"
+          >
+            <img
+              src="./tedx-home.png"
+              alt="TEDxYouth@CHIREC"
+              className="h-full w-full object-cover"
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* TICKER */}
+      <div className="bg-brand py-3.5 text-ink">
+        <Marquee duration={22}>
+          {Array.from({ length: 6 }).map((_, i) => (
+            <span key={i} className="font-display text-sm tracking-wide">
+              TEDxYOUTH@CHIREC &nbsp;•&nbsp; The In-Between Space &nbsp;•&nbsp; October 3rd, 2026 &nbsp;•&nbsp;
+            </span>
+          ))}
+        </Marquee>
       </div>
 
-      {/* Glassmorphism Timer Cards */}
-      <div className="grid grid-cols-4 gap-2 sm:gap-2.5">
-        {timeUnits.map((unit, i) => (
-          <div
-            key={i}
-            className="group relative flex flex-col items-center justify-center rounded-md border border-brand/25 bg-brand/[0.04] py-2.5 px-1 sm:py-3.5 backdrop-blur-md transition-all duration-300 hover:border-brand/50 hover:bg-brand/[0.08] hover:shadow-[0_0_15px_rgba(235,0,40,0.18)]"
-          >
-            <span className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-brand drop-shadow-[0_0_8px_rgba(235,0,40,0.35)]">
-              {unit.value}
-            </span>
-            <span className="mt-1 font-mono text-[9px] sm:text-[10.5px] font-medium tracking-[0.12em] text-muted group-hover:text-brand/90 transition-colors">
-              {unit.label}
-            </span>
+      {/* ABOUT */}
+      <section className="px-[clamp(20px,4vw,56px)] py-[88px]">
+        <div className="mx-auto max-w-container">
+          <Reveal>
+            <p className="font-mono text-[12.5px] uppercase tracking-[0.14em] text-brand">
+              About the event
+            </p>
+            <h2 className="mt-3.5 max-w-[20ch] font-display text-[clamp(28px,4vw,44px)] leading-[1.05] text-brand">
+              A student-run stage for the ideas our school isn't done thinking about.
+            </h2>
+            <p className="mt-5 max-w-[60ch] text-[16.5px] text-muted">
+              TEDxYouth@CHIREC is an independently organized TED event, produced
+              entirely by students. For one afternoon, our auditorium becomes a stage
+              for classmates, teachers, and local voices to share the idea they can't
+              stop thinking about — in talks capped at 12 minutes, no slideshows
+              required.
+            </p>
+          </Reveal>
+
+          <RevealGroup className="mt-14 grid gap-8 md:grid-cols-3">
+            {aboutCards.map((card) => (
+              <motion.div key={card.num} variants={staggerItem} className="border-t-[3px] border-brand pt-6">
+                <span className="font-mono text-[13px] text-brand">{card.num}</span>
+                <h3 className="mt-3.5 font-display text-xl text-brand">{card.title}</h3>
+                <p className="mt-2.5 text-[14.5px] text-muted">{card.body}</p>
+              </motion.div>
+            ))}
+          </RevealGroup>
+        </div>
+      </section>
+
+      {/* UNCOMMENT WHEN SPEAKERS HAVE BEEN REGISTERED */}
+      {/* 
+      <section className="bg-brand px-[clamp(20px,4vw,56px)] py-[88px] text-ink">
+        <div className="mx-auto max-w-container">
+          <Reveal>
+            <p className="font-mono text-[12.5px] uppercase tracking-[0.14em] text-ink">
+              On the stage
+            </p>
+            <h2 className="mt-3.5 font-display text-[clamp(28px,4vw,44px)] text-ink">This year's speakers</h2>
+          </Reveal>
+
+          <RevealGroup className="mt-11 flex gap-7 overflow-x-auto pb-3" stagger={0.06}>
+            {speakers.slice(0, 4).map((speaker) => (
+              <motion.div key={speaker.id} variants={staggerItem} className="w-[150px] shrink-0">
+                <div className="flex aspect-square w-[150px] items-center justify-center rounded-full border-4 border-ink bg-brand">
+                  <span className="font-display text-4xl text-ink">{speaker.initials}</span>
+                </div>
+                <h3 className="mt-5 font-display text-xl text-ink">{speaker.name}</h3>
+                <span className="mt-1 block font-mono text-[12.5px] text-ink/80">{speaker.talkTitle}</span>
+              </motion.div>
+            ))}
+          </RevealGroup>
+
+          <div className="mt-11">
+            <SpotlightButton to="/speakers" variant="outline" className="!border-ink !text-ink hover:!bg-ink hover:!text-brand">
+              View all speakers
+            </SpotlightButton>
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      </section>
+      */}
+
+      {/* UNCOMMENT WHEN SPEAKERS HAVE BEEN REGISTERED */}
+      {/* 
+      <section className="px-[clamp(20px,4vw,56px)] py-16">
+        <div className="mx-auto flex max-w-container flex-wrap items-center justify-between gap-6">
+          <h2 className="max-w-[16ch] font-display text-[clamp(28px,4vw,44px)] text-brand">
+            Seats are limited. Reserve yours.
+          </h2>
+          <SpotlightButton to="/register" variant="outline">Register now</SpotlightButton>
+        </div>
+      </section>
+      */}
+    </>
   );
 }
