@@ -8,7 +8,7 @@ export function Team() {
   const categories = Array.from(new Set(teamMembers.map((m) => m.category)));
 
   return (
-    <div className="min-h-screen px-[clamp(20px,4vw,56px)] py-12 md:py-16">
+    <div className="min-h-screen px-[clamp(20px,4vw,56px)] pb-12 pt-[120px] md:pb-16">
       <div className="mx-auto max-w-container">
         {/* Header - Centered */}
         <div className="text-center">

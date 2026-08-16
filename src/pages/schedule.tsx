@@ -6,16 +6,16 @@ import { schedule } from "../data/schedule";
 export function Schedule() {
   return (
     <>
-      <section className="px-[clamp(20px,4vw,56px)] py-14">
+      <section className="px-[clamp(20px,4vw,56px)] pb-14 pt-[120px]">
         <div className="mx-auto max-w-container">
           <Reveal>
             <p className="inline-flex items-center gap-2.5 font-mono text-[12.5px] uppercase tracking-[0.14em] text-brand">
-              <span className="h-2 w-2 rounded-full bg-current" /> [Month Day, Year]
+              <span className="h-2 w-2 rounded-full bg-current" /> October 3, 2026
             </p>
             <h1 className="mt-3.5 font-display text-[clamp(36px,6vw,64px)] text-brand">Schedule</h1>
             <hr className="rule mt-[18px]" />
             <p className="mt-6 max-w-[56ch] text-[16.5px] text-muted">
-              Doors open at [Time]. Talks are capped at 12 minutes each, with breaks
+              Doors open at 15:00 IST. Talks are capped at 12 minutes each, with breaks
               built in — edit <code className="text-brand">src/data/schedule.ts</code> to
               match your final program.
             </p>

@@ -6,7 +6,7 @@ import { speakers } from "../data/speakers";
 export function Speakers() {
   return (
     <>
-      <section className="px-[clamp(20px,4vw,56px)] py-14">
+      <section className="px-[clamp(20px,4vw,56px)] pb-14 pt-[120px]">
         <div className="mx-auto max-w-container">
           <Reveal>
             <p className="inline-flex items-center gap-2.5 font-mono text-[12.5px] uppercase tracking-[0.14em] text-brand">
@@ -15,7 +15,7 @@ export function Speakers() {
             <h1 className="mt-3.5 font-display text-[clamp(36px,6vw,64px)] text-brand">Speakers</h1>
             <hr className="rule mt-[18px]" />
             <p className="mt-6 max-w-[56ch] text-[16.5px] text-muted">
-              [X] speakers. [X] ideas worth spreading. Replace each card below with
+              4 speakers. 4 ideas worth spreading. Replace each card below with
               your real lineup — swap the initials for a photo, and use the talk
               title as the headline the moment they walk on stage.
             </p>

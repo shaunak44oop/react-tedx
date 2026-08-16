@@ -7,7 +7,7 @@ import { faq } from "../data/faq";
 export function Venue() {
   return (
     <>
-      <section className="px-[clamp(20px,4vw,56px)] py-12 md:py-16">
+      <section className="px-[clamp(20px,4vw,56px)] pb-12 pt-[120px] md:pb-16">
         <Reveal className="mx-auto grid max-w-container gap-10 md:grid-cols-2 md:gap-14 items-stretch">
           {/* Left Column: Expanded Full-Height Map */}
           <div className="h-full w-full min-h-[420px]">

@@ -16,14 +16,12 @@ export function Register() {
     // backend code. See the README for how to wire it up to
     // Formspree or Google Forms in a few minutes.
     e.preventDefault();
-    setStatus(
-      "Error - Form Not Connected"
-    );
+    setStatus("Error - Form Not Connected");
   }
 
   return (
     <>
-      <section className="px-[clamp(20px,4vw,56px)] py-14">
+      <section className="px-[clamp(20px,4vw,56px)] pb-14 pt-[120px]">
         <div className="mx-auto max-w-container">
           <Reveal>
             <p className="inline-flex items-center gap-2.5 font-mono text-[12.5px] uppercase tracking-[0.14em] text-brand">
