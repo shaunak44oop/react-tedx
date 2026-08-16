@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { Reveal } from "../components/kokonutui/reveal";
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
 import { Accordion } from "../components/kokonutui/accordion";
@@ -28,8 +29,14 @@ export function Venue() {
               Venue &amp; FAQ
             </h1>
 
-            {/* Thin divider line */}
-            <hr className="my-6 h-[1px] border-0 bg-brand/20" />
+            {/* Brightened animated divider line matching home page */}
+            <motion.hr
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="my-6 h-[1px] w-full border-0 bg-brand origin-center"
+            />
 
             <h2 className="font-display text-2xl text-brand">CHIREC Kondapur</h2>
             <p className="mt-3 text-muted">
