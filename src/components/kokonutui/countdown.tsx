@@ -37,7 +37,6 @@ export function Countdown({ target }: CountdownProps) {
 
   return (
     <div className="w-full max-w-[380px]">
-      {/* Live Pulsing Indicator Badge */}
       <div className="mb-3 flex items-center gap-2">
         <span className="relative flex h-2 w-2">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-75" />
@@ -48,7 +47,6 @@ export function Countdown({ target }: CountdownProps) {
         </span>
       </div>
 
-      {/* Glassmorphism Timer Cards */}
       <div className="grid grid-cols-4 gap-2 sm:gap-2.5">
         {timeUnits.map((unit, i) => (
           <div
