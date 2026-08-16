@@ -35,35 +35,66 @@ export function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-ink text-white overflow-hidden">
-      {/* Centered Animated Hero */}
+    <div className="min-h-screen bg-ink text-white overflow-hidden font-['Inter',sans-serif] font-light">
+      {/* Centered Sleek Hero Section (No Glow) */}
       <section className="relative flex flex-col items-center justify-center px-[clamp(20px,4vw,56px)] pt-[150px] pb-24 text-center">
-        {/* Ambient Glow */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-brand/15 blur-[130px] rounded-full pointer-events-none" />
+        {/* Subtle Minimalist Grid Background Texture */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-[0.06]" 
+          style={{ 
+            backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, 
+            backgroundSize: `24px 24px` 
+          }} 
+        />
 
         <Reveal className="flex flex-col items-center z-10 max-w-4xl">
-          <p className="font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-brand/90 font-semibold mb-4">
+          <p className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.35em] text-brand font-medium mb-6">
             TEDxYouth@CHIREC 2026
           </p>
 
-          {/* Vertical Stacked Hero Typography */}
-          <div className="flex flex-col items-center leading-none tracking-tight my-2">
-            <span className="font-mono text-lg sm:text-2xl uppercase tracking-[0.45em] text-muted italic mb-1">
-              the
-            </span>
-            <h1 className="font-display text-[clamp(44px,9.5vw,110px)] font-black uppercase text-brand drop-shadow-lg">
-              in-between
-            </h1>
-            <span className="font-display text-[clamp(38px,8.5vw,90px)] font-extrabold uppercase tracking-[0.18em] text-white">
-              space
-            </span>
+          {/* Architectural Styled Title Card */}
+          <div className="relative border border-brand/30 bg-ink/70 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full">
+            {/* Corner Crosshair Markers */}
+            <span className="absolute -top-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
+            <span className="absolute -top-1.5 -right-1.5 text-brand text-xs font-mono">+</span>
+            <span className="absolute -bottom-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
+            <span className="absolute -bottom-1.5 -right-1.5 text-brand text-xs font-mono">+</span>
+
+            <div className="flex flex-col items-center leading-none">
+              <motion.span 
+                initial={{ opacity: 0, tracking: "0.1em" }}
+                animate={{ opacity: 1, tracking: "0.45em" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="font-['Helvetica',sans-serif] font-light text-base sm:text-xl uppercase tracking-[0.45em] text-muted/80 mb-2"
+              >
+                the
+              </motion.span>
+
+              <motion.h1 
+                initial={{ opacity: 0, scale: 0.96, y: 8 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="font-['Helvetica',sans-serif] text-[clamp(42px,9vw,96px)] font-black uppercase text-brand tracking-tight py-1"
+              >
+                in-between
+              </motion.h1>
+
+              <motion.span 
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
+                className="font-['Helvetica',sans-serif] text-[clamp(32px,7.5vw,76px)] font-extralight uppercase tracking-[0.22em] text-white/90 mt-1"
+              >
+                space
+              </motion.span>
+            </div>
           </div>
 
-          <motion.hr
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="my-8 h-[1px] w-32 border-0 bg-brand/50 origin-center"
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "120px" }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="my-8 h-[1px] bg-brand/40"
           />
 
           <p className="max-w-[54ch] text-base sm:text-lg text-muted font-light leading-relaxed mb-8">
@@ -81,48 +112,48 @@ export function Home() {
         </Reveal>
       </section>
 
-      {/* Replaced 'About' Section with Real-Time Countdown, Location, Date & Format */}
+      {/* Countdown, Location, Date & Format Section */}
       <section className="px-[clamp(20px,4vw,56px)] py-16 border-t border-brand/20 bg-ink/40">
-        <div className="mx-auto max-w-container">
+        <div className="mx-auto max-w-container font-['Inter',sans-serif] font-light">
           <Reveal className="text-center mb-12">
-            <p className="font-mono text-[12.5px] uppercase tracking-[0.14em] text-brand">
+            <p className="font-['Helvetica',sans-serif] text-[12.5px] uppercase tracking-[0.2em] text-brand font-medium">
               Event Overview
             </p>
-            <h2 className="mt-2 font-display text-[clamp(28px,5vw,48px)] text-white">
+            <h2 className="mt-2 font-['Helvetica',sans-serif] text-[clamp(28px,5vw,48px)] font-bold text-white">
               Key Details & Countdown
             </h2>
           </Reveal>
 
           {/* Live Countdown Card */}
           <Reveal className="mb-14">
-            <div className="rounded-2xl border border-brand/30 bg-ink/80 p-6 sm:p-8 backdrop-blur-md shadow-2xl">
-              <p className="text-center font-mono text-xs uppercase tracking-[0.2em] text-brand mb-6">
+            <div className="rounded-xl border border-brand/30 bg-ink/80 p-6 sm:p-8 backdrop-blur-md shadow-2xl relative">
+              <p className="text-center font-['Helvetica',sans-serif] text-xs uppercase tracking-[0.25em] text-brand mb-6 font-medium">
                 Countdown to Launch
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-                <div className="p-4 rounded-xl border border-brand/20 bg-brand/5">
-                  <span className="block font-display text-4xl sm:text-5xl text-brand font-bold">
+                <div className="p-4 rounded-lg border border-brand/20 bg-brand/5">
+                  <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-brand font-bold">
                     {String(timeLeft.days).padStart(2, '0')}
                   </span>
-                  <span className="font-mono text-xs uppercase text-muted tracking-wider">Days</span>
+                  <span className="font-['Inter',sans-serif] text-xs uppercase text-muted tracking-wider font-light">Days</span>
                 </div>
-                <div className="p-4 rounded-xl border border-brand/20 bg-brand/5">
-                  <span className="block font-display text-4xl sm:text-5xl text-white font-bold">
+                <div className="p-4 rounded-lg border border-brand/20 bg-brand/5">
+                  <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-white font-bold">
                     {String(timeLeft.hours).padStart(2, '0')}
                   </span>
-                  <span className="font-mono text-xs uppercase text-muted tracking-wider">Hours</span>
+                  <span className="font-['Inter',sans-serif] text-xs uppercase text-muted tracking-wider font-light">Hours</span>
                 </div>
-                <div className="p-4 rounded-xl border border-brand/20 bg-brand/5">
-                  <span className="block font-display text-4xl sm:text-5xl text-brand font-bold">
+                <div className="p-4 rounded-lg border border-brand/20 bg-brand/5">
+                  <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-brand font-bold">
                     {String(timeLeft.minutes).padStart(2, '0')}
                   </span>
-                  <span className="font-mono text-xs uppercase text-muted tracking-wider">Minutes</span>
+                  <span className="font-['Inter',sans-serif] text-xs uppercase text-muted tracking-wider font-light">Minutes</span>
                 </div>
-                <div className="p-4 rounded-xl border border-brand/20 bg-brand/5">
-                  <span className="block font-display text-4xl sm:text-5xl text-white font-bold">
+                <div className="p-4 rounded-lg border border-brand/20 bg-brand/5">
+                  <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-white font-bold">
                     {String(timeLeft.seconds).padStart(2, '0')}
                   </span>
-                  <span className="font-mono text-xs uppercase text-muted tracking-wider">Seconds</span>
+                  <span className="font-['Inter',sans-serif] text-xs uppercase text-muted tracking-wider font-light">Seconds</span>
                 </div>
               </div>
             </div>
@@ -135,9 +166,9 @@ export function Home() {
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand">
                 <Calendar className="h-6 w-6" />
               </div>
-              <h3 className="font-display text-xl text-white mb-1">Date & Time</h3>
-              <p className="font-mono text-sm text-brand mb-3">Saturday, October 3, 2026</p>
-              <p className="text-sm text-muted">
+              <h3 className="font-['Helvetica',sans-serif] text-xl font-bold text-white mb-1">Date & Time</h3>
+              <p className="font-['Inter',sans-serif] text-sm text-brand mb-3 font-normal">Saturday, October 3, 2026</p>
+              <p className="text-sm text-muted font-light leading-relaxed">
                 Doors open at 15:00 IST. Please arrive 20 minutes early for check-in and seating.
               </p>
             </motion.div>
@@ -147,9 +178,9 @@ export function Home() {
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand">
                 <MapPin className="h-6 w-6" />
               </div>
-              <h3 className="font-display text-xl text-white mb-1">Location</h3>
-              <p className="font-mono text-sm text-brand mb-3">CHIREC Kondapur Campus</p>
-              <p className="text-sm text-muted">
+              <h3 className="font-['Helvetica',sans-serif] text-xl font-bold text-white mb-1">Location</h3>
+              <p className="font-['Inter',sans-serif] text-sm text-brand mb-3 font-normal">CHIREC Kondapur Campus</p>
+              <p className="text-sm text-muted font-light leading-relaxed">
                 Botanical Garden Road, Kondapur, Hyderabad. Entrance & check-in located at Gate 1.
               </p>
             </motion.div>
@@ -159,9 +190,9 @@ export function Home() {
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand">
                 <Mic className="h-6 w-6" />
               </div>
-              <h3 className="font-display text-xl text-white mb-1">Event Format</h3>
-              <p className="font-mono text-sm text-brand mb-3">4 Talks & Live Performances</p>
-              <p className="text-sm text-muted">
+              <h3 className="font-['Helvetica',sans-serif] text-xl font-bold text-white mb-1">Event Format</h3>
+              <p className="font-['Inter',sans-serif] text-sm text-brand mb-3 font-normal">4 Talks & Live Performances</p>
+              <p className="text-sm text-muted font-light leading-relaxed">
                 Fast-paced 12-minute talks interspersed with networking breaks and interactive exhibits.
               </p>
             </motion.div>
