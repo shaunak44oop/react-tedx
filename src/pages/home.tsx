@@ -4,29 +4,27 @@ import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
 import { Calendar, MapPin, Mic, ArrowRight, Compass, Timer } from "lucide-react";
 
-// Sub-component for animated split-flap digits
+// Sub-component for smooth vertical rolling digit transitions
 function FlapDigit({ digit }: { digit: string }) {
   return (
-    <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#111115] border border-zinc-800 rounded-xs flex items-center justify-center shadow-lg overflow-hidden select-none [perspective:400px]">
-      {/* Top Half Shade */}
+    <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#111115] border border-zinc-800 rounded-xs flex items-center justify-center shadow-lg overflow-hidden select-none">
+      {/* Top Shade */}
       <div className="absolute top-0 inset-x-0 h-1/2 bg-white/[0.03] border-b border-black/80 z-10 pointer-events-none" />
 
-      {/* Split Flap Horizontal Cut Line */}
-      <div className="absolute top-1/2 inset-x-0 h-[2px] bg-[#070709] z-20" />
-
-      {/* Side Mechanical Hinge Notches */}
+      {/* Mechanical Center Line & Hinges */}
+      <div className="absolute top-1/2 inset-x-0 h-[2px] bg-[#070709] z-20 -translate-y-1/2" />
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-r-xs z-30" />
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-l-xs z-30" />
 
-      {/* Animated Digit Text */}
+      {/* Vertical Rolling Digit */}
       <AnimatePresence mode="popLayout">
         <motion.span
           key={digit}
-          initial={{ rotateX: -90, opacity: 0.2 }}
-          animate={{ rotateX: 0, opacity: 1 }}
-          exit={{ rotateX: 90, opacity: 0.2 }}
-          transition={{ duration: 0.35, ease: "easeInOut" }}
-          className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none z-0 inline-block [transform-origin:center]"
+          initial={{ y: "-100%", opacity: 0, filter: "blur(4px)" }}
+          animate={{ y: "0%", opacity: 1, filter: "blur(0px)" }}
+          exit={{ y: "100%", opacity: 0, filter: "blur(4px)" }}
+          transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+          className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none z-0"
         >
           {digit}
         </motion.span>
