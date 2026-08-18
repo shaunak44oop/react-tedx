@@ -20,7 +20,7 @@ export function Register() {
     <div className="min-h-screen bg-ink text-white overflow-hidden font-['Inter',sans-serif] font-light">
       {/* Centered Hero Section */}
       <section className="relative flex flex-col items-center justify-center px-[clamp(20px,4vw,56px)] pt-[150px] pb-14 text-center">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-brand/12 blur-[140px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-brand/20 blur-[150px] rounded-full pointer-events-none" />
         <div 
           className="absolute inset-0 pointer-events-none opacity-[0.05]" 
           style={{ backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, backgroundSize: `24px 24px` }} 
@@ -31,7 +31,7 @@ export function Register() {
             Limited Seats
           </p>
 
-          <div className="relative border border-brand/30 bg-ink/80 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full mx-auto">
+          <div className="relative border border-brand/30 bg-ink/80 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full mx-auto shadow-[0_0_50px_rgba(255,0,0,0.2)]">
             <span className="absolute -top-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
             <span className="absolute -top-1.5 -right-1.5 text-brand text-xs font-mono">+</span>
             <span className="absolute -bottom-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
@@ -106,7 +106,7 @@ export function Register() {
           </Reveal>
 
           <Reveal delay={0.1} className="w-full">
-            <div className="rounded-xl border border-brand/30 bg-ink/80 p-8 text-center backdrop-blur-md shadow-2xl">
+            <div className="rounded-xl border border-brand/30 bg-ink/80 p-8 text-center backdrop-blur-md shadow-[0_0_30px_rgba(255,0,0,0.1)]">
               <h3 className="font-['Helvetica',sans-serif] text-xs uppercase tracking-[0.2em] text-brand font-medium">Before you go</h3>
               <ul className="mt-6 flex flex-col items-center gap-4 text-sm text-muted">
                 <li>Doors open at 15:00 IST — arrive 20 minutes early.</li>

@@ -7,7 +7,7 @@ export function Schedule() {
   return (
     <div className="min-h-screen bg-ink text-white overflow-hidden font-['Inter',sans-serif] font-light">
       <section className="relative flex flex-col items-center justify-center px-[clamp(20px,4vw,56px)] pt-[150px] pb-14 text-center">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-brand/12 blur-[140px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-brand/20 blur-[150px] rounded-full pointer-events-none" />
         <div 
           className="absolute inset-0 pointer-events-none opacity-[0.05]" 
           style={{ backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, backgroundSize: `24px 24px` }} 
@@ -18,7 +18,7 @@ export function Schedule() {
             October 3, 2026
           </p>
 
-          <div className="relative border border-brand/30 bg-ink/80 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full mx-auto">
+          <div className="relative border border-brand/30 bg-ink/80 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full mx-auto shadow-[0_0_50px_rgba(255,0,0,0.2)]">
             <span className="absolute -top-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
             <span className="absolute -top-1.5 -right-1.5 text-brand text-xs font-mono">+</span>
             <span className="absolute -bottom-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
@@ -53,7 +53,7 @@ export function Schedule() {
           <div className="absolute top-2 bottom-2 left-1/2 w-px bg-brand/30 -translate-x-1/2" aria-hidden />
           {schedule.map((item) => (
             <motion.div key={item.id} variants={staggerItem} className="relative pb-16 w-full flex flex-col items-center text-center last:pb-0">
-              <span className="absolute left-1/2 top-0 h-5 w-5 -translate-x-1/2 rounded-full border-[4px] border-brand bg-ink z-10 shadow-[0_0_15px_rgba(255,0,0,0.3)]" aria-hidden />
+              <span className="absolute left-1/2 top-0 h-5 w-5 -translate-x-1/2 rounded-full border-[4px] border-brand bg-ink z-10 shadow-[0_0_15px_rgba(255,0,0,0.5)]" aria-hidden />
               <div className="pt-8 flex flex-col items-center">
                 <span className="mb-2 block font-['Helvetica',sans-serif] text-sm tracking-[0.1em] text-brand font-medium">
                   {item.time}

@@ -8,7 +8,7 @@ export function Venue() {
   return (
     <div className="min-h-screen bg-ink text-white overflow-hidden font-['Inter',sans-serif] font-light">
       <section className="relative flex flex-col items-center justify-center px-[clamp(20px,4vw,56px)] pt-[150px] pb-14 text-center">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-brand/12 blur-[140px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-brand/20 blur-[150px] rounded-full pointer-events-none" />
         <div 
           className="absolute inset-0 pointer-events-none opacity-[0.05]" 
           style={{ backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, backgroundSize: `24px 24px` }} 
@@ -19,7 +19,7 @@ export function Venue() {
             Getting There
           </p>
 
-          <div className="relative border border-brand/30 bg-ink/80 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full mx-auto">
+          <div className="relative border border-brand/30 bg-ink/80 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full mx-auto shadow-[0_0_50px_rgba(255,0,0,0.2)]">
             <span className="absolute -top-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
             <span className="absolute -top-1.5 -right-1.5 text-brand text-xs font-mono">+</span>
             <span className="absolute -bottom-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
@@ -55,7 +55,7 @@ export function Venue() {
       <section className="relative z-10 px-[clamp(20px,4vw,56px)] pb-24 flex flex-col items-center">
         <Reveal className="mx-auto w-full max-w-4xl flex flex-col items-center gap-16">
           {/* Centered Map */}
-          <div className="w-full h-[400px] sm:h-[500px] rounded-xl overflow-hidden border border-brand/30 shadow-[0_0_40px_rgba(255,0,0,0.08)] bg-ink/60 backdrop-blur-sm">
+          <div className="w-full h-[400px] sm:h-[500px] rounded-xl overflow-hidden border border-brand/30 shadow-[0_0_50px_rgba(255,0,0,0.15)] bg-ink/60 backdrop-blur-sm">
             <iframe
               className="h-full w-full grayscale contrast-[1.1] opacity-90 hover:opacity-100 transition-opacity"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.273618197171!2d78.3615364!3d17.470535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93cc13e59543%3A0xb3bd0f1e84a22b78!2sCHIREC%20International%20School%2C%20Kondapur%20Campus!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"

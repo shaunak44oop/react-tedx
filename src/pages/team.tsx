@@ -11,7 +11,7 @@ export function Team() {
   return (
     <div className="min-h-screen bg-ink text-white overflow-hidden font-['Inter',sans-serif] font-light">
       <section className="relative flex flex-col items-center justify-center px-[clamp(20px,4vw,56px)] pt-[150px] pb-14 text-center">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-brand/12 blur-[140px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-brand/20 blur-[150px] rounded-full pointer-events-none" />
         <div 
           className="absolute inset-0 pointer-events-none opacity-[0.05]" 
           style={{ backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, backgroundSize: `24px 24px` }} 
@@ -22,7 +22,7 @@ export function Team() {
             Behind the stage
           </p>
 
-          <div className="relative border border-brand/30 bg-ink/80 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full mx-auto">
+          <div className="relative border border-brand/30 bg-ink/80 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full mx-auto shadow-[0_0_50px_rgba(255,0,0,0.2)]">
             <span className="absolute -top-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
             <span className="absolute -top-1.5 -right-1.5 text-brand text-xs font-mono">+</span>
             <span className="absolute -bottom-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
@@ -68,7 +68,7 @@ export function Team() {
                       whileHover={{ y: -4 }}
                       transition={{ duration: 0.25 }}
                       onClick={() => setSelectedMember(member)}
-                      className="group relative w-[calc(50%-0.75rem)] sm:w-[220px] cursor-pointer overflow-hidden rounded-sm border border-brand/30 bg-ink/60 p-2 shadow-xl transition-all duration-300 hover:border-brand backdrop-blur-sm"
+                      className="group relative w-[calc(50%-0.75rem)] sm:w-[220px] cursor-pointer overflow-hidden rounded-sm border border-brand/30 bg-ink/60 p-2 shadow-xl transition-all duration-300 hover:border-brand hover:shadow-[0_0_25px_rgba(255,0,0,0.25)] backdrop-blur-sm"
                     >
                       <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
                         <img
@@ -112,7 +112,7 @@ export function Team() {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative z-10 w-full max-w-lg overflow-hidden rounded-sm border border-brand/40 bg-ink p-8 shadow-[0_0_50px_rgba(255,0,0,0.15)]"
+              className="relative z-10 w-full max-w-lg overflow-hidden rounded-sm border border-brand/40 bg-ink p-8 shadow-[0_0_50px_rgba(255,0,0,0.25)]"
             >
               <button
                 onClick={() => setSelectedMember(null)}
@@ -122,7 +122,7 @@ export function Team() {
               </button>
 
               <div className="flex flex-col items-center text-center">
-                <div className="h-32 w-32 rounded-full border border-brand/50 overflow-hidden mb-6 p-1">
+                <div className="h-32 w-32 rounded-full border border-brand/50 overflow-hidden mb-6 p-1 shadow-[0_0_20px_rgba(255,0,0,0.2)]">
                   <img
                     src={selectedMember.image}
                     alt={selectedMember.name}
