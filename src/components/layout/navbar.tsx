@@ -41,14 +41,16 @@ export function Navbar() {
           </div>
 
           {/* Center: Navigation Links */}
-          <ul className="hidden items-center justify-center gap-8 text-sm font-semibold md:flex">
+          <ul className="hidden items-center justify-center gap-5 lg:gap-8 text-sm font-semibold md:flex">
             {links.map((link) => (
               <li key={link.to} className="relative">
                 <NavLink
                   to={link.to}
                   end={link.to === "/"}
                   className={({ isActive }) =>
-                    `relative pb-1 transition-colors ${isActive ? "text-white" : "text-white/60 hover:text-white"}`
+                    `relative pb-1 transition-colors whitespace-nowrap ${
+                      isActive ? "text-white" : "text-white/60 hover:text-white"
+                    }`
                   }
                 >
                   {({ isActive }: { isActive: boolean }) => (
