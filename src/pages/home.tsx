@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
-import { Calendar, MapPin, Mic } from "lucide-react";
+import { Calendar, MapPin, Mic, ArrowRight, Compass, Timer } from "lucide-react";
 
 export function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -38,11 +38,18 @@ export function Home() {
     <div className="min-h-screen bg-ink text-white overflow-hidden font-['Inter',sans-serif] font-light">
       {/* Centered Sleek Hero Section */}
       <section className="relative flex flex-col items-center justify-center px-[clamp(20px,4vw,56px)] pt-[150px] pb-24 text-center">
-        {/* Soft Ambient Hero Background Glow */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-brand/12 blur-[140px] rounded-full pointer-events-none" />
+        
+        {/* ANIMATION 1: Breathing Ambient Hero Background Glow */}
+        <motion.div 
+          animate={{ scale: [1, 1.1, 1], opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-brand/12 blur-[140px] rounded-full pointer-events-none" 
+        />
 
-        {/* Subtle Grid Texture */}
-        <div 
+        {/* ANIMATION 2: Slowly Panning Grid Texture */}
+        <motion.div 
+          animate={{ backgroundPosition: ["0px 0px", "24px 24px"] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
           className="absolute inset-0 pointer-events-none opacity-[0.05]" 
           style={{ 
             backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, 
@@ -56,7 +63,7 @@ export function Home() {
           </p>
 
           {/* Architectural Styled Title Card */}
-          <div className="relative border border-brand/30 bg-ink/80 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full">
+          <div className="relative border border-brand/30 bg-ink/80 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full hover:border-brand/60 transition-colors duration-500">
             {/* Corner Crosshair Markers */}
             <span className="absolute -top-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
             <span className="absolute -top-1.5 -right-1.5 text-brand text-xs font-mono">+</span>
@@ -105,18 +112,21 @@ export function Home() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <SpotlightButton to="/register">
-              Reserve Your Seat
+            {/* ICONS ADDED: ArrowRight and Compass in buttons */}
+            <SpotlightButton to="/register" className="group flex items-center gap-2">
+              Reserve Your Seat 
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </SpotlightButton>
-            <SpotlightButton to="/speakers" variant="outline">
+            <SpotlightButton to="/speakers" variant="outline" className="group flex items-center gap-2">
               Explore Lineup
+              <Compass className="w-4 h-4 transition-transform group-hover:rotate-45" />
             </SpotlightButton>
           </div>
         </Reveal>
       </section>
 
       {/* Countdown, Location, Date & Format Section */}
-      <section className="px-[clamp(20px,4vw,56px)] py-16 border-t border-brand/20 bg-ink/40">
+      <section className="px-[clamp(20px,4vw,56px)] py-16 border-t border-brand/20 bg-ink/40 relative">
         <div className="mx-auto max-w-container font-['Inter',sans-serif] font-light">
           <Reveal className="text-center mb-12">
             <p className="font-['Helvetica',sans-serif] text-[12.5px] uppercase tracking-[0.2em] text-brand font-medium">
@@ -130,43 +140,48 @@ export function Home() {
           {/* Live Countdown Card */}
           <Reveal className="mb-14">
             <div className="rounded-xl border border-brand/30 bg-ink/80 p-6 sm:p-8 backdrop-blur-md shadow-2xl relative">
-              <p className="text-center font-['Helvetica',sans-serif] text-xs uppercase tracking-[0.25em] text-brand mb-6 font-medium">
-                Countdown to Launch
+              <p className="flex items-center justify-center gap-2 font-['Helvetica',sans-serif] text-xs uppercase tracking-[0.25em] text-brand mb-6 font-medium">
+                <Timer className="w-4 h-4 animate-pulse" /> Countdown to Launch
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-                <div className="p-4 rounded-lg border border-brand/20 bg-brand/5">
+                {/* ANIMATION 3: Spring hover effects on countdown blocks */}
+                <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="p-4 rounded-lg border border-brand/20 bg-brand/5 cursor-default">
                   <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-brand font-bold">
                     {String(timeLeft.days).padStart(2, '0')}
                   </span>
                   <span className="font-['Inter',sans-serif] text-xs uppercase text-muted tracking-wider font-light">Days</span>
-                </div>
-                <div className="p-4 rounded-lg border border-brand/20 bg-brand/5">
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="p-4 rounded-lg border border-brand/20 bg-brand/5 cursor-default">
                   <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-white font-bold">
                     {String(timeLeft.hours).padStart(2, '0')}
                   </span>
                   <span className="font-['Inter',sans-serif] text-xs uppercase text-muted tracking-wider font-light">Hours</span>
-                </div>
-                <div className="p-4 rounded-lg border border-brand/20 bg-brand/5">
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="p-4 rounded-lg border border-brand/20 bg-brand/5 cursor-default">
                   <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-brand font-bold">
                     {String(timeLeft.minutes).padStart(2, '0')}
                   </span>
                   <span className="font-['Inter',sans-serif] text-xs uppercase text-muted tracking-wider font-light">Minutes</span>
-                </div>
-                <div className="p-4 rounded-lg border border-brand/20 bg-brand/5">
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="p-4 rounded-lg border border-brand/20 bg-brand/5 cursor-default">
                   <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-white font-bold">
                     {String(timeLeft.seconds).padStart(2, '0')}
                   </span>
                   <span className="font-['Inter',sans-serif] text-xs uppercase text-muted tracking-wider font-light">Seconds</span>
-                </div>
+                </motion.div>
               </div>
             </div>
           </Reveal>
 
           {/* Details Cards: Date, Location, Format */}
           <RevealGroup className="grid gap-6 md:grid-cols-3" stagger={0.1}>
-            {/* Date */}
-            <motion.div variants={staggerItem} className="rounded-xl border border-brand/30 bg-ink p-6 shadow-xl hover:border-brand transition-colors">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand">
+            {/* ANIMATION 4 & ICON ENHANCEMENT: Hover lifts card up and pops the icon */}
+            <motion.div 
+              variants={staggerItem} 
+              whileHover={{ y: -8 }}
+              className="group rounded-xl border border-brand/30 bg-ink p-6 shadow-xl hover:border-brand hover:shadow-brand/20 transition-all cursor-default"
+            >
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
                 <Calendar className="h-6 w-6" />
               </div>
               <h3 className="font-['Helvetica',sans-serif] text-xl font-bold text-white mb-1">Date & Time</h3>
@@ -177,8 +192,12 @@ export function Home() {
             </motion.div>
 
             {/* Location */}
-            <motion.div variants={staggerItem} className="rounded-xl border border-brand/30 bg-ink p-6 shadow-xl hover:border-brand transition-colors">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand">
+            <motion.div 
+              variants={staggerItem} 
+              whileHover={{ y: -8 }}
+              className="group rounded-xl border border-brand/30 bg-ink p-6 shadow-xl hover:border-brand hover:shadow-brand/20 transition-all cursor-default"
+            >
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
                 <MapPin className="h-6 w-6" />
               </div>
               <h3 className="font-['Helvetica',sans-serif] text-xl font-bold text-white mb-1">Location</h3>
@@ -189,8 +208,12 @@ export function Home() {
             </motion.div>
 
             {/* Format */}
-            <motion.div variants={staggerItem} className="rounded-xl border border-brand/30 bg-ink p-6 shadow-xl hover:border-brand transition-colors">
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand">
+            <motion.div 
+              variants={staggerItem} 
+              whileHover={{ y: -8 }}
+              className="group rounded-xl border border-brand/30 bg-ink p-6 shadow-xl hover:border-brand hover:shadow-brand/20 transition-all cursor-default"
+            >
+              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
                 <Mic className="h-6 w-6" />
               </div>
               <h3 className="font-['Helvetica',sans-serif] text-xl font-bold text-white mb-1">Event Format</h3>
