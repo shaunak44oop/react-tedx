@@ -1,8 +1,39 @@
 import { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
-import { Calendar, MapPin, Mic, ArrowRight, Compass, Timer, Plane } from "lucide-react";
+import { Calendar, MapPin, Mic, ArrowRight, Compass, Timer } from "lucide-react";
+
+// Sub-component for animated split-flap digits
+function FlapDigit({ digit }: { digit: string }) {
+  return (
+    <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#111115] border border-zinc-800 rounded-xs flex items-center justify-center shadow-lg overflow-hidden select-none [perspective:400px]">
+      {/* Top Half Shade */}
+      <div className="absolute top-0 inset-x-0 h-1/2 bg-white/[0.03] border-b border-black/80 z-10 pointer-events-none" />
+
+      {/* Split Flap Horizontal Cut Line */}
+      <div className="absolute top-1/2 inset-x-0 h-[2px] bg-[#070709] z-20" />
+
+      {/* Side Mechanical Hinge Notches */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-r-xs z-30" />
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-l-xs z-30" />
+
+      {/* Animated Digit Text */}
+      <AnimatePresence mode="popLayout">
+        <motion.span
+          key={digit}
+          initial={{ rotateX: -90, opacity: 0.2 }}
+          animate={{ rotateX: 0, opacity: 1 }}
+          exit={{ rotateX: 90, opacity: 0.2 }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+          className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none z-0 inline-block [transform-origin:center]"
+        >
+          {digit}
+        </motion.span>
+      </AnimatePresence>
+    </div>
+  );
+}
 
 export function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -40,25 +71,7 @@ export function Home() {
     return (
       <div className="flex gap-1 sm:gap-1.5">
         {digits.map((digit, idx) => (
-          <div
-            key={idx}
-            className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#111115] border border-zinc-800 rounded-xs flex items-center justify-center shadow-lg overflow-hidden select-none"
-          >
-            {/* Top Half Shade */}
-            <div className="absolute top-0 inset-x-0 h-1/2 bg-white/[0.03] border-b border-black/80 z-10 pointer-events-none" />
-
-            {/* Split Flap Horizontal Cut Line */}
-            <div className="absolute top-1/2 inset-x-0 h-[2px] bg-[#070709] z-20" />
-
-            {/* Side Mechanical Hinge Notches */}
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-r-xs z-30" />
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-l-xs z-30" />
-
-            {/* Digit Text */}
-            <span className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none z-0">
-              {digit}
-            </span>
-          </div>
+          <FlapDigit key={idx} digit={digit} />
         ))}
       </div>
     );
@@ -156,9 +169,6 @@ export function Home() {
         <div className="max-w-7xl mx-auto">
           
           <Reveal className="text-center mb-12">
-            <p className="font-['Helvetica',sans-serif] text-[12px] uppercase tracking-[0.3em] text-[#EB0028] font-semibold mb-2">
-              {/* Event Overview */}
-            </p>
             <h2 className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
               Event Overview
             </h2>
@@ -168,16 +178,16 @@ export function Home() {
           <Reveal className="mb-14">
             <div className="rounded-sm border border-[#EB0028]/40 bg-[#0c0c0e] p-6 sm:p-10 relative overflow-hidden shadow-2xl">
               
-              {/* Corner Mechanical Indicators */}
-              <span className="absolute top-2 left-3 text-zinc-600 font-mono text-[10px]">FLAP-DISPLAY // TEDX-2026</span>
-              <span className="absolute top-2 right-3 text-zinc-600 font-mono text-[10px]">STATUS: ON TIME</span>
+              {/* Corner Indicator */}
+              <span className="absolute top-2 left-3 text-zinc-600 font-mono text-[10px] uppercase tracking-wider">
+                TEDxYouth@CHIREC 2026
+              </span>
 
               {/* Board Title Header Bar */}
               <div className="flex items-center justify-between border-b border-zinc-800 pb-4 mb-8 mt-2">
                 <div className="flex items-center gap-2.5">
-                  <Plane className="w-4 h-4 text-[#EB0028] rotate-45" />
                   <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.25em] text-[#EB0028] font-bold">
-                    Countdown To Launch
+                    EVENT COUNTDOWN
                   </span>
                 </div>
                 <div className="flex items-center gap-2 font-mono text-xs text-zinc-400">
