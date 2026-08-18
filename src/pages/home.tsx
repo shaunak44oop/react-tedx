@@ -132,10 +132,10 @@ export function Home() {
           
           <Reveal className="text-center mb-10">
             <p className="font-['Helvetica',sans-serif] text-[12px] uppercase tracking-[0.25em] text-[#EB0028] font-medium mb-1">
-              Event Overview
+              {/* Event Overview */}
             </p>
             <h2 className="font-['Helvetica',sans-serif] text-2xl sm:text-4xl font-bold text-white">
-              Key Details & Countdown
+              Event Overview
             </h2>
           </Reveal>
 
