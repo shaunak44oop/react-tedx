@@ -52,7 +52,7 @@ export function Speakers() {
         <RevealGroup className="mx-auto flex flex-wrap justify-center gap-14 max-w-6xl">
           {speakers.map((speaker) => (
             <motion.div key={speaker.id} variants={staggerItem} className="flex flex-col items-center text-center w-full sm:w-[300px]">
-              <div className="flex aspect-square w-[220px] items-center justify-center overflow-hidden rounded-full border border-brand/40 bg-ink/80 shadow-[0_0_30px_rgba(255,0,0,0.1)] mb-6">
+              <div className="flex aspect-square w-[220px] items-center justify-center overflow-hidden rounded-full border border-brand/40 bg-ink/80 shadow-[0_0_30px_rgba(255,0,0,0.1)] mb-6 backdrop-blur-sm">
                 <span className="font-['Helvetica',sans-serif] font-black text-[52px] text-brand/40">{speaker.initials}</span>
               </div>
               <h3 className="font-['Helvetica',sans-serif] text-2xl font-bold text-white">{speaker.name}</h3>

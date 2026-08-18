@@ -55,7 +55,7 @@ export function Venue() {
       <section className="relative z-10 px-[clamp(20px,4vw,56px)] pb-24 flex flex-col items-center">
         <Reveal className="mx-auto w-full max-w-4xl flex flex-col items-center gap-16">
           {/* Centered Map */}
-          <div className="w-full h-[400px] sm:h-[500px] rounded-xl overflow-hidden border border-brand/30 shadow-[0_0_40px_rgba(255,0,0,0.08)]">
+          <div className="w-full h-[400px] sm:h-[500px] rounded-xl overflow-hidden border border-brand/30 shadow-[0_0_40px_rgba(255,0,0,0.08)] bg-ink/60 backdrop-blur-sm">
             <iframe
               className="h-full w-full grayscale contrast-[1.1] opacity-90 hover:opacity-100 transition-opacity"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.273618197171!2d78.3615364!3d17.470535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93cc13e59543%3A0xb3bd0f1e84a22b78!2sCHIREC%20International%20School%2C%20Kondapur%20Campus!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"

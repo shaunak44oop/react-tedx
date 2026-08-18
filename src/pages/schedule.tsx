@@ -61,7 +61,7 @@ export function Schedule() {
                 <h3 className="font-['Helvetica',sans-serif] text-2xl font-bold text-white mb-1">{item.title}</h3>
                 <span className="text-[15px] text-muted mb-3">{item.subtitle}</span>
                 {item.tag && (
-                  <span className="inline-block rounded-sm border border-brand/30 px-3 py-1 font-['Helvetica',sans-serif] text-[11px] uppercase tracking-[0.15em] text-brand/80">
+                  <span className="inline-block rounded-sm border border-brand/30 px-3 py-1 font-['Helvetica',sans-serif] text-[11px] uppercase tracking-[0.15em] text-brand/80 backdrop-blur-sm bg-ink/40">
                     {item.tag}
                   </span>
                 )}
