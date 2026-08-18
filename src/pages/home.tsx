@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
-import { Calendar, MapPin, Mic, ArrowRight, Compass, Timer } from "lucide-react";
+import { Calendar, MapPin, Mic, ArrowRight, Compass, Timer, Plane } from "lucide-react";
 
 export function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -34,10 +34,40 @@ export function Home() {
     return () => clearInterval(timer);
   }, []);
 
+  // Helper to render individual split-flap airport digit tiles
+  const renderSplitFlapDigits = (value: number) => {
+    const digits = String(value).padStart(2, "0").split("");
+    return (
+      <div className="flex gap-1 sm:gap-1.5">
+        {digits.map((digit, idx) => (
+          <div
+            key={idx}
+            className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#111115] border border-zinc-800 rounded-xs flex items-center justify-center shadow-lg overflow-hidden select-none"
+          >
+            {/* Top Half Shade */}
+            <div className="absolute top-0 inset-x-0 h-1/2 bg-white/[0.03] border-b border-black/80 z-10 pointer-events-none" />
+
+            {/* Split Flap Horizontal Cut Line */}
+            <div className="absolute top-1/2 inset-x-0 h-[2px] bg-[#070709] z-20" />
+
+            {/* Side Mechanical Hinge Notches */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-r-xs z-30" />
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-l-xs z-30" />
+
+            {/* Digit Text */}
+            <span className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none z-0">
+              {digit}
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-[#070709] text-white overflow-hidden font-['Inter',sans-serif] selection:bg-[#EB0028] selection:text-white relative">
       
-      {/* 2. TEDx Red Dark Background Radial Gradient */}
+      {/* TEDx Red Dark Background Radial Gradient */}
       <div 
         className="absolute inset-0 pointer-events-none" 
         style={{
@@ -56,17 +86,15 @@ export function Home() {
 
       {/* HERO SECTION */}
       <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-20 text-center min-h-[85vh]">
-        
         <Reveal className="flex flex-col items-center z-10 max-w-4xl">
           
-          {/* 3. Crisp Rectangular Header (No Flashing/Pinging Light) */}
+          {/* Crisp Rectangular Header */}
           <div className="inline-flex items-center px-3.5 py-1 rounded-sm border border-[#EB0028]/40 bg-black/70 text-[11px] uppercase tracking-[0.3em] text-[#EB0028] font-mono mb-8 font-medium">
             TEDxYouth@CHIREC • OCT 3, 2026
           </div>
 
-          {/* Architectural Styled Title Card (1. Flat & Crisp, No Glows) */}
+          {/* Architectural Styled Title Card */}
           <div className="relative border border-[#EB0028]/30 bg-black/80 p-8 sm:p-12 rounded-sm my-2 max-w-2xl w-full hover:border-[#EB0028]/60 transition-colors duration-300">
-            {/* Corner Crosshair Markers */}
             <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono">+</span>
             <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono">+</span>
             <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono">+</span>
@@ -82,7 +110,6 @@ export function Home() {
                 THE
               </motion.span>
 
-              {/* Solid TEDx Red Headline */}
               <motion.h1 
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -121,74 +148,101 @@ export function Home() {
             </SpotlightButton>
           </div>
 
-          {/* 4. Removed elements below the buttons (Stats Ribbon) */}
-
         </Reveal>
       </section>
 
-      {/* 5. COUNTDOWN & DETAILS SECTION (Restored Original Clean Format) */}
-      <section className="px-4 sm:px-8 py-16 border-t border-[#EB0028]/20 bg-black/40 relative">
-        <div className="mx-auto max-w-4xl">
+      {/* FULL-WIDTH EVENT OVERVIEW SECTION */}
+      <section className="px-4 sm:px-12 md:px-16 py-20 border-t border-[#EB0028]/20 bg-black/50 relative w-full">
+        <div className="max-w-7xl mx-auto">
           
-          <Reveal className="text-center mb-10">
-            <p className="font-['Helvetica',sans-serif] text-[12px] uppercase tracking-[0.25em] text-[#EB0028] font-medium mb-1">
+          <Reveal className="text-center mb-12">
+            <p className="font-['Helvetica',sans-serif] text-[12px] uppercase tracking-[0.3em] text-[#EB0028] font-semibold mb-2">
               {/* Event Overview */}
             </p>
-            <h2 className="font-['Helvetica',sans-serif] text-2xl sm:text-4xl font-bold text-white">
+            <h2 className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
               Event Overview
             </h2>
           </Reveal>
 
-          {/* Live Countdown Card (Clean & Architectural) */}
-          <Reveal className="mb-12">
-            <div className="rounded-sm border border-[#EB0028]/30 bg-black/70 p-6 sm:p-8 relative">
-              <p className="flex items-center justify-center gap-2 font-['Helvetica',sans-serif] text-xs uppercase tracking-[0.25em] text-[#EB0028] mb-6 font-medium">
-                <Timer className="w-4 h-4" /> Countdown to Launch
-              </p>
+          {/* Airport Split-Flap Style Departure Board Countdown */}
+          <Reveal className="mb-14">
+            <div className="rounded-sm border border-[#EB0028]/40 bg-[#0c0c0e] p-6 sm:p-10 relative overflow-hidden shadow-2xl">
               
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-                <div className="p-4 rounded-sm border border-[#EB0028]/20 bg-[#EB0028]/5 cursor-default">
-                  <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-[#EB0028] font-bold">
-                    {String(timeLeft.days).padStart(2, '0')}
+              {/* Corner Mechanical Indicators */}
+              <span className="absolute top-2 left-3 text-zinc-600 font-mono text-[10px]">FLAP-DISPLAY // TEDX-2026</span>
+              <span className="absolute top-2 right-3 text-zinc-600 font-mono text-[10px]">STATUS: ON TIME</span>
+
+              {/* Board Title Header Bar */}
+              <div className="flex items-center justify-between border-b border-zinc-800 pb-4 mb-8 mt-2">
+                <div className="flex items-center gap-2.5">
+                  <Plane className="w-4 h-4 text-[#EB0028] rotate-45" />
+                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.25em] text-[#EB0028] font-bold">
+                    Countdown To Launch
                   </span>
-                  <span className="font-['Inter',sans-serif] text-xs uppercase text-zinc-400 tracking-wider font-light mt-1 block">Days</span>
                 </div>
-                <div className="p-4 rounded-sm border border-[#EB0028]/20 bg-[#EB0028]/5 cursor-default">
-                  <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-white font-bold">
-                    {String(timeLeft.hours).padStart(2, '0')}
+                <div className="flex items-center gap-2 font-mono text-xs text-zinc-400">
+                  <Timer className="w-3.5 h-3.5 text-[#EB0028]" />
+                  <span>OCT 3, 2026 • 15:00 IST</span>
+                </div>
+              </div>
+
+              {/* Split Flap Grid Display */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 justify-items-center">
+                
+                {/* DAYS */}
+                <div className="flex flex-col items-center">
+                  {renderSplitFlapDigits(timeLeft.days)}
+                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">
+                    Days
                   </span>
-                  <span className="font-['Inter',sans-serif] text-xs uppercase text-zinc-400 tracking-wider font-light mt-1 block">Hours</span>
                 </div>
-                <div className="p-4 rounded-sm border border-[#EB0028]/20 bg-[#EB0028]/5 cursor-default">
-                  <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-[#EB0028] font-bold">
-                    {String(timeLeft.minutes).padStart(2, '0')}
+
+                {/* HOURS */}
+                <div className="flex flex-col items-center">
+                  {renderSplitFlapDigits(timeLeft.hours)}
+                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">
+                    Hours
                   </span>
-                  <span className="font-['Inter',sans-serif] text-xs uppercase text-zinc-400 tracking-wider font-light mt-1 block">Minutes</span>
                 </div>
-                <div className="p-4 rounded-sm border border-[#EB0028]/20 bg-[#EB0028]/5 cursor-default">
-                  <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-white font-bold">
-                    {String(timeLeft.seconds).padStart(2, '0')}
+
+                {/* MINUTES */}
+                <div className="flex flex-col items-center">
+                  {renderSplitFlapDigits(timeLeft.minutes)}
+                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">
+                    Minutes
                   </span>
-                  <span className="font-['Inter',sans-serif] text-xs uppercase text-zinc-400 tracking-wider font-light mt-1 block">Seconds</span>
                 </div>
+
+                {/* SECONDS */}
+                <div className="flex flex-col items-center">
+                  {renderSplitFlapDigits(timeLeft.seconds)}
+                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-[#EB0028] font-bold mt-3">
+                    Seconds
+                  </span>
+                </div>
+
               </div>
             </div>
           </Reveal>
 
-          {/* Details Cards */}
+          {/* Full-Width Grid for Details Cards */}
           <RevealGroup className="grid gap-6 md:grid-cols-3" stagger={0.1}>
             
             {/* Date & Time */}
             <motion.div 
               variants={staggerItem} 
-              className="group rounded-sm border border-[#EB0028]/30 bg-black/60 p-6 hover:border-[#EB0028] transition-colors cursor-default"
+              className="group rounded-sm border border-[#EB0028]/30 bg-black/70 p-8 hover:border-[#EB0028] transition-colors cursor-default"
             >
-              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-sm bg-[#EB0028]/10 text-[#EB0028]">
-                <Calendar className="h-5 w-5" />
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-sm bg-[#EB0028]/10 text-[#EB0028]">
+                <Calendar className="h-6 w-6" />
               </div>
-              <h3 className="font-['Helvetica',sans-serif] text-lg font-bold text-white mb-1">Date & Time</h3>
-              <p className="text-xs text-[#EB0028] mb-2 font-medium">Saturday, October 3, 2026</p>
-              <p className="text-xs text-zinc-400 font-light leading-relaxed">
+              <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">
+                Date & Time
+              </h3>
+              <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">
+                Saturday, October 3, 2026
+              </p>
+              <p className="text-sm sm:text-base text-zinc-100 font-normal leading-relaxed">
                 Doors open at 15:00 IST. Please arrive 20 minutes early for check-in and seating.
               </p>
             </motion.div>
@@ -196,14 +250,18 @@ export function Home() {
             {/* Location */}
             <motion.div 
               variants={staggerItem} 
-              className="group rounded-sm border border-[#EB0028]/30 bg-black/60 p-6 hover:border-[#EB0028] transition-colors cursor-default"
+              className="group rounded-sm border border-[#EB0028]/30 bg-black/70 p-8 hover:border-[#EB0028] transition-colors cursor-default"
             >
-              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-sm bg-[#EB0028]/10 text-[#EB0028]">
-                <MapPin className="h-5 w-5" />
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-sm bg-[#EB0028]/10 text-[#EB0028]">
+                <MapPin className="h-6 w-6" />
               </div>
-              <h3 className="font-['Helvetica',sans-serif] text-lg font-bold text-white mb-1">Location</h3>
-              <p className="text-xs text-[#EB0028] mb-2 font-medium">CHIREC Kondapur Campus</p>
-              <p className="text-xs text-zinc-400 font-light leading-relaxed">
+              <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">
+                Location
+              </h3>
+              <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">
+                CHIREC Kondapur Campus
+              </p>
+              <p className="text-sm sm:text-base text-zinc-100 font-normal leading-relaxed">
                 Botanical Garden Road, Kondapur, Hyderabad. Entrance & check-in located at Gate 1.
               </p>
             </motion.div>
@@ -211,14 +269,18 @@ export function Home() {
             {/* Format */}
             <motion.div 
               variants={staggerItem} 
-              className="group rounded-sm border border-[#EB0028]/30 bg-black/60 p-6 hover:border-[#EB0028] transition-colors cursor-default"
+              className="group rounded-sm border border-[#EB0028]/30 bg-black/70 p-8 hover:border-[#EB0028] transition-colors cursor-default"
             >
-              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-sm bg-[#EB0028]/10 text-[#EB0028]">
-                <Mic className="h-5 w-5" />
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-sm bg-[#EB0028]/10 text-[#EB0028]">
+                <Mic className="h-6 w-6" />
               </div>
-              <h3 className="font-['Helvetica',sans-serif] text-lg font-bold text-white mb-1">Event Format</h3>
-              <p className="text-xs text-[#EB0028] mb-2 font-medium">Talks & Performances</p>
-              <p className="text-xs text-zinc-400 font-light leading-relaxed">
+              <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">
+                Event Format
+              </h3>
+              <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">
+                Talks & Performances
+              </p>
+              <p className="text-sm sm:text-base text-zinc-100 font-normal leading-relaxed">
                 Fast-paced 12-minute talks interspersed with networking breaks and interactive exhibits.
               </p>
             </motion.div>
