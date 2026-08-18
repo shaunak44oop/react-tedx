@@ -141,7 +141,13 @@ export function Home() {
             </div>
           </div>
 
-          <div className="my-8 h-[1px] w-24 bg-[#EB0028]/40" />
+          {/* Animated Accent Divider Line */}
+          <motion.div 
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
+            className="my-8 h-[1px] w-24 bg-[#EB0028]/60 origin-center" 
+          />
 
           <p className="max-w-[54ch] text-base sm:text-lg text-zinc-300 font-light leading-relaxed mb-8">
             Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape tomorrow.
