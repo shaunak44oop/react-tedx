@@ -4,67 +4,33 @@ import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
 import { Calendar, MapPin, Mic, ArrowRight, Compass, Timer } from "lucide-react";
 
-// Mechanical Split-Flap Tile Component with authentic top-flap fold down animation
+// Sub-component for animated split-flap digits
 function FlapDigit({ digit }: { digit: string }) {
-  const [currentDigit, setCurrentDigit] = useState(digit);
-  const [previousDigit, setPreviousDigit] = useState(digit);
-  const [isFlipping, setIsFlipping] = useState(false);
-
-  useEffect(() => {
-    if (digit !== currentDigit) {
-      setPreviousDigit(currentDigit);
-      setCurrentDigit(digit);
-      setIsFlipping(true);
-
-      const timer = setTimeout(() => {
-        setIsFlipping(false);
-      }, 500);
-
-      return () => clearTimeout(timer);
-    }
-  }, [digit, currentDigit]);
-
   return (
-    <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#111115] border border-zinc-800 rounded-xs shadow-2xl select-none [perspective:600px]">
-      
-      {/* 1. TOP STATIC HALF (Displays Next/Current Digit Top) */}
-      <div className="absolute top-0 inset-x-0 h-1/2 overflow-hidden bg-[#15151a] rounded-t-xs border-b border-black/80 flex items-end justify-center">
-        <span className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none translate-y-1/2">
-          {currentDigit}
-        </span>
-        <div className="absolute inset-0 bg-white/[0.03] pointer-events-none" />
-      </div>
+    <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#111115] border border-zinc-800 rounded-xs flex items-center justify-center shadow-lg overflow-hidden select-none [perspective:400px]">
+      {/* Top Half Shade */}
+      <div className="absolute top-0 inset-x-0 h-1/2 bg-white/[0.03] border-b border-black/80 z-10 pointer-events-none" />
 
-      {/* 2. BOTTOM STATIC HALF (Displays Previous Digit Bottom during flip, then Current) */}
-      <div className="absolute bottom-0 inset-x-0 h-1/2 overflow-hidden bg-[#111115] rounded-b-xs flex items-start justify-center">
-        <span className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none -translate-y-1/2">
-          {isFlipping ? previousDigit : currentDigit}
-        </span>
-      </div>
+      {/* Split Flap Horizontal Cut Line */}
+      <div className="absolute top-1/2 inset-x-0 h-[2px] bg-[#070709] z-20" />
 
-      {/* 3. ANIMATED FLAPPING TOP HALF (Folds 180deg Downwards) */}
-      <AnimatePresence>
-        {isFlipping && (
-          <motion.div
-            key={previousDigit + "-flap"}
-            initial={{ rotateX: 0 }}
-            animate={{ rotateX: -180 }}
-            transition={{ duration: 0.45, ease: [0.4, 0.0, 0.2, 1] }}
-            style={{ transformOrigin: "bottom" }}
-            className="absolute top-0 inset-x-0 h-1/2 overflow-hidden bg-[#18181f] rounded-t-xs border-b border-black/80 flex items-end justify-center z-20 [backface-visibility:hidden]"
-          >
-            <span className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none translate-y-1/2">
-              {previousDigit}
-            </span>
-            <div className="absolute inset-0 bg-black/20 pointer-events-none" />
-          </motion.div>
-        )}
+      {/* Side Mechanical Hinge Notches */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-r-xs z-30" />
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-l-xs z-30" />
+
+      {/* Animated Digit Text */}
+      <AnimatePresence mode="popLayout">
+        <motion.span
+          key={digit}
+          initial={{ rotateX: -90, opacity: 0.2 }}
+          animate={{ rotateX: 0, opacity: 1 }}
+          exit={{ rotateX: 90, opacity: 0.2 }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+          className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none z-0 inline-block [transform-origin:center]"
+        >
+          {digit}
+        </motion.span>
       </AnimatePresence>
-
-      {/* 4. MECHANICAL DETAILS (Cut Line & Side Hinges) */}
-      <div className="absolute top-1/2 inset-x-0 h-[2px] bg-[#070709] z-30 -translate-y-1/2" />
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-r-xs z-40" />
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-l-xs z-40" />
     </div>
   );
 }
@@ -99,6 +65,7 @@ export function Home() {
     return () => clearInterval(timer);
   }, []);
 
+  // Helper to render individual split-flap airport digit tiles
   const renderSplitFlapDigits = (value: number) => {
     const digits = String(value).padStart(2, "0").split("");
     return (
