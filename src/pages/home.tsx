@@ -2,7 +2,18 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
-import { Calendar, MapPin, Mic, ArrowRight, Compass, Timer } from "lucide-react";
+import { 
+  Calendar, 
+  MapPin, 
+  Mic, 
+  ArrowRight, 
+  Compass, 
+  Timer, 
+  Sparkles, 
+  Users, 
+  Layers,
+  ArrowUpRight 
+} from "lucide-react";
 
 export function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -35,196 +46,226 @@ export function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-ink text-white overflow-hidden font-['Inter',sans-serif] font-light">
-      {/* Centered Sleek Hero Section */}
-      <section className="relative flex flex-col items-center justify-center px-[clamp(20px,4vw,56px)] pt-[150px] pb-24 text-center">
+    <div className="min-h-screen bg-[#08080a] text-white overflow-hidden font-['Inter',sans-serif] selection:bg-red-600 selection:text-white">
+      
+      {/* HERO SECTION */}
+      <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-20 text-center min-h-[92vh]">
         
-        {/* ANIMATION 1: Breathing Ambient Hero Background Glow */}
+        {/* Layer 1: Ambient Red Center Spotlight */}
         <motion.div 
-          animate={{ scale: [1, 1.1, 1], opacity: [0.6, 1, 0.6] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-brand/12 blur-[140px] rounded-full pointer-events-none" 
+          animate={{ scale: [1, 1.15, 1], opacity: [0.35, 0.55, 0.35] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] sm:w-[650px] h-[400px] sm:h-[650px] bg-red-600/20 blur-[150px] rounded-full pointer-events-none" 
         />
 
-        {/* ANIMATION 2: Slowly Panning Grid Texture */}
+        {/* Layer 2: Secondary Vignette Glow */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-rose-500/10 blur-[100px] rounded-full pointer-events-none" />
+
+        {/* Layer 3: Panning Dot Matrix Pattern */}
         <motion.div 
-          animate={{ backgroundPosition: ["0px 0px", "24px 24px"] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0 pointer-events-none opacity-[0.05]" 
+          animate={{ backgroundPosition: ["0px 0px", "32px 32px"] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 pointer-events-none opacity-[0.07]" 
           style={{ 
-            backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, 
-            backgroundSize: `24px 24px` 
+            backgroundImage: `radial-gradient(circle, #ffffff 1.2px, transparent 1.2px)`, 
+            backgroundSize: `32px 32px` 
           }} 
         />
 
-        <Reveal className="flex flex-col items-center z-10 max-w-4xl">
-          <p className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.35em] text-brand font-medium mb-6">
-            TEDxYouth@CHIREC 2026
-          </p>
+        <Reveal className="flex flex-col items-center z-10 max-w-5xl">
+          
+          {/* Status Pill Badge */}
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-red-500/30 bg-red-950/30 backdrop-blur-md text-xs uppercase tracking-[0.25em] text-red-400 font-medium mb-8 shadow-[0_0_15px_rgba(239,68,68,0.15)]"
+          >
+            <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+            <span>TEDxYouth@CHIREC • OCT 3, 2026</span>
+          </motion.div>
 
-          {/* Architectural Styled Title Card */}
-          <div className="relative border border-brand/30 bg-ink/80 p-8 sm:p-12 backdrop-blur-md rounded-sm my-2 max-w-2xl w-full hover:border-brand/60 transition-colors duration-500">
-            {/* Corner Crosshair Markers */}
-            <span className="absolute -top-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
-            <span className="absolute -top-1.5 -right-1.5 text-brand text-xs font-mono">+</span>
-            <span className="absolute -bottom-1.5 -left-1.5 text-brand text-xs font-mono">+</span>
-            <span className="absolute -bottom-1.5 -right-1.5 text-brand text-xs font-mono">+</span>
+          {/* Title Card Container */}
+          <div className="relative border border-white/10 bg-black/60 p-8 sm:p-14 backdrop-blur-xl rounded-2xl my-2 max-w-3xl w-full shadow-[0_0_50px_rgba(0,0,0,0.8)] hover:border-red-500/40 transition-all duration-700 group">
+            
+            {/* Tech Corner Markers */}
+            <span className="absolute top-3 left-3 text-red-500/60 text-xs font-mono group-hover:text-red-400 transition-colors">┌</span>
+            <span className="absolute top-3 right-3 text-red-500/60 text-xs font-mono group-hover:text-red-400 transition-colors">┐</span>
+            <span className="absolute bottom-3 left-3 text-red-500/60 text-xs font-mono group-hover:text-red-400 transition-colors">└</span>
+            <span className="absolute bottom-3 right-3 text-red-500/60 text-xs font-mono group-hover:text-red-400 transition-colors">┘</span>
 
             <div className="flex flex-col items-center leading-none">
               <motion.span 
-                initial={{ opacity: 0, letterSpacing: "0.1em" }}
-                animate={{ opacity: 1, letterSpacing: "0.45em" }}
+                initial={{ opacity: 0, letterSpacing: "0.2em" }}
+                animate={{ opacity: 1, letterSpacing: "0.5em" }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="font-['Helvetica',sans-serif] font-light text-base sm:text-xl uppercase text-muted/80 mb-2"
+                className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-400 mb-3"
               >
-                the
+                T H E
               </motion.span>
 
+              {/* Glowing Crimson Headline */}
               <motion.h1 
-                initial={{ opacity: 0, scale: 0.96, y: 8 }}
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="font-['Helvetica',sans-serif] text-[clamp(42px,9vw,96px)] font-black uppercase text-brand tracking-tight py-1"
+                className="font-['Helvetica',sans-serif] text-[clamp(44px,10vw,100px)] font-black uppercase tracking-tight py-1 bg-gradient-to-r from-red-500 via-rose-500 to-red-600 bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(239,68,68,0.4)]"
               >
-                in-between
+                IN-BETWEEN
               </motion.h1>
 
               <motion.span 
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
-                className="font-['Helvetica',sans-serif] text-[clamp(32px,7.5vw,76px)] font-extralight uppercase tracking-[0.22em] text-white/90 mt-1"
+                className="font-['Helvetica',sans-serif] text-[clamp(30px,7.5vw,72px)] font-extralight uppercase tracking-[0.28em] text-zinc-100 mt-1"
               >
-                space
+                SPACE
               </motion.span>
             </div>
           </div>
 
           <motion.div
             initial={{ width: 0 }}
-            animate={{ width: "120px" }}
+            animate={{ width: "100px" }}
             transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="my-8 h-[1px] bg-brand/40"
+            className="my-8 h-[2px] bg-gradient-to-r from-transparent via-red-500 to-transparent"
           />
 
-          <p className="max-w-[54ch] text-base sm:text-lg text-muted font-light leading-relaxed mb-8">
-            Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape the future.
+          <p className="max-w-[50ch] text-base sm:text-lg text-zinc-400 font-light leading-relaxed mb-10">
+            Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape tomorrow.
           </p>
 
+          {/* Action Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
-            {/* ICONS ADDED: ArrowRight and Compass in buttons */}
-            <SpotlightButton to="/register" className="group flex items-center gap-2">
+            <SpotlightButton to="/register" className="group flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-medium px-6 py-3 rounded-xl transition-all shadow-[0_0_25px_rgba(220,38,38,0.4)]">
               Reserve Your Seat 
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </SpotlightButton>
-            <SpotlightButton to="/speakers" variant="outline" className="group flex items-center gap-2">
+            <SpotlightButton to="/speakers" variant="outline" className="group flex items-center gap-2 border-white/20 hover:border-white/40 text-zinc-200 px-6 py-3 rounded-xl backdrop-blur-md transition-all">
               Explore Lineup
-              <Compass className="w-4 h-4 transition-transform group-hover:rotate-45" />
+              <Compass className="w-4 h-4 transition-transform group-hover:rotate-45 text-red-400" />
             </SpotlightButton>
           </div>
+
+          {/* Quick Event Highlights Bar */}
+          <div className="grid grid-cols-3 gap-6 sm:gap-12 mt-16 pt-8 border-t border-white/10 w-full max-w-xl text-zinc-400 text-xs sm:text-sm">
+            <div className="flex flex-col items-center gap-1">
+              <span className="font-bold text-white text-base sm:text-lg">500+</span>
+              <span className="text-zinc-500">Attendees</span>
+            </div>
+            <div className="flex flex-col items-center gap-1">
+              <span className="font-bold text-white text-base sm:text-lg">8+</span>
+              <span className="text-zinc-500">Speakers</span>
+            </div>
+            <div className="flex flex-col items-center gap-1">
+              <span className="font-bold text-white text-base sm:text-lg">1 Day</span>
+              <span className="text-zinc-500">Live Experience</span>
+            </div>
+          </div>
+
         </Reveal>
       </section>
 
-      {/* Countdown, Location, Date & Format Section */}
-      <section className="px-[clamp(20px,4vw,56px)] py-16 border-t border-brand/20 bg-ink/40 relative">
-        <div className="mx-auto max-w-container font-['Inter',sans-serif] font-light">
+      {/* COUNTDOWN & DETAILS SECTION */}
+      <section className="px-4 sm:px-8 py-20 border-t border-white/10 bg-black/40 relative">
+        <div className="mx-auto max-w-5xl">
+          
           <Reveal className="text-center mb-12">
-            <p className="font-['Helvetica',sans-serif] text-[12.5px] uppercase tracking-[0.2em] text-brand font-medium">
-              Event Overview
+            <p className="font-['Helvetica',sans-serif] text-xs uppercase tracking-[0.3em] text-red-500 font-semibold mb-2">
+              EVENT OVERVIEW
             </p>
-            <h2 className="mt-2 font-['Helvetica',sans-serif] text-[clamp(28px,5vw,48px)] font-bold text-white">
+            <h2 className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl font-bold text-white">
               Key Details & Countdown
             </h2>
           </Reveal>
 
-          {/* Live Countdown Card */}
-          <Reveal className="mb-14">
-            <div className="rounded-xl border border-brand/30 bg-ink/80 p-6 sm:p-8 backdrop-blur-md shadow-2xl relative">
-              <p className="flex items-center justify-center gap-2 font-['Helvetica',sans-serif] text-xs uppercase tracking-[0.25em] text-brand mb-6 font-medium">
-                <Timer className="w-4 h-4 animate-pulse" /> Countdown to Launch
+          {/* Countdown Clock Block */}
+          <Reveal className="mb-12">
+            <div className="rounded-2xl border border-red-500/20 bg-gradient-to-b from-zinc-900/80 to-black/90 p-6 sm:p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 bg-red-600/10 blur-[60px] rounded-full pointer-events-none" />
+              
+              <p className="flex items-center justify-center gap-2 text-xs uppercase tracking-[0.25em] text-red-400 mb-8 font-medium">
+                <Timer className="w-4 h-4 animate-pulse text-red-500" /> Time Remaining To Launch
               </p>
+
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-                {/* ANIMATION 3: Spring hover effects on countdown blocks */}
-                <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="p-4 rounded-lg border border-brand/20 bg-brand/5 cursor-default">
-                  <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-brand font-bold">
-                    {String(timeLeft.days).padStart(2, '0')}
-                  </span>
-                  <span className="font-['Inter',sans-serif] text-xs uppercase text-muted tracking-wider font-light">Days</span>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="p-4 rounded-lg border border-brand/20 bg-brand/5 cursor-default">
-                  <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-white font-bold">
-                    {String(timeLeft.hours).padStart(2, '0')}
-                  </span>
-                  <span className="font-['Inter',sans-serif] text-xs uppercase text-muted tracking-wider font-light">Hours</span>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="p-4 rounded-lg border border-brand/20 bg-brand/5 cursor-default">
-                  <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-brand font-bold">
-                    {String(timeLeft.minutes).padStart(2, '0')}
-                  </span>
-                  <span className="font-['Inter',sans-serif] text-xs uppercase text-muted tracking-wider font-light">Minutes</span>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 300 }} className="p-4 rounded-lg border border-brand/20 bg-brand/5 cursor-default">
-                  <span className="block font-['Helvetica',sans-serif] text-4xl sm:text-5xl text-white font-bold">
-                    {String(timeLeft.seconds).padStart(2, '0')}
-                  </span>
-                  <span className="font-['Inter',sans-serif] text-xs uppercase text-muted tracking-wider font-light">Seconds</span>
-                </motion.div>
+                {[
+                  { value: timeLeft.days, label: "Days", highlight: true },
+                  { value: timeLeft.hours, label: "Hours", highlight: false },
+                  { value: timeLeft.minutes, label: "Minutes", highlight: true },
+                  { value: timeLeft.seconds, label: "Seconds", highlight: false },
+                ].map((item, idx) => (
+                  <motion.div 
+                    key={idx}
+                    whileHover={{ scale: 1.03, y: -2 }} 
+                    transition={{ type: "spring", stiffness: 300 }} 
+                    className="p-5 rounded-xl border border-white/10 bg-black/50 backdrop-blur-sm cursor-default hover:border-red-500/40 transition-colors"
+                  >
+                    <span className={`block font-['Helvetica',sans-serif] text-4xl sm:text-6xl font-bold ${item.highlight ? 'text-red-500' : 'text-white'}`}>
+                      {String(item.value).padStart(2, '0')}
+                    </span>
+                    <span className="text-xs uppercase text-zinc-500 tracking-wider mt-1 block">{item.label}</span>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </Reveal>
 
-          {/* Details Cards: Date, Location, Format */}
+          {/* 3 Overview Cards */}
           <RevealGroup className="grid gap-6 md:grid-cols-3" stagger={0.1}>
-            {/* ANIMATION 4 & ICON ENHANCEMENT: Hover lifts card up and pops the icon */}
+            
+            {/* Card 1: Date & Time */}
             <motion.div 
               variants={staggerItem} 
-              whileHover={{ y: -8 }}
-              className="group rounded-xl border border-brand/30 bg-ink p-6 shadow-xl hover:border-brand hover:shadow-brand/20 transition-all cursor-default"
+              whileHover={{ y: -6 }}
+              className="group rounded-2xl border border-white/10 bg-zinc-900/40 p-7 backdrop-blur-md shadow-xl hover:border-red-500/40 transition-all cursor-default relative overflow-hidden"
             >
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-500 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
                 <Calendar className="h-6 w-6" />
               </div>
               <h3 className="font-['Helvetica',sans-serif] text-xl font-bold text-white mb-1">Date & Time</h3>
-              <p className="font-['Inter',sans-serif] text-sm text-brand mb-3 font-normal">Saturday, October 3, 2026</p>
-              <p className="text-sm text-muted font-light leading-relaxed">
-                Doors open at 15:00 IST. Please arrive 20 minutes early for check-in and seating.
+              <p className="text-sm text-red-400 mb-3 font-medium">Saturday, October 3, 2026</p>
+              <p className="text-sm text-zinc-400 leading-relaxed font-light">
+                Doors open at 15:00 IST. Early check-in begins 30 minutes prior to opening remarks.
               </p>
             </motion.div>
 
-            {/* Location */}
+            {/* Card 2: Location */}
             <motion.div 
               variants={staggerItem} 
-              whileHover={{ y: -8 }}
-              className="group rounded-xl border border-brand/30 bg-ink p-6 shadow-xl hover:border-brand hover:shadow-brand/20 transition-all cursor-default"
+              whileHover={{ y: -6 }}
+              className="group rounded-2xl border border-white/10 bg-zinc-900/40 p-7 backdrop-blur-md shadow-xl hover:border-red-500/40 transition-all cursor-default relative overflow-hidden"
             >
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-500 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
                 <MapPin className="h-6 w-6" />
               </div>
               <h3 className="font-['Helvetica',sans-serif] text-xl font-bold text-white mb-1">Location</h3>
-              <p className="font-['Inter',sans-serif] text-sm text-brand mb-3 font-normal">CHIREC Kondapur Campus</p>
-              <p className="text-sm text-muted font-light leading-relaxed">
-                Botanical Garden Road, Kondapur, Hyderabad. Entrance & check-in located at Gate 1.
+              <p className="text-sm text-red-400 mb-3 font-medium">CHIREC Kondapur Campus</p>
+              <p className="text-sm text-zinc-400 leading-relaxed font-light">
+                Botanical Garden Road, Kondapur, Hyderabad. Main Auditorium via Gate 1.
               </p>
             </motion.div>
 
-            {/* Format */}
+            {/* Card 3: Format */}
             <motion.div 
               variants={staggerItem} 
-              whileHover={{ y: -8 }}
-              className="group rounded-xl border border-brand/30 bg-ink p-6 shadow-xl hover:border-brand hover:shadow-brand/20 transition-all cursor-default"
+              whileHover={{ y: -6 }}
+              className="group rounded-2xl border border-white/10 bg-zinc-900/40 p-7 backdrop-blur-md shadow-xl hover:border-red-500/40 transition-all cursor-default relative overflow-hidden"
             >
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-300">
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-red-500/10 text-red-500 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
                 <Mic className="h-6 w-6" />
               </div>
               <h3 className="font-['Helvetica',sans-serif] text-xl font-bold text-white mb-1">Event Format</h3>
-              <p className="font-['Inter',sans-serif] text-sm text-brand mb-3 font-normal">4 Talks & Live Performances</p>
-              <p className="text-sm text-muted font-light leading-relaxed">
-                Fast-paced 12-minute talks interspersed with networking breaks and interactive exhibits.
+              <p className="text-sm text-red-400 mb-3 font-medium">Talks & Performances</p>
+              <p className="text-sm text-zinc-400 leading-relaxed font-light">
+                Curated 12-minute talks, live creative performances, and interactive networking lounges.
               </p>
             </motion.div>
+
           </RevealGroup>
         </div>
       </section>
+
     </div>
   );
 }
