@@ -17,30 +17,32 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
 
-  // Detect scroll position to trigger floating oval shape
+  // State guard prevents continuous re-renders on every scroll pixel (fixes lag)
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 40);
+    const scrolled = latest > 40;
+    setIsScrolled((prev) => (prev !== scrolled ? scrolled : prev));
   });
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 transition-all duration-300 pointer-events-none">
       <div
         className={`pointer-events-auto w-full transition-all duration-300 ease-out ${
-          isScrolled
+          open
+            ? "mt-4 max-w-lg rounded-3xl border border-brand/30 bg-ink/95 px-6 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.9),0_0_20px_rgba(255,0,0,0.2)] backdrop-blur-2xl"
+            : isScrolled
             ? "mt-4 max-w-4xl rounded-full border border-brand/30 bg-ink/80 px-6 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,0.8),0_0_20px_rgba(255,0,0,0.15)] backdrop-blur-xl"
             : "max-w-7xl rounded-none border-b border-white/10 bg-ink/40 px-6 py-4 backdrop-blur-md"
         }`}
       >
-        {/* 3-Column Grid guarantees true visual horizontal centering */}
         <nav className="grid grid-cols-2 items-center md:grid-cols-3">
-          {/* Left: Brand Logo */}
+          {/* Logo */}
           <div className="flex items-center justify-start">
             <Link to="/" className="flex items-baseline gap-0.5 font-display text-xl tracking-tight text-brand">
               TEDx<span className="text-white">Youth</span>
             </Link>
           </div>
 
-          {/* Center: Navigation Links */}
+          {/* Desktop Nav Links */}
           <ul className="hidden items-center justify-center gap-5 lg:gap-8 text-sm font-semibold md:flex">
             {links.map((link) => (
               <li key={link.to} className="relative">
@@ -70,28 +72,28 @@ export function Navbar() {
             ))}
           </ul>
 
-          {/* Right: Register Button */}
+          {/* Desktop Register Button */}
           <div className="hidden items-center justify-end md:flex">
             <SpotlightButton to="/register" className="!px-5 !py-[9px] !text-[13px]">
               Register
             </SpotlightButton>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Hamburger Toggle */}
           <div className="flex items-center justify-end md:hidden">
             <button
               type="button"
               aria-label="Toggle menu"
               aria-expanded={open}
               onClick={() => setOpen((o) => !o)}
-              className="text-white"
+              className="p-1 text-white hover:text-brand transition-colors"
             >
               {open ? <X size={26} /> : <Menu size={26} />}
             </button>
           </div>
         </nav>
 
-        {/* Mobile Dropdown */}
+        {/* Mobile Dropdown Panel */}
         <AnimatePresence>
           {open && (
             <motion.div
@@ -101,15 +103,17 @@ export function Navbar() {
               transition={{ duration: 0.25, ease: "easeInOut" }}
               className="overflow-hidden md:hidden"
             >
-              <ul className="flex flex-col pt-4 pb-2">
+              <ul className="flex flex-col pt-4 pb-2 border-t border-white/10 mt-3">
                 {links.map((link) => (
-                  <li key={link.to} className="border-b border-white/10">
+                  <li key={link.to} className="border-b border-white/10 last:border-none">
                     <NavLink
                       to={link.to}
                       end={link.to === "/"}
                       onClick={() => setOpen(false)}
                       className={({ isActive }) =>
-                        `block py-3 font-semibold ${isActive ? "text-white" : "text-white/60"}`
+                        `block py-3.5 font-semibold transition-colors ${
+                          isActive ? "text-brand" : "text-white/80 hover:text-white"
+                        }`
                       }
                     >
                       {link.label}
