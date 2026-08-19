@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
 import { Calendar, MapPin, Mic, ArrowRight, Compass, Timer } from "lucide-react";
 
-// Sub-component for smooth vertical rolling digit transitions
-function FlapDigit({ digit }: { digit: string }) {
+// Memoized FlapDigit: Prevents unchanged digits from re-rendering every second
+const FlapDigit = memo(function FlapDigit({ digit }: { digit: string }) {
   return (
-    <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#111115] border border-zinc-800 rounded-xs flex items-center justify-center shadow-lg overflow-hidden select-none">
+    <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#111115] border border-zinc-800 rounded-xs flex items-center justify-center shadow-lg overflow-hidden select-none transform-gpu">
       {/* Top Shade */}
       <div className="absolute top-0 inset-x-0 h-1/2 bg-white/[0.03] border-b border-black/80 z-10 pointer-events-none" />
 
@@ -16,14 +16,14 @@ function FlapDigit({ digit }: { digit: string }) {
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-r-xs z-30" />
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#070709] rounded-l-xs z-30" />
 
-      {/* Vertical Rolling Digit */}
+      {/* Hardware-accelerated vertical flip (removes CPU-bound blur filter) */}
       <AnimatePresence mode="popLayout">
         <motion.span
           key={digit}
-          initial={{ y: "-100%", opacity: 0, filter: "blur(4px)" }}
-          animate={{ y: "0%", opacity: 1, filter: "blur(0px)" }}
-          exit={{ y: "100%", opacity: 0, filter: "blur(4px)" }}
-          transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+          initial={{ y: "-100%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          exit={{ y: "100%", opacity: 0 }}
+          transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
           className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none z-0"
         >
           {digit}
@@ -31,7 +31,7 @@ function FlapDigit({ digit }: { digit: string }) {
       </AnimatePresence>
     </div>
   );
-}
+});
 
 export function Home() {
   const [timeLeft, setTimeLeft] = useState({
@@ -63,7 +63,6 @@ export function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  // Helper to render individual split-flap airport digit tiles
   const renderSplitFlapDigits = (value: number) => {
     const digits = String(value).padStart(2, "0").split("");
     return (
@@ -78,7 +77,7 @@ export function Home() {
   return (
     <div className="min-h-screen bg-[#070709] text-white overflow-hidden font-['Inter',sans-serif] selection:bg-[#EB0028] selection:text-white relative">
       
-      {/* TEDx Red Dark Background Radial Gradient */}
+      {/* Background Gradient */}
       <div 
         className="absolute inset-0 pointer-events-none" 
         style={{
@@ -86,7 +85,7 @@ export function Home() {
         }}
       />
 
-      {/* Grid Pattern (Flat & Subtle) */}
+      {/* Grid Pattern */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-[0.04]" 
         style={{ 
@@ -99,12 +98,10 @@ export function Home() {
       <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-20 text-center min-h-[85vh]">
         <Reveal className="flex flex-col items-center z-10 max-w-4xl">
           
-          {/* Crisp Rectangular Header */}
           <div className="inline-flex items-center px-3.5 py-1 rounded-sm border border-[#EB0028]/40 bg-black/70 text-[11px] uppercase tracking-[0.3em] text-[#EB0028] font-mono mb-8 font-medium">
             TEDxYouth@CHIREC • OCT 3, 2026
           </div>
 
-          {/* Architectural Styled Title Card */}
           <div className="relative border border-[#EB0028]/30 bg-black/80 p-8 sm:p-12 rounded-sm my-2 max-w-2xl w-full hover:border-[#EB0028]/60 transition-colors duration-300">
             <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono">+</span>
             <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono">+</span>
@@ -141,7 +138,6 @@ export function Home() {
             </div>
           </div>
 
-          {/* Animated Accent Divider Line */}
           <motion.div 
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: 1, opacity: 1 }}
@@ -153,7 +149,6 @@ export function Home() {
             Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape tomorrow.
           </p>
 
-          {/* Action Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
             <SpotlightButton to="/register" className="group flex items-center gap-2 bg-[#EB0028] hover:bg-[#c40022] text-white font-medium px-6 py-2.5 rounded-sm transition-colors">
               Reserve Your Seat 
@@ -168,7 +163,7 @@ export function Home() {
         </Reveal>
       </section>
 
-      {/* FULL-WIDTH EVENT OVERVIEW SECTION */}
+      {/* EVENT OVERVIEW SECTION */}
       <section className="px-4 sm:px-12 md:px-16 py-20 border-t border-[#EB0028]/20 bg-black/50 relative w-full">
         <div className="max-w-7xl mx-auto">
           
@@ -178,16 +173,13 @@ export function Home() {
             </h2>
           </Reveal>
 
-          {/* Airport Split-Flap Style Departure Board Countdown */}
           <Reveal className="mb-14">
             <div className="rounded-sm border border-[#EB0028]/40 bg-[#0c0c0e] p-6 sm:p-10 relative overflow-hidden shadow-2xl">
               
-              {/* Corner Indicator */}
               <span className="absolute top-2 left-3 text-zinc-600 font-mono text-[10px] uppercase tracking-wider">
                 TEDxYouth@CHIREC 2026
               </span>
 
-              {/* Board Title Header Bar */}
               <div className="flex items-center justify-between border-b border-zinc-800 pb-4 mb-8 mt-2">
                 <div className="flex items-center gap-2.5">
                   <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.25em] text-[#EB0028] font-bold">
@@ -200,10 +192,7 @@ export function Home() {
                 </div>
               </div>
 
-              {/* Split Flap Grid Display */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 justify-items-center">
-                
-                {/* DAYS */}
                 <div className="flex flex-col items-center">
                   {renderSplitFlapDigits(timeLeft.days)}
                   <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">
@@ -211,7 +200,6 @@ export function Home() {
                   </span>
                 </div>
 
-                {/* HOURS */}
                 <div className="flex flex-col items-center">
                   {renderSplitFlapDigits(timeLeft.hours)}
                   <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">
@@ -219,7 +207,6 @@ export function Home() {
                   </span>
                 </div>
 
-                {/* MINUTES */}
                 <div className="flex flex-col items-center">
                   {renderSplitFlapDigits(timeLeft.minutes)}
                   <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">
@@ -227,22 +214,17 @@ export function Home() {
                   </span>
                 </div>
 
-                {/* SECONDS */}
                 <div className="flex flex-col items-center">
                   {renderSplitFlapDigits(timeLeft.seconds)}
                   <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-[#EB0028] font-bold mt-3">
                     Seconds
                   </span>
                 </div>
-
               </div>
             </div>
           </Reveal>
 
-          {/* Full-Width Grid for Details Cards */}
           <RevealGroup className="grid gap-6 md:grid-cols-3" stagger={0.1}>
-            
-            {/* Date & Time */}
             <motion.div 
               variants={staggerItem} 
               className="group rounded-sm border border-[#EB0028]/30 bg-black/70 p-8 hover:border-[#EB0028] transition-colors cursor-default"
@@ -261,7 +243,6 @@ export function Home() {
               </p>
             </motion.div>
 
-            {/* Location */}
             <motion.div 
               variants={staggerItem} 
               className="group rounded-sm border border-[#EB0028]/30 bg-black/70 p-8 hover:border-[#EB0028] transition-colors cursor-default"
@@ -280,7 +261,6 @@ export function Home() {
               </p>
             </motion.div>
 
-            {/* Format */}
             <motion.div 
               variants={staggerItem} 
               className="group rounded-sm border border-[#EB0028]/30 bg-black/70 p-8 hover:border-[#EB0028] transition-colors cursor-default"
@@ -298,7 +278,6 @@ export function Home() {
                 Fast-paced 12-minute talks interspersed with networking breaks and interactive exhibits.
               </p>
             </motion.div>
-
           </RevealGroup>
         </div>
       </section>
