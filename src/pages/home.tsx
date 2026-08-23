@@ -80,7 +80,7 @@ export function Home() {
       {/* THEME ARTWORK BACKGROUND & MASKING */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <img 
-          src={`${import.meta.env.BASE_URL}bg-tunnel.jpg`} 
+          src={`${(import.meta as any).env.BASE_URL}bg-tunnel.jpg`} 
           alt="The In-Between Space Artwork" 
           className="w-full h-full object-cover object-center opacity-50 scale-105 transform-gpu"
         />
