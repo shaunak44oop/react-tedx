@@ -4,10 +4,52 @@ import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
 import { Calendar, MapPin, Mic, ArrowRight, Compass, Timer } from "lucide-react";
 
-// Memoized FlapDigit: Prevents unchanged digits from re-rendering every second
+// Shared SVG Definitions for our geometric patterns (Shapes 1-8)
+const SharedSVGDefs = memo(function SharedSVGDefs() {
+  return (
+    <svg width="0" height="0" className="absolute hidden">
+      <defs>
+        {/* Shapes 3: Halftone Grid for Buttons */}
+        <pattern id="pattern-halftone" width="6" height="6" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1" fill="currentColor" />
+        </pattern>
+        
+        {/* Shapes 2: Diagonal Lines for Countdown Digits */}
+        <pattern id="pattern-diagonal" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+          <line x1="0" y1="0" x2="0" y2="8" stroke="currentColor" strokeWidth="1" />
+        </pattern>
+        
+        {/* Shapes 6: Honeycomb / Hex Mesh for Hero Box */}
+        <pattern id="pattern-hex" width="26" height="45" patternUnits="userSpaceOnUse">
+          <path d="M13 0 L26 7.5 L26 22.5 L13 30 L0 22.5 L0 7.5 Z" stroke="currentColor" strokeWidth="0.5" fill="none" />
+          <path d="M13 30 L26 37.5 L26 52.5 L13 60 L0 52.5 L0 37.5 Z" stroke="currentColor" strokeWidth="0.5" fill="none" />
+        </pattern>
+        
+        {/* Shapes 4 & 8: Hexagon with Nodes for Feature Cards */}
+        <g id="shape-hex-node">
+          <path d="M25 5 L45 15 L45 35 L25 45 L5 35 L5 15 Z" stroke="currentColor" strokeWidth="1.5" fill="none" />
+          <path d="M45 35 L55 40" stroke="currentColor" strokeWidth="1.5" fill="none" />
+          <path d="M5 35 L-5 40" stroke="currentColor" strokeWidth="1.5" fill="none" />
+          <path d="M25 5 L25 -5" stroke="currentColor" strokeWidth="1.5" fill="none" />
+          <circle cx="25" cy="5" r="3" fill="currentColor" />
+          <circle cx="45" cy="35" r="3" fill="currentColor" />
+          <circle cx="5" cy="35" r="3" fill="currentColor" />
+        </g>
+      </defs>
+    </svg>
+  );
+});
+
+// Memoized FlapDigit with Shapes 2 Diagonal Texture
 const FlapDigit = memo(function FlapDigit({ digit }: { digit: string }) {
   return (
-    <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#0b0b0f] border border-[#EB0028]/30 rounded-xs flex items-center justify-center overflow-hidden select-none transform-gpu">
+    <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#0b0b0f] border border-[#EB0028]/30 rounded-xs flex items-center justify-center overflow-hidden select-none transform-gpu group hover:border-[#EB0028]/60 transition-colors">
+      
+      {/* Shapes 2: Interactive Diagonal Line Texture */}
+      <div className="absolute inset-0 text-white opacity-[0.02] group-hover:opacity-[0.06] transition-opacity duration-300 pointer-events-none z-0">
+        <rect width="100%" height="100%" fill="url(#pattern-diagonal)" />
+      </div>
+
       {/* Top Shade */}
       <div className="absolute top-0 inset-x-0 h-1/2 bg-white/[0.04] border-b border-black/80 z-10 pointer-events-none" />
 
@@ -24,94 +66,11 @@ const FlapDigit = memo(function FlapDigit({ digit }: { digit: string }) {
           animate={{ y: "0%", opacity: 1 }}
           exit={{ y: "100%", opacity: 0 }}
           transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-          className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none z-0"
+          className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none z-10"
         >
           {digit}
         </motion.span>
       </AnimatePresence>
-    </div>
-  );
-});
-
-// Internal Geometric elements component with low opacity red patterns based on references
-const GeometricElements = memo(function GeometricElements() {
-  return (
-    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* SVG Pattern Definitions */}
-      <svg width="0" height="0">
-        <defs>
-          {/* Halftone grid pattern from image_13 */}
-          <pattern id="halftoneGrid" patternUnits="userSpaceOnUse" width="10" height="10">
-            <circle cx="5" cy="5" r="1.5" fill="#EB0028" opacity="1" />
-            <circle cx="0" cy="0" r="0.75" fill="#EB0028" opacity="0.6" />
-            <circle cx="10" cy="10" r="0.75" fill="#EB0028" opacity="0.6" />
-          </pattern>
-          {/* Hexagon node dots from image_11, image_16, image_18 */}
-          <symbol id="hexNode" viewBox="0 0 4 4">
-            <circle cx="2" cy="2" r="1" fill="#EB0028" />
-          </symbol>
-        </defs>
-      </svg>
-
-      {/* Top Left Corner: Wireframe hexagons with node dots + Halftone grid, from image_11, image_16, image_14 */}
-      <div className="absolute top-0 left-0 w-1/2 h-1/2 opacity-15">
-        <svg viewBox="0 0 200 200" className="w-full h-full">
-          {/* Hexagonal wireframe structure */}
-          <path d="M40 60 l30 0 l15 25.98 l-15 25.98 l-30 0 l-15 -25.98 Z" stroke="#EB0028" strokeWidth="1" fill="none" />
-          <path d="M90 60 l30 0 l15 25.98 l-15 25.98 l-30 0 l-15 -25.98 Z" stroke="#EB0028" strokeWidth="1.2" fill="none" />
-          <path d="M65 98.98 l30 0 l15 25.98 l-15 25.98 l-30 0 l-15 -25.98 Z" stroke="#EB0028" strokeWidth="1" fill="none" />
-          <path d="M115 98.98 l30 0 l15 25.98 l-15 25.98 l-30 0 l-15 -25.98 Z" stroke="#EB0028" strokeWidth="1" fill="none" />
-          
-          {/* Interconnections */}
-          <line x1="70" y1="60" x2="90" y2="60" stroke="#EB0028" strokeWidth="1" />
-          <line x1="115" y1="98.98" x2="145" y2="98.98" stroke="#EB0028" strokeWidth="1" />
-          <line x1="95" y1="98.98" x2="115" y2="98.98" stroke="#EB0028" strokeWidth="1.2" />
-
-          {/* Node Dots */}
-          <use href="#hexNode" x="68" y="58" width="4" height="4" />
-          <use href="#hexNode" x="88" y="58" width="4" height="4" />
-          <use href="#hexNode" x="113" y="96.98" width="4" height="4" />
-          <use href="#hexNode" x="143" y="96.98" width="4" height="4" />
-          <use href="#hexNode" x="143" y="122.96" width="4" height="4" />
-          
-          {/* Partial Halftone Corner from image_14 */}
-          <rect x="0" y="0" width="80" height="80" fill="url(#halftoneGrid)" opacity="0.6" />
-        </svg>
-      </div>
-
-      {/* Bottom Right Corner: Denser, interconnected hexagon mesh + dense halftone, from image_12, image_18, image_13 */}
-      <div className="absolute bottom-0 right-0 w-2/3 h-2/3 opacity-20">
-        <svg viewBox="0 0 200 200" className="w-full h-full">
-          {/* Dense mesh structure from image_12 bottom */}
-          <path d="M120 140 l20 0 l10 17.32 l-10 17.32 l-20 0 l-10 -17.32 Z" stroke="#EB0028" strokeWidth="1" fill="none" />
-          <path d="M150 140 l20 0 l10 17.32 l-10 17.32 l-20 0 l-10 -17.32 Z" stroke="#EB0028" strokeWidth="1.2" fill="none" />
-          <path d="M135 166 l20 0 l10 17.32 l-10 17.32 l-20 0 l-10 -17.32 Z" stroke="#EB0028" strokeWidth="1" fill="none" />
-          <path d="M165 166 l20 0 l10 17.32 l-10 17.32 l-20 0 l-10 -17.32 Z" stroke="#EB0028" strokeWidth="1.3" fill="none" />
-          <path d="M180 140 l20 0 l10 17.32 l-10 17.32 l-20 0 l-10 -17.32 Z" stroke="#EB0028" strokeWidth="1" fill="none" />
-          <path d="M195 166 l20 0 l10 17.32 l-10 17.32 l-20 0 l-10 -17.32 Z" stroke="#EB0028" strokeWidth="1" fill="none" />
-          
-          {/* Node dots cluster from image_18 */}
-          <use href="#hexNode" x="138" y="138" width="4" height="4" />
-          <use href="#hexNode" x="168" y="138" width="4" height="4" />
-          <use href="#hexNode" x="153" y="164" width="4" height="4" />
-          <use href="#hexNode" x="183" y="164" width="4" height="4" />
-          <use href="#hexNode" x="198" y="138" width="4" height="4" />
-          <use href="#hexNode" x="183" y="190" width="4" height="4" />
-          
-          {/* Dense Halftone Corner from image_13 */}
-          <rect x="120" y="120" width="80" height="80" fill="url(#halftoneGrid)" opacity="0.8" />
-        </svg>
-      </div>
-
-      {/* Subtle halftone patterned lines across midpoint and transition area, from image_15 */}
-      <div className="absolute top-[35%] inset-x-0 h-10 opacity-10">
-        <svg viewBox="0 0 100 10" className="w-full h-full">
-          <pattern id="midPattern" patternUnits="userSpaceOnUse" width="1" height="1">
-            <line x1="0.5" y1="0" x2="0.5" y2="1" stroke="#EB0028" strokeWidth="0.1" opacity="1" />
-          </pattern>
-          <rect x="0" y="2" width="100" height="6" fill="url(#midPattern)" rx="3" />
-        </svg>
-      </div>
     </div>
   );
 });
@@ -158,50 +117,52 @@ export function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070709] text-white overflow-hidden font-['Inter',sans-serif] selection:bg-[#EB0028] selection:text-white relative">
+    // Reverted the background completely so your bg-tunnel will fit in naturally via global CSS or added classes
+    <div className="min-h-screen text-white overflow-hidden font-['Inter',sans-serif] selection:bg-[#EB0028] selection:text-white relative">
       
-      {/* BACKGROUND GEOMETRIC ELEMENTS - New background pattern component */}
-      <GeometricElements />
+      {/* Invisible layer storing our SVGs */}
+      <SharedSVGDefs />
 
       {/* HERO SECTION */}
       <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-20 text-center min-h-[85vh] z-10">
         <Reveal className="flex flex-col items-center z-10 max-w-4xl">
           
-          <div className="inline-flex items-center px-4 py-1.5 rounded-xs border border-[#EB0028]/60 bg-black/80 backdrop-blur-md text-[11px] uppercase tracking-[0.35em] text-[#EB0028] font-mono mb-8 font-semibold relative">
-            {/* Minimal Pattern Accent detail */}
-            <svg width="4" height="4" viewBox="0 0 4 4" className="absolute -left-1.5 top-1/2 -translate-y-1/2 opacity-20">
-              <use href="#hexNode" width="4" height="4" />
-            </svg>
+          <div className="inline-flex items-center px-4 py-1.5 rounded-xs border border-[#EB0028]/60 bg-black/80 backdrop-blur-md text-[11px] uppercase tracking-[0.35em] text-[#EB0028] font-mono mb-8 font-semibold relative overflow-hidden group">
             TEDxYouth@CHIREC • OCT 3, 2026
+            {/* Tiny interactive node in the pill */}
+            <svg viewBox="0 0 10 10" className="absolute -right-1 -top-1 w-4 h-4 text-[#EB0028] opacity-0 group-hover:opacity-50 transition-opacity duration-300">
+              <circle cx="5" cy="5" r="2" fill="currentColor" />
+            </svg>
           </div>
 
-          <div className="relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs my-2 max-w-2xl w-full shadow-[0_0_60px_rgba(235,0,40,0.2)] hover:border-[#EB0028] transition-colors duration-300">
-            <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono">+</span>
-            <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono">+</span>
-            <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono">+</span>
-            <span className="absolute -bottom-1.5 -right-1.5 text-[#EB0028] text-xs font-mono">+</span>
+          {/* MAIN HERO BOX */}
+          <div className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs my-2 max-w-2xl w-full shadow-[0_0_60px_rgba(235,0,40,0.2)] hover:border-[#EB0028] hover:shadow-[0_0_80px_rgba(235,0,40,0.3)] transition-all duration-500 overflow-hidden">
+            
+            {/* Shapes 6: Interactive Honeycomb Background */}
+            <div className="absolute inset-0 text-[#EB0028] opacity-0 group-hover:opacity-[0.04] transition-opacity duration-700 pointer-events-none z-0">
+              <rect width="100%" height="100%" fill="url(#pattern-hex)" />
+            </div>
 
-            <div className="flex flex-col items-center leading-none relative">
+            <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
+            <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
+            <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
+            <span className="absolute -bottom-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
+
+            <div className="flex flex-col items-center leading-none relative z-10">
               <motion.span 
                 initial={{ opacity: 0, letterSpacing: "0.1em" }}
                 animate={{ opacity: 1, letterSpacing: "0.45em" }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-400 mb-2 z-10"
+                className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-400 mb-2"
               >
                 THE
               </motion.span>
-
-              {/* Minimal geometric detail behind main title */}
-              <svg width="40" height="20" viewBox="0 0 40 20" className="absolute -bottom-2 -left-4 opacity-15">
-                <path d="M0 10 l5 0 l2.5 4.33 l-2.5 4.33 l-5 0 l-2.5 -4.33 Z" stroke="#EB0028" strokeWidth="0.8" fill="none" />
-                <path d="M12 10 l5 0 l2.5 4.33 l-2.5 4.33 l-5 0 l-2.5 -4.33 Z" stroke="#EB0028" strokeWidth="0.8" fill="none" />
-              </svg>
 
               <motion.h1 
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-                className="font-['Helvetica',sans-serif] text-[clamp(42px,9vw,96px)] font-black uppercase text-[#EB0028] tracking-tight py-1 z-10 relative"
+                className="font-['Helvetica',sans-serif] text-[clamp(42px,9vw,96px)] font-black uppercase text-[#EB0028] tracking-tight py-1"
               >
                 IN-BETWEEN
               </motion.h1>
@@ -210,7 +171,7 @@ export function Home() {
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
-                className="font-['Helvetica',sans-serif] text-[clamp(32px,7.5vw,76px)] font-extralight uppercase tracking-[0.22em] text-white/95 mt-1 z-10"
+                className="font-['Helvetica',sans-serif] text-[clamp(32px,7.5vw,76px)] font-extralight uppercase tracking-[0.22em] text-white/95 mt-1"
               >
                 SPACE
               </motion.span>
@@ -229,13 +190,28 @@ export function Home() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 relative z-10">
-            <SpotlightButton to="/register" className="group flex items-center gap-2 bg-[#EB0028] hover:bg-[#c40022] text-white font-medium px-6 py-2.5 rounded-xs transition-all">
-              Reserve Your Seat 
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            {/* Primary Button */}
+            <SpotlightButton to="/register" className="group relative overflow-hidden bg-[#EB0028] hover:bg-[#c40022] text-white font-medium px-6 py-2.5 rounded-xs transition-all">
+              {/* Shapes 3: Halftone overlay reveal on hover */}
+              <div className="absolute inset-0 text-black opacity-0 group-hover:opacity-[0.15] transition-opacity duration-500 pointer-events-none z-0">
+                <rect width="100%" height="100%" fill="url(#pattern-halftone)" />
+              </div>
+              <span className="relative z-10 flex items-center gap-2">
+                Reserve Your Seat 
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </span>
             </SpotlightButton>
-            <SpotlightButton to="/speakers" variant="outline" className="group flex items-center gap-2 border-zinc-700 bg-black/60 hover:border-[#EB0028] text-zinc-200 px-6 py-2.5 rounded-xs transition-all relative">
-              Explore Lineup
-              <Compass className="w-4 h-4 transition-transform group-hover:rotate-45 text-[#EB0028]" />
+
+            {/* Outline Button */}
+            <SpotlightButton to="/speakers" variant="outline" className="group relative overflow-hidden border-zinc-700 bg-black/60 hover:border-[#EB0028] text-zinc-200 px-6 py-2.5 rounded-xs transition-all">
+              {/* Shapes 2: Diagonal lines overlay reveal on hover */}
+              <div className="absolute inset-0 text-[#EB0028] opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none z-0">
+                <rect width="100%" height="100%" fill="url(#pattern-diagonal)" />
+              </div>
+              <span className="relative z-10 flex items-center gap-2">
+                Explore Lineup
+                <Compass className="w-4 h-4 transition-transform group-hover:rotate-45 text-[#EB0028]" />
+              </span>
             </SpotlightButton>
           </div>
 
@@ -247,20 +223,13 @@ export function Home() {
         <div className="max-w-7xl mx-auto">
           
           <Reveal className="text-center mb-12 relative z-10">
-            <h2 className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl font-extrabold text-white tracking-tight relative">
+            <h2 className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
               Event Overview
             </h2>
-            {/* Subtly patterned detail near title */}
-            <svg width="20" height="10" viewBox="0 0 20 10" className="absolute -bottom-2 right-1/4 opacity-10">
-              <rect width="20" height="10" fill="url(#halftoneGrid)" />
-            </svg>
           </Reveal>
 
           <Reveal className="mb-14 relative z-10">
-            <div className="rounded-xs border border-[#EB0028]/40 bg-[#0c0c10]/90 p-6 sm:p-10 relative overflow-hidden">
-              
-              {/* Internal Pattern Detail: Subtle Halftone from image_13 behind timer numbers */}
-              <rect width="100%" height="100%" fill="url(#halftoneGrid)" opacity="0.1" className="absolute inset-0 z-0" />
+            <div className="group rounded-xs border border-[#EB0028]/40 bg-[#0c0c10]/90 p-6 sm:p-10 relative overflow-hidden transition-colors hover:border-[#EB0028]/80">
               
               <span className="absolute top-2 left-3 text-zinc-500 font-mono text-[10px] uppercase tracking-wider z-10">
                 TEDxYouth@CHIREC 2026
@@ -281,134 +250,78 @@ export function Home() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 justify-items-center z-10 relative">
                 <div className="flex flex-col items-center">
                   {renderSplitFlapDigits(timeLeft.days)}
-                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">
-                    Days
-                  </span>
+                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">Days</span>
                 </div>
-
                 <div className="flex flex-col items-center">
                   {renderSplitFlapDigits(timeLeft.hours)}
-                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">
-                    Hours
-                  </span>
+                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">Hours</span>
                 </div>
-
                 <div className="flex flex-col items-center">
                   {renderSplitFlapDigits(timeLeft.minutes)}
-                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">
-                    Minutes
-                  </span>
+                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">Minutes</span>
                 </div>
-
                 <div className="flex flex-col items-center">
                   {renderSplitFlapDigits(timeLeft.seconds)}
-                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-[#EB0028] font-bold mt-3">
-                    Seconds
-                  </span>
+                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-[#EB0028] font-bold mt-3">Seconds</span>
                 </div>
               </div>
             </div>
           </Reveal>
 
           <RevealGroup className="grid gap-6 md:grid-cols-3 relative z-10" stagger={0.1}>
-            <motion.div 
-              variants={staggerItem} 
-              className="group rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default relative overflow-hidden"
-            >
-              {/* Subtle Pattern accent detail near icon */}
-              <svg width="10" height="10" viewBox="0 0 10 10" className="absolute -bottom-1 -right-1 opacity-10">
-                <use href="#hexNode" width="4" height="4" />
+            
+            {/* Feature Card 1 */}
+            <motion.div variants={staggerItem} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
+              {/* Shapes 4/8: Hex Nodes pushing in from the corner on hover */}
+              <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-5 group-hover:opacity-[0.15] group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
+                <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
+              </svg>
+              
+              <div className="relative z-10">
+                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-110 transition-transform duration-500">
+                  <Calendar className="h-6 w-6" />
+                </div>
+                <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Date & Time</h3>
+                <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">Saturday, October 3, 2026</p>
+                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Doors open at 15:00 IST. Please arrive 20 minutes early for check-in and seating.</p>
+              </div>
+            </motion.div>
+
+            {/* Feature Card 2 */}
+            <motion.div variants={staggerItem} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
+              <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-5 group-hover:opacity-[0.15] group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
+                <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
               </svg>
 
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 relative">
-                <Calendar className="h-6 w-6 z-10" />
-                <svg width="4" height="4" viewBox="0 0 4 4" className="absolute -left-1 top-1 opacity-20">
-                  <use href="#hexNode" width="4" height="4" />
-                </svg>
+              <div className="relative z-10">
+                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-110 transition-transform duration-500">
+                  <MapPin className="h-6 w-6" />
+                </div>
+                <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Location</h3>
+                <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">CHIREC Kondapur Campus</p>
+                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Botanical Garden Road, Kondapur, Hyderabad. Entrance & check-in located at Gate 1.</p>
               </div>
-              <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">
-                Date & Time
-              </h3>
-              <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold relative">
-                Saturday, October 3, 2026
-                {/* Minimal patterned detail accent - very subtle line patterned underline detail */}
-                <span className="absolute -bottom-1 left-0 w-1/3 h-[0.5px] opacity-10">
-                  <svg viewBox="0 0 100 1" className="w-full h-full">
-                    <line x1="0" y1="0.5" x2="100" y2="0.5" stroke="#EB0028" strokeWidth="0.1" strokeDasharray="0.5 1" opacity="1" />
-                  </svg>
-                </span>
-              </p>
-              <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">
-                Doors open at 15:00 IST. Please arrive 20 minutes early for check-in and seating.
-              </p>
             </motion.div>
 
-            <motion.div 
-              variants={staggerItem} 
-              className="group rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default relative overflow-hidden"
-            >
-               {/* Subtle Pattern accent detail near icon */}
-              <svg width="10" height="10" viewBox="0 0 10 10" className="absolute -top-1 -left-1 opacity-10">
-                <use href="#hexNode" width="4" height="4" />
+            {/* Feature Card 3 */}
+            <motion.div variants={staggerItem} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
+              <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-5 group-hover:opacity-[0.15] group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
+                <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
               </svg>
 
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 relative">
-                <MapPin className="h-6 w-6 z-10" />
-                <svg width="4" height="4" viewBox="0 0 4 4" className="absolute -right-1 bottom-1 opacity-20">
-                  <use href="#hexNode" width="4" height="4" />
-                </svg>
+              <div className="relative z-10">
+                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-110 transition-transform duration-500">
+                  <Mic className="h-6 w-6" />
+                </div>
+                <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Event Format</h3>
+                <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">Talks & Performances</p>
+                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Fast-paced 12-minute talks interspersed with networking breaks and interactive exhibits.</p>
               </div>
-              <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">
-                Location
-              </h3>
-              <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold relative">
-                CHIREC Kondapur Campus
-                 {/* Minimal patterned detail accent - very subtle line patterned underline detail */}
-                <span className="absolute -bottom-1 left-0 w-1/3 h-[0.5px] opacity-10">
-                  <svg viewBox="0 0 100 1" className="w-full h-full">
-                    <line x1="0" y1="0.5" x2="100" y2="0.5" stroke="#EB0028" strokeWidth="0.1" strokeDasharray="0.5 1" opacity="1" />
-                  </svg>
-                </span>
-              </p>
-              <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">
-                Botanical Garden Road, Kondapur, Hyderabad. Entrance & check-in located at Gate 1.
-              </p>
             </motion.div>
 
-            <motion.div 
-              variants={staggerItem} 
-              className="group rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default relative overflow-hidden"
-            >
-              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 relative">
-                <Mic className="h-6 w-6 z-10" />
-                <svg width="4" height="4" viewBox="0 0 4 4" className="absolute -left-1 bottom-1 opacity-20">
-                  <use href="#hexNode" width="4" height="4" />
-                </svg>
-              </div>
-              <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">
-                Event Format
-              </h3>
-              <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold relative">
-                Talks & Performances
-                 {/* Minimal patterned detail accent - very subtle line patterned underline detail */}
-                <span className="absolute -bottom-1 left-0 w-1/3 h-[0.5px] opacity-10">
-                  <svg viewBox="0 0 100 1" className="w-full h-full">
-                    <line x1="0" y1="0.5" x2="100" y2="0.5" stroke="#EB0028" strokeWidth="0.1" strokeDasharray="0.5 1" opacity="1" />
-                  </svg>
-                </span>
-              </p>
-              <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed relative">
-                Fast-paced 12-minute talks interspersed with networking breaks and interactive exhibits.
-                 {/* Subtle patterned detail near corner, from image_13 */}
-                 <svg width="10" height="10" viewBox="0 0 10 10" className="absolute -bottom-1 -right-1 opacity-10">
-                    <rect width="10" height="10" fill="url(#halftoneGrid)" />
-                 </svg>
-              </p>
-            </motion.div>
           </RevealGroup>
         </div>
       </section>
-
     </div>
   );
 }
