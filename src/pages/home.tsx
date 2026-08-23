@@ -7,7 +7,7 @@ import { Calendar, MapPin, Mic, ArrowRight, Compass, Timer } from "lucide-react"
 // Memoized FlapDigit: Prevents unchanged digits from re-rendering every second
 const FlapDigit = memo(function FlapDigit({ digit }: { digit: string }) {
   return (
-    <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#0b0b0f] border border-[#EB0028]/30 rounded-xs flex items-center justify-center shadow-[0_0_15px_rgba(235,0,40,0.15)] overflow-hidden select-none transform-gpu">
+    <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#0b0b0f] border border-[#EB0028]/30 rounded-xs flex items-center justify-center overflow-hidden select-none transform-gpu">
       {/* Top Shade */}
       <div className="absolute top-0 inset-x-0 h-1/2 bg-white/[0.04] border-b border-black/80 z-10 pointer-events-none" />
 
@@ -76,25 +76,12 @@ export function Home() {
 
   return (
     <div className="min-h-screen bg-[#070709] text-white overflow-hidden font-['Inter',sans-serif] selection:bg-[#EB0028] selection:text-white relative">
-      
-      {/* THEME ARTWORK BACKGROUND & MASKING */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <img 
-          src={`${(import.meta as any).env.BASE_URL}bg-tunnel.jpg`} 
-          alt="The In-Between Space Artwork" 
-          className="w-full h-full object-cover object-center opacity-50 scale-105 transform-gpu"
-        />
-        {/* Soft top and bottom fade into section background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#070709]/85 via-[#070709]/40 to-[#070709]" />
-        {/* Radial vignette targeting center tunnel visual */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_15%,_#070709_85%)]" />
-      </div>
 
       {/* HERO SECTION */}
       <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-20 text-center min-h-[85vh] z-10">
         <Reveal className="flex flex-col items-center z-10 max-w-4xl">
           
-          <div className="inline-flex items-center px-4 py-1.5 rounded-xs border border-[#EB0028]/60 bg-black/80 backdrop-blur-md text-[11px] uppercase tracking-[0.35em] text-[#EB0028] font-mono mb-8 font-semibold shadow-[0_0_20px_rgba(235,0,40,0.3)]">
+          <div className="inline-flex items-center px-4 py-1.5 rounded-xs border border-[#EB0028]/60 bg-black/80 backdrop-blur-md text-[11px] uppercase tracking-[0.35em] text-[#EB0028] font-mono mb-8 font-semibold">
             TEDxYouth@CHIREC • OCT 3, 2026
           </div>
 
@@ -118,7 +105,7 @@ export function Home() {
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-                className="font-['Helvetica',sans-serif] text-[clamp(42px,9vw,96px)] font-black uppercase text-[#EB0028] tracking-tight py-1 drop-shadow-[0_0_25px_rgba(235,0,40,0.5)]"
+                className="font-['Helvetica',sans-serif] text-[clamp(42px,9vw,96px)] font-black uppercase text-[#EB0028] tracking-tight py-1"
               >
                 IN-BETWEEN
               </motion.h1>
@@ -138,15 +125,15 @@ export function Home() {
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
-            className="my-8 h-[1px] w-28 bg-[#EB0028] shadow-[0_0_12px_#EB0028] origin-center" 
+            className="my-8 h-[1px] w-28 bg-[#EB0028] origin-center" 
           />
 
-          <p className="max-w-[54ch] text-base sm:text-lg text-zinc-200 font-light leading-relaxed mb-8 drop-shadow-md">
+          <p className="max-w-[54ch] text-base sm:text-lg text-zinc-200 font-light leading-relaxed mb-8">
             Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape tomorrow.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
-            <SpotlightButton to="/register" className="group flex items-center gap-2 bg-[#EB0028] hover:bg-[#c40022] text-white font-medium px-6 py-2.5 rounded-xs transition-all shadow-[0_0_25px_rgba(235,0,40,0.4)]">
+            <SpotlightButton to="/register" className="group flex items-center gap-2 bg-[#EB0028] hover:bg-[#c40022] text-white font-medium px-6 py-2.5 rounded-xs transition-all">
               Reserve Your Seat 
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </SpotlightButton>
@@ -170,7 +157,7 @@ export function Home() {
           </Reveal>
 
           <Reveal className="mb-14">
-            <div className="rounded-xs border border-[#EB0028]/40 bg-[#0c0c10]/90 p-6 sm:p-10 relative overflow-hidden shadow-[0_0_40px_rgba(235,0,40,0.15)]">
+            <div className="rounded-xs border border-[#EB0028]/40 bg-[#0c0c10]/90 p-6 sm:p-10 relative overflow-hidden">
               
               <span className="absolute top-2 left-3 text-zinc-500 font-mono text-[10px] uppercase tracking-wider">
                 TEDxYouth@CHIREC 2026
@@ -223,7 +210,7 @@ export function Home() {
           <RevealGroup className="grid gap-6 md:grid-cols-3" stagger={0.1}>
             <motion.div 
               variants={staggerItem} 
-              className="group rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default shadow-lg"
+              className="group rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default"
             >
               <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20">
                 <Calendar className="h-6 w-6" />
@@ -241,7 +228,7 @@ export function Home() {
 
             <motion.div 
               variants={staggerItem} 
-              className="group rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default shadow-lg"
+              className="group rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default"
             >
               <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20">
                 <MapPin className="h-6 w-6" />
@@ -259,7 +246,7 @@ export function Home() {
 
             <motion.div 
               variants={staggerItem} 
-              className="group rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default shadow-lg"
+              className="group rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default"
             >
               <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20">
                 <Mic className="h-6 w-6" />
