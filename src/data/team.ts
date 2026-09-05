@@ -7,6 +7,7 @@ export interface TeamMember {
   bio: string;
 }
 
+const base = import.meta.env.BASE_URL;
 const PLACEHOLDER_AVATAR = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop";
 const PLACEHOLDER_BIO = "Core team member for TEDxYouth@CHIREC 2026.";
 
@@ -25,7 +26,7 @@ export const teamMembers: TeamMember[] = [
     name: "Vishwak Lakshetty",
     role: "Co-organiser",
     category: "Co-organisers",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/VISHWAK.JPG`,
     bio: PLACEHOLDER_BIO,
   },
 
@@ -51,7 +52,7 @@ export const teamMembers: TeamMember[] = [
     name: "Hasini Pammi",
     role: "Head of Communication",
     category: "Communication",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/HASINI.JPG`,
     bio: PLACEHOLDER_BIO,
   },
   {
@@ -69,7 +70,7 @@ export const teamMembers: TeamMember[] = [
     name: "Uttam Singh Malhotra",
     role: "Head of Logistics",
     category: "Logistics",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/UTTAM.JPG`,
     bio: PLACEHOLDER_BIO,
   },
   {
@@ -77,7 +78,7 @@ export const teamMembers: TeamMember[] = [
     name: "Sourabhi Somani",
     role: "Head of Logistics",
     category: "Logistics",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/SOURABHI.JPG`,
     bio: PLACEHOLDER_BIO,
   },
   {
@@ -85,7 +86,7 @@ export const teamMembers: TeamMember[] = [
     name: "Laavanya Parambath",
     role: "Head of Logistics",
     category: "Logistics",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/LAAVANYA.JPG`,
     bio: PLACEHOLDER_BIO,
   },
 
@@ -103,7 +104,7 @@ export const teamMembers: TeamMember[] = [
     name: "Anika Dugar",
     role: "Head of Finance & Sponsorship",
     category: "Finance & Sponsorship",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/ANIKA D.JPG`,
     bio: PLACEHOLDER_BIO,
   },
 
@@ -113,7 +114,7 @@ export const teamMembers: TeamMember[] = [
     name: "Sahasra Devisetty",
     role: "Head of Technology",
     category: "Technology",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/SAHASRA.JPG`,
     bio: PLACEHOLDER_BIO,
   },
   {
@@ -121,7 +122,7 @@ export const teamMembers: TeamMember[] = [
     name: "Ravya Kantheti",
     role: "Head of Technology",
     category: "Technology",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/RAVYA.JPG`,
     bio: PLACEHOLDER_BIO,
   },
   {
@@ -129,7 +130,7 @@ export const teamMembers: TeamMember[] = [
     name: "Shaunak Anand Wasker",
     role: "Head of Technology",
     category: "Technology",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/SHAUNAK.JPG`,
     bio: PLACEHOLDER_BIO,
   },
 
@@ -139,7 +140,7 @@ export const teamMembers: TeamMember[] = [
     name: "Rithvika Palepu",
     role: "Head of Marketing",
     category: "Marketing",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/RITHVIKA.JPG`,
     bio: PLACEHOLDER_BIO,
   },
   {
@@ -147,7 +148,7 @@ export const teamMembers: TeamMember[] = [
     name: "Aarna Agarwal",
     role: "Head of Marketing",
     category: "Marketing",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/AARNA.JPG`,
     bio: PLACEHOLDER_BIO,
   },
 
@@ -157,7 +158,7 @@ export const teamMembers: TeamMember[] = [
     name: "Anindita Sankar Kurur",
     role: "Head of Design",
     category: "Design",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/ANINDITA.JPG`,
     bio: PLACEHOLDER_BIO,
   },
   {
@@ -165,7 +166,7 @@ export const teamMembers: TeamMember[] = [
     name: "Aadhya Panchal",
     role: "Head of Design",
     category: "Design",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/AADHYA.JPG`,
     bio: PLACEHOLDER_BIO,
   },
 ];
