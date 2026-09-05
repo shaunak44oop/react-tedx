@@ -7,7 +7,8 @@ export interface TeamMember {
   bio: string;
 }
 
-const base = import.meta.env.BASE_URL;
+// Fixed TypeScript error using (import.meta as any)
+const base = (import.meta as any).env?.BASE_URL || "/";
 const PLACEHOLDER_AVATAR = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop";
 const PLACEHOLDER_BIO = "Core team member for TEDxYouth@CHIREC 2026.";
 
