@@ -68,7 +68,12 @@ function DepartmentSection({
                     <img
                       src={member.image}
                       alt={member.name}
+                      loading="lazy"
                       className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                      onError={(e) => {
+                        // Fallback if image path fails to load
+                        (e.target as HTMLImageElement).src = "/tedx-logo.png";
+                      }}
                     />
                     
                     <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent opacity-80 transition-opacity group-hover:opacity-90" />
@@ -193,6 +198,9 @@ export function Team() {
                     src={selectedMember.image}
                     alt={selectedMember.name}
                     className="h-full w-full object-cover object-center"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "/tedx-logo.png";
+                    }}
                   />
                 </div>
                 
