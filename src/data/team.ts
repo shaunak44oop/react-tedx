@@ -28,7 +28,7 @@ export const teamMembers: TeamMember[] = [
     role: "Co-organiser",
     category: "Co-organisers",
     image: `${base}teampics/VISHWAK.JPG`,
-    bio: PLACEHOLDER_BIO,
+    bio: "Meet Vishwak Lakshetty, Meet Vishwak Lakshetty, an IBDP Year 2 student at CHIREC International School studying Economics, Mathematics AA and Politics at the higher level and planning to pursue business. A familiar name at MUNs, feel free to debate him on topics ranging from the modern relevance of the 1944 book The Road to Serfdom to why Game of Thrones remains one of the greatest television dramas of its kind. Outside debate, Vishwak is a voracious reader of science and philosophy, and an even greater fan of grassroots Scandinavian hip-hop.",
   },
 
   // Heads of Communication
