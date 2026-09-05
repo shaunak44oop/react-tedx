@@ -4,7 +4,7 @@ import { X, ChevronDown } from "lucide-react";
 import { teamMembers, TeamMember } from "../data/team";
 import { Reveal } from "../components/kokonutui/reveal";
 
-// Shared SVGs for the angular/hexagonal theme
+// Background honeycomb pattern
 const TeamSVGDefs = memo(function TeamSVGDefs() {
   return (
     <svg width="0" height="0" className="absolute pointer-events-none" aria-hidden="true">
@@ -13,18 +13,6 @@ const TeamSVGDefs = memo(function TeamSVGDefs() {
           <path d="M13 0 L26 7.5 L26 22.5 L13 30 L0 22.5 L0 7.5 Z" stroke="currentColor" strokeWidth="1" fill="none" />
           <path d="M13 30 L26 37.5 L26 52.5 L13 60 L0 52.5 L0 37.5 Z" stroke="currentColor" strokeWidth="1" fill="none" />
         </pattern>
-        <pattern id="team-pattern-diagonal" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
-          <line x1="0" y1="0" x2="0" y2="8" stroke="currentColor" strokeWidth="1.5" />
-        </pattern>
-        <g id="team-shape-hex-node">
-          <path d="M25 5 L45 15 L45 35 L25 45 L5 35 L5 15 Z" stroke="currentColor" strokeWidth="1.5" fill="none" />
-          <path d="M45 35 L55 40" stroke="currentColor" strokeWidth="1.5" fill="none" />
-          <path d="M5 35 L-5 40" stroke="currentColor" strokeWidth="1.5" fill="none" />
-          <path d="M25 5 L25 -5" stroke="currentColor" strokeWidth="1.5" fill="none" />
-          <circle cx="25" cy="5" r="3" fill="currentColor" />
-          <circle cx="45" cy="35" r="3" fill="currentColor" />
-          <circle cx="5" cy="35" r="3" fill="currentColor" />
-        </g>
       </defs>
     </svg>
   );
@@ -45,24 +33,16 @@ function DepartmentSection({
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="mb-6 border border-brand/30 bg-ink/40 relative group overflow-hidden transition-colors hover:border-brand/60">
-      {/* Decorative Corner Node on Dropdown Header */}
-      <svg viewBox="0 0 50 50" className="absolute -top-4 -right-4 w-12 h-12 text-brand opacity-20 pointer-events-none z-0">
-        <use href="#team-shape-hex-node" x="0" y="0" transform="scale(0.8)" />
-      </svg>
-
+    <div className="mb-6 rounded-2xl border border-brand/30 bg-ink/40 overflow-hidden transition-colors hover:border-brand/60">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative z-10 flex w-full items-center justify-between px-6 py-6 sm:px-10 sm:py-8 bg-ink/80 backdrop-blur-sm transition-colors hover:bg-brand/5"
+        className="flex w-full items-center justify-between px-6 py-6 sm:px-8 sm:py-7 bg-ink/80 backdrop-blur-sm transition-colors hover:bg-brand/5"
       >
-        <div className="flex items-center gap-6">
-          <span className="font-mono text-xs text-brand/60 hidden sm:inline-block">[{members.length} MEMBERS]</span>
-          <h2 className="font-['Helvetica',sans-serif] text-xl sm:text-3xl font-bold uppercase tracking-widest text-white">
-            {category}
-          </h2>
-        </div>
-        <div className={`p-2 border border-brand/30 rounded-none bg-ink transition-transform duration-500 ${isOpen ? "rotate-180 border-brand bg-brand/10 text-brand" : "text-white"}`}>
-          <ChevronDown size={24} />
+        <h2 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl md:text-3xl font-bold uppercase tracking-widest text-white">
+          {category}
+        </h2>
+        <div className={`p-2.5 rounded-xl border border-brand/30 bg-ink transition-transform duration-300 ${isOpen ? "rotate-180 border-brand bg-brand/10 text-brand" : "text-white"}`}>
+          <ChevronDown size={22} />
         </div>
       </button>
 
@@ -72,47 +52,37 @@ function DepartmentSection({
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden border-t border-brand/20 bg-ink/20"
           >
-            <div className="px-4 py-12 sm:px-10 flex flex-wrap justify-center gap-8 md:gap-12 max-w-7xl mx-auto">
+            <div className="px-4 py-8 sm:px-8 sm:py-10 flex flex-wrap justify-center gap-6 md:gap-8 max-w-7xl mx-auto">
               {members.map((member) => (
                 <motion.div
                   key={member.id}
                   whileHover={{ y: -6 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.25 }}
                   onClick={() => onSelectMember(member)}
-                  className="group relative w-full sm:w-[280px] md:w-[320px] cursor-pointer bg-ink border border-brand/30 p-3 transition-all duration-300 hover:border-brand hover:shadow-[0_0_30px_rgba(235,0,40,0.15)]"
+                  className="group relative w-full sm:w-[280px] md:w-[310px] cursor-pointer bg-ink/80 border border-brand/30 p-3.5 rounded-2xl transition-all duration-300 hover:border-brand hover:shadow-[0_0_30px_rgba(235,0,40,0.2)] backdrop-blur-sm"
                 >
-                  {/* Hex Node pushing in on hover */}
-                  <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-24 h-24 text-brand opacity-0 group-hover:opacity-40 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-500 ease-out pointer-events-none z-0">
-                    <use href="#team-shape-hex-node" x="0" y="0" transform="scale(0.8)" />
-                  </svg>
-
-                  <div className="relative aspect-[3/4] w-full overflow-hidden border border-brand/20 bg-ink rounded-none">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl border border-brand/20 bg-ink">
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-105 group-hover:opacity-80"
+                      className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                     />
                     
-                    {/* Diagonal overlay on hover */}
-                    <div className="absolute inset-0 text-brand opacity-0 group-hover:opacity-10 transition-opacity duration-300 mix-blend-overlay pointer-events-none">
-                       <svg className="w-full h-full"><rect width="100%" height="100%" fill="url(#team-pattern-diagonal)" /></svg>
-                    </div>
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent opacity-90 transition-opacity group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent opacity-80 transition-opacity group-hover:opacity-90" />
                     
-                    <div className="absolute bottom-6 left-0 right-0 text-center z-10 transform translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                      <span className="inline-block border border-brand bg-brand/10 px-5 py-2 font-['Helvetica',sans-serif] text-[11px] font-bold uppercase tracking-[0.2em] text-brand backdrop-blur-md">
+                    <div className="absolute bottom-5 left-0 right-0 text-center z-10 transform translate-y-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                      <span className="inline-block rounded-lg border border-brand bg-brand/20 px-5 py-2 font-['Helvetica',sans-serif] text-[11px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur-md">
                         View Profile
                       </span>
                     </div>
                   </div>
                   
-                  <div className="p-5 text-center relative z-10 border-t border-brand/20 mt-3 bg-ink/80">
-                    <h3 className="font-['Helvetica',sans-serif] text-[19px] font-bold text-white mb-1.5 uppercase tracking-wide">{member.name}</h3>
-                    <p className="font-mono text-xs text-brand font-medium tracking-widest">{member.role}</p>
+                  <div className="p-4 text-center">
+                    <h3 className="font-['Helvetica',sans-serif] text-[18px] font-bold text-white mb-1 uppercase tracking-wide">{member.name}</h3>
+                    <p className="font-sans text-xs text-brand font-semibold tracking-wider uppercase">{member.role}</p>
                   </div>
                 </motion.div>
               ))}
@@ -133,31 +103,24 @@ export function Team() {
       <TeamSVGDefs />
 
       {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-[160px] pb-20 text-center z-10">
-        
+      <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-[150px] pb-16 text-center z-10">
         <Reveal className="flex flex-col items-center z-10 max-w-4xl w-full">
           <p className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.35em] text-brand font-medium mb-6">
             Behind the stage
           </p>
 
-          <div className="group relative border border-brand/40 bg-ink/90 p-8 sm:p-14 backdrop-blur-md rounded-none my-2 max-w-3xl w-full mx-auto overflow-hidden transition-colors hover:border-brand">
+          <div className="group relative border border-brand/40 bg-ink/90 p-8 sm:p-12 backdrop-blur-md rounded-2xl my-2 max-w-3xl w-full mx-auto overflow-hidden transition-colors hover:border-brand shadow-[0_0_50px_rgba(235,0,40,0.15)]">
             
-            {/* Hex Background */}
-            <div className="absolute inset-0 text-brand opacity-5 group-hover:opacity-10 transition-opacity duration-700 pointer-events-none z-0">
+            {/* Subtle Background Pattern */}
+            <div className="absolute inset-0 text-brand opacity-5 pointer-events-none z-0">
               <svg className="w-full h-full"><rect width="100%" height="100%" fill="url(#team-pattern-hex)" /></svg>
             </div>
-
-            {/* Angular Corners */}
-            <span className="absolute -top-1.5 -left-1.5 text-brand text-xs font-mono z-10">+</span>
-            <span className="absolute -top-1.5 -right-1.5 text-brand text-xs font-mono z-10">+</span>
-            <span className="absolute -bottom-1.5 -left-1.5 text-brand text-xs font-mono z-10">+</span>
-            <span className="absolute -bottom-1.5 -right-1.5 text-brand text-xs font-mono z-10">+</span>
 
             <motion.h1 
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-10 font-['Helvetica',sans-serif] text-[clamp(40px,7vw,80px)] font-black uppercase text-brand tracking-tight leading-none"
+              className="relative z-10 font-['Helvetica',sans-serif] text-[clamp(36px,6.5vw,72px)] font-black uppercase text-brand tracking-tight leading-none"
             >
               Meet The Team
             </motion.h1>
@@ -165,12 +128,12 @@ export function Team() {
 
           <motion.div
             initial={{ width: 0 }}
-            animate={{ width: "160px" }}
+            animate={{ width: "140px" }}
             transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="my-10 h-[2px] bg-brand/60 mx-auto"
+            className="my-8 h-[2px] bg-brand/60 mx-auto"
           />
 
-          <p className="max-w-[56ch] text-base sm:text-lg text-white/70 font-light leading-relaxed mb-8 mx-auto">
+          <p className="max-w-[56ch] text-base sm:text-lg text-white/70 font-light leading-relaxed mb-6 mx-auto">
             The student team working behind the scenes to plan, organize, and execute TEDxYouth@CHIREC 2026.
           </p>
         </Reveal>
@@ -186,7 +149,7 @@ export function Team() {
                 key={category} 
                 category={category} 
                 members={members} 
-                defaultOpen={idx === 0} // Open the first department by default
+                defaultOpen={idx === 0}
                 onSelectMember={setSelectedMember}
               />
             );
@@ -194,69 +157,58 @@ export function Team() {
         </div>
       </section>
 
-      {/* Angular Bio Modal */}
+      {/* Bio Modal with Large Profile Image */}
       <AnimatePresence>
         {selectedMember && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8">
-            {/* Dark Overlay */}
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
+            {/* Dark Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedMember(null)}
-              className="absolute inset-0 bg-ink/95 backdrop-blur-xl"
+              className="absolute inset-0 bg-ink/90 backdrop-blur-xl"
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.98, y: 10 }}
+              initial={{ opacity: 0, scale: 0.96, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.98, y: 10 }}
+              exit={{ opacity: 0, scale: 0.96, y: 15 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-              className="relative z-10 w-full max-w-2xl overflow-hidden border border-brand/50 bg-ink p-8 sm:p-12 shadow-[0_0_60px_rgba(235,0,40,0.15)] group"
+              className="relative z-10 w-full max-w-4xl overflow-hidden rounded-3xl border border-brand/40 bg-ink p-6 sm:p-8 md:p-10 shadow-[0_0_70px_rgba(235,0,40,0.2)] max-h-[90vh] overflow-y-auto"
             >
-              {/* Modal Background Pattern */}
-              <div className="absolute inset-0 text-brand opacity-5 pointer-events-none z-0">
-                <svg className="w-full h-full"><rect width="100%" height="100%" fill="url(#team-pattern-diagonal)" /></svg>
-              </div>
-
-              {/* Close Button - Sharp & Square */}
+              {/* Close Button */}
               <button
                 onClick={() => setSelectedMember(null)}
-                className="absolute right-6 top-6 border border-brand/40 bg-ink p-2.5 text-brand hover:bg-brand hover:text-ink transition-colors z-20"
+                className="absolute right-5 top-5 rounded-full border border-brand/40 bg-ink/80 p-2.5 text-brand hover:bg-brand hover:text-white transition-colors z-20"
               >
-                <X size={24} strokeWidth={1.5} />
+                <X size={22} />
               </button>
 
-              <div className="flex flex-col sm:flex-row gap-8 sm:gap-10 items-center sm:items-start relative z-10">
+              <div className="flex flex-col md:flex-row gap-8 items-center md:items-stretch">
                 
-                {/* Square Profile Image */}
-                <div className="flex-shrink-0 w-48 sm:w-56 aspect-square border border-brand/40 overflow-hidden bg-ink p-2 relative">
-                  {/* Corner accents */}
-                  <span className="absolute -top-1 -left-1 text-brand text-[10px] font-mono">+</span>
-                  <span className="absolute -bottom-1 -right-1 text-brand text-[10px] font-mono">+</span>
-                  
+                {/* Large Profile Image */}
+                <div className="w-full md:w-1/2 flex-shrink-0 aspect-[3/4] rounded-2xl border border-brand/30 overflow-hidden bg-ink shadow-2xl">
                   <img
                     src={selectedMember.image}
                     alt={selectedMember.name}
-                    className="h-full w-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                    className="h-full w-full object-cover object-center"
                   />
                 </div>
                 
-                <div className="flex flex-col text-center sm:text-left mt-2">
-                  <span className="font-mono text-xs text-brand/60 mb-2 tracking-widest hidden sm:block">
-                    // ID: {selectedMember.id.replace('-', '').toUpperCase()}
-                  </span>
-                  <h3 className="font-['Helvetica',sans-serif] text-3xl sm:text-4xl font-black text-white uppercase tracking-tight mb-2">
+                {/* Details Column */}
+                <div className="flex flex-col justify-center text-center md:text-left w-full md:w-1/2 py-2">
+                  <h3 className="font-['Helvetica',sans-serif] text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight mb-2">
                     {selectedMember.name}
                   </h3>
-                  <p className="font-mono text-sm uppercase tracking-[0.15em] font-medium text-brand">
+                  <p className="font-['Helvetica',sans-serif] text-sm sm:text-base uppercase tracking-[0.2em] font-bold text-brand">
                     {selectedMember.role}
                   </p>
                   
-                  <div className="my-6 h-[1px] w-full max-w-[120px] bg-brand/30 mx-auto sm:mx-0" />
+                  <div className="my-6 h-[2px] w-20 bg-brand/40 mx-auto md:mx-0" />
                   
-                  <p className="text-sm sm:text-base leading-relaxed text-white/70 font-light text-justify sm:text-left">
-                    {selectedMember.bio}
+                  <p className="text-base leading-relaxed text-white/80 font-light">
+                    {selectedMember.bio || "Core team member for TEDxYouth@CHIREC 2026."}
                   </p>
                 </div>
               </div>
