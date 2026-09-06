@@ -19,8 +19,8 @@ export const teamMembers: TeamMember[] = [
     name: "Anusha Anchlia",
     role: "Co-organiser",
     category: "Co-organisers",
-    image: PLACEHOLDER_AVATAR,
-    bio: PLACEHOLDER_BIO,
+    image: `${base}teampics/ANUSHA.JPG`,
+    bio: "Anusha Anchlia is a 12th grader at Chirec International School, Kondapur, studying Commerce with Mathematics. Having been involved in organising and leading school events, including serving as Secretary-General of CHIREC MUN 2026, she enjoys bringing ideas to life through teamwork, creativity, and a little bit of organised chaos. Outside of school, she loves reading, listening to music and audiobooks, scrapbooking, attempting to bake the perfect chocolate chip cookie, and rewatching her favourite TV shows. As a Co-Organiser for TEDxYouth@CHIREC, Anusha is excited to help bring this year’s ideas, conversations, and stories to life.",
   },
   {
     id: "2",
@@ -37,7 +37,7 @@ export const teamMembers: TeamMember[] = [
     name: "Sharvina Srivastava",
     role: "Head of Communication",
     category: "Communication",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/SHARVINA.JPG`,
     bio: "Sharvina Srivastava is a Grade 12 student with a keen interest in Math, Physics, and Chemistry - known for her discipline, focus, and steady work ethic. Curious by nature and a debater at heart; she loves learning, meeting new people, and challenging her own boundaries. Outside the classroom, she enjoys playing tennis, reading, and researching just about anything that sparks her interest.",
   },
   {
@@ -45,7 +45,7 @@ export const teamMembers: TeamMember[] = [
     name: "Anika Kanumuri",
     role: "Head of Communication",
     category: "Communication",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/ANIKA K.JPG`,
     bio: "Anika Kanumuri is an DP2 student with a keen interest in understanding the world through unique perspectives. She studies Math AI, English, and Economics at the Higher Level. Beyond academics, she enjoys baking with her friends and playing tennis, or pickleball, or any other racket sport you could think of. With a strong interest and passion for community outreach and meeting new people she is looking forward to learning and engaging in some meaningful conversations as TedX Communications Head.",
   },
   {
@@ -61,7 +61,7 @@ export const teamMembers: TeamMember[] = [
     name: "Chaitra Morram Reddy",
     role: "Head of Communication",
     category: "Communication",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/CHAITRA.JPG`,
     bio: "Chaitra Morram Reddy is an IBDP Year 2 student studying Global Politics, Economics, and Mathematics at a higher level, with her sights set on law school. Ask her about a debate topic and be ready for a well-argued opinion; ask her for a deadline extension and be ready for an even better email. You’ll usually find her with a playlist on repeat, a match on in the background, or Flipped and Darling on rewatch.A people person through and through, she loves a good laugh. As Head of Communications, she’s here to make sure every big idea at TEDxYouth@CHIREC gets the spotlight it deserves.",
   },
 
@@ -97,7 +97,7 @@ export const teamMembers: TeamMember[] = [
     name: "Dakshita Reddy Bhimareddy",
     role: "Head of Finance & Sponsorship",
     category: "Finance & Sponsorship",
-    image: PLACEHOLDER_AVATAR,
+    image: `${base}teampics/DAKSHITA.JPG`,
     bio: "Dakshita Reddy is a quiet observer to most, but a lively chatterbox with those she’s close to. As a passionate football player, she brings that same energy and team spirit into her friendships - loyal, thoughtful, and easy to connect with. Her strong instincts and caring nature make her great at building meaningful relations and connections. She balances it all with a focused attitude towards her studies, always aiming to grow both on and off the field.",
   },
   {
