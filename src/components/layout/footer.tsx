@@ -88,14 +88,14 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/tedxchirec?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw=="
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative p-3 rounded-xs border border-[#EB0028]/25 bg-black/60 hover:border-[#EB0028] flex items-center justify-between transition-all duration-300 backdrop-blur-sm overflow-hidden"
                 >
                   <div className="flex items-center gap-3 text-zinc-300 group-hover:text-white">
                     <Instagram className="w-4 h-4 text-[#EB0028]" />
-                    <span className="font-mono text-xs">@tedxyouth_chirec</span>
+                    <span className="font-mono text-xs">Instagram</span>
                   </div>
                   <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500 group-hover:text-[#EB0028] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
