@@ -20,7 +20,7 @@ const MemberCard = memo(function MemberCard({
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
       onClick={() => onSelect(member)}
-      className="group relative rounded-xs border border-[#EB0028]/25 bg-black/80 p-3 hover:border-[#EB0028] transition-all cursor-pointer overflow-hidden touch-manipulation backdrop-blur-sm"
+      className="group relative rounded-xs border border-[#EB0028]/25 bg-black/80 p-3 hover:border-[#EB0028] transition-all cursor-pointer overflow-hidden touch-manipulation backdrop-blur-sm w-full max-w-[280px]"
     >
       <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-24 h-24 text-[#EB0028] opacity-0 group-hover:opacity-25 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-out pointer-events-none z-0">
         <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
@@ -102,29 +102,30 @@ export function Team() {
             className="my-8 h-[1px] w-28 bg-[#EB0028] origin-center"
           />
 
-          <p className="max-w-[54ch] text-base sm:text-lg text-zinc-300 font-light leading-relaxed mb-2 relative z-10 px-2">
+          <p className="max-w-[54ch] text-base sm:text-lg text-zinc-300 font-light leading-relaxed mb-2 relative z-10 px-2 mx-auto">
             The student team working behind the scenes to plan, organize, and execute TEDxYouth@CHIREC 2026.
           </p>
         </Reveal>
       </section>
 
       {/* CORE TEAM DEPARTMENTS GRID */}
-      <section className="relative z-10 px-4 sm:px-8 md:px-12 pb-28">
-        <div className="mx-auto max-w-7xl space-y-12 sm:space-y-14">
+      <section className="relative z-10 px-4 sm:px-8 md:px-12 pb-28 flex flex-col items-center">
+        <div className="w-full max-w-7xl space-y-14 sm:space-y-16">
           {categories.map((category) => {
             const members = teamMembers.filter((m) => m.category === category);
             return (
-              <div key={category} className="relative">
-                {/* Department Header */}
-                <div className="mb-6 border-b border-[#EB0028]/30 pb-3">
-                  <h2 className="font-['Helvetica',sans-serif] text-lg sm:text-2xl md:text-3xl font-black uppercase tracking-wider text-white flex items-center gap-3">
+              <div key={category} className="relative flex flex-col items-center">
+                {/* Centered Department Header */}
+                <div className="mb-8 border-b border-[#EB0028]/30 pb-3 text-center w-full max-w-3xl flex justify-center">
+                  <h2 className="font-['Helvetica',sans-serif] text-lg sm:text-2xl md:text-3xl font-black uppercase tracking-wider text-white flex items-center justify-center gap-3">
                     <span className="h-4 w-1 bg-[#EB0028] inline-block" />
                     {category}
+                    <span className="h-4 w-1 bg-[#EB0028] inline-block" />
                   </h2>
                 </div>
 
-                {/* Member Grid */}
-                <RevealGroup className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5" stagger={0.05}>
+                {/* Centered Member Cards Grid */}
+                <RevealGroup className="flex flex-wrap justify-center gap-5 w-full max-w-6xl mx-auto" stagger={0.05}>
                   {members.map((member) => (
                     <MemberCard key={member.id} member={member} onSelect={setSelectedMember} />
                   ))}
