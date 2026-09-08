@@ -149,7 +149,7 @@ export const teamMembers: TeamMember[] = [
     name: "Aarna Agarwal",
     role: "Head of Marketing",
     category: "Marketing",
-    image: `${base}teampics/AARNA.png`,
+    image: `${base}teampics/AARNA.JPG`,
     bio: "Aarna Agarwal is a CBSE grade 12 student aspiring to study business in the future. She is extremely passionate about every role that she takes up. When she isn’t sleeping, you can find her listening to music or rewatching friends. With a keen interest in media, outreach, and connecting with people, Aarna is committed to making this year’s TEDxYouth impactful and memorable!",
   },
 
@@ -167,7 +167,7 @@ export const teamMembers: TeamMember[] = [
     name: "Aadhya Panchal",
     role: "Head of Design",
     category: "Design",
-    image: `${base}teampics/AADHYA.JPG`,
+    image: `${base}teampics/AADHYA.png`,
     bio: "Aadhya Panchal is a 12th grade CBSE student studying Legal Studies, Economics, and Business Administration at a higher level. Having been passionate about art and design since she was a kid, she has been painting for as long as she can remember and now explores graphic design as well. She also loves public speaking, a hobby she developed while doing countless muns over the past four years. Outside of all this, you’ll probably find her with a book in hand or stopping to feed any stray dog she comes across. As Head of Design at this year’s TedX event, she hopes to bring her love for art and design into creating an experience that is creative and memorable for all.",
   },
 ];
