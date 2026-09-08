@@ -4,12 +4,12 @@ import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
 import { Calendar, MapPin, Mic, ArrowRight, Compass, Timer } from "lucide-react";
 
-// Shared SVG Definitions for our geometric patterns
-const SharedSVGDefs = memo(function SharedSVGDefs() {
+// Shared SVG Definitions for geometric patterns & hexagonal elements
+export const SharedSVGDefs = memo(function SharedSVGDefs() {
   return (
     <svg width="0" height="0" className="absolute pointer-events-none" aria-hidden="true">
       <defs>
-        {/* Diagonal Lines for Digits */}
+        {/* Diagonal Lines Texture */}
         <pattern id="pattern-diagonal" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
           <line x1="0" y1="0" x2="0" y2="8" stroke="currentColor" strokeWidth="1.5" />
         </pattern>
@@ -29,25 +29,55 @@ const SharedSVGDefs = memo(function SharedSVGDefs() {
   );
 });
 
-// Memoized FlapDigit with Diagonal Texture
+// Subtle Floating Hexagon Background Accent Component
+export function AnimatedHexBackground() {
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+      {/* Background Dot Grid Pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.04]" 
+        style={{ backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, backgroundSize: `24px 24px` }} 
+      />
+
+      {/* Floating Hexagon Top-Left */}
+      <motion.div
+        animate={{ y: [0, -15, 0], rotate: [0, 6, 0] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-24 left-[8%] w-36 h-36 text-[#EB0028]/15 hidden md:block"
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full stroke-current fill-none" strokeWidth="1">
+          <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
+        </svg>
+      </motion.div>
+
+      {/* Floating Hexagon Bottom-Right */}
+      <motion.div
+        animate={{ y: [0, 18, 0], rotate: [0, -8, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-20 right-[10%] w-48 h-48 text-[#EB0028]/10 hidden md:block"
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full stroke-current fill-none" strokeWidth="1.2">
+          <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
+          <polygon points="50,15 82,32 82,68 50,85 18,68 18,32" strokeDasharray="4,4" />
+        </svg>
+      </motion.div>
+    </div>
+  );
+}
+
+// Split Flap Digit Component
 const FlapDigit = memo(function FlapDigit({ digit }: { digit: string }) {
   return (
     <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#0b0b0f] border border-[#EB0028]/30 rounded-xs flex items-center justify-center overflow-hidden select-none transform-gpu group hover:border-[#EB0028]/80 transition-colors">
-      
-      {/* Interactive Diagonal Line Texture */}
       <div className="absolute inset-0 text-white opacity-5 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none z-0">
         <svg className="w-full h-full"><rect width="100%" height="100%" fill="url(#pattern-diagonal)" /></svg>
       </div>
 
-      {/* Top Shade */}
       <div className="absolute top-0 inset-x-0 h-1/2 bg-white/[0.04] border-b border-black/80 z-10 pointer-events-none" />
-
-      {/* Mechanical Center Line & Hinges */}
       <div className="absolute top-1/2 inset-x-0 h-[2px] bg-[#050507] z-20 -translate-y-1/2" />
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#050507] rounded-r-xs z-30" />
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#050507] rounded-l-xs z-30" />
 
-      {/* Hardware-accelerated vertical flip */}
       <AnimatePresence mode="popLayout">
         <motion.span
           key={digit}
@@ -65,16 +95,10 @@ const FlapDigit = memo(function FlapDigit({ digit }: { digit: string }) {
 });
 
 export function Home() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
     const targetDate = new Date("2026-10-03T15:00:00+05:30").getTime();
-
     const updateCountdown = () => {
       const now = new Date().getTime();
       const difference = targetDate - now;
@@ -106,15 +130,14 @@ export function Home() {
   };
 
   return (
-    <div className="min-h-screen text-white overflow-hidden font-['Inter',sans-serif] selection:bg-[#EB0028] selection:text-white relative">
-      
-      {/* Invisible layer storing our SVGs so they actually work */}
+    <div className="min-h-screen bg-[#050507] text-white overflow-hidden font-['Inter',sans-serif] selection:bg-[#EB0028] selection:text-white relative">
       <SharedSVGDefs />
 
       {/* HERO SECTION */}
       <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-20 text-center min-h-[85vh] z-10">
+        <AnimatedHexBackground />
+
         <Reveal className="flex flex-col items-center z-10 max-w-4xl">
-          
           <div className="inline-flex items-center px-4 py-1.5 rounded-xs border border-[#EB0028]/60 bg-black/80 backdrop-blur-md text-[11px] uppercase tracking-[0.35em] text-[#EB0028] font-mono mb-8 font-semibold relative overflow-hidden group">
             TEDxYouth@CHIREC • OCT 3, 2026
             <svg viewBox="0 0 10 10" className="absolute -right-1 -top-1 w-4 h-4 text-[#EB0028] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -122,9 +145,8 @@ export function Home() {
             </svg>
           </div>
 
-          {/* MAIN HERO BOX */}
+          {/* UNIFIED HERO BOX */}
           <div className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs my-2 max-w-2xl w-full shadow-[0_0_60px_rgba(235,0,40,0.2)] hover:border-[#EB0028] hover:shadow-[0_0_80px_rgba(235,0,40,0.3)] transition-all duration-500 overflow-hidden">
-            
             <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
             <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
             <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
@@ -172,9 +194,7 @@ export function Home() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 relative z-10">
-            {/* Primary Button */}
             <SpotlightButton to="/register" className="group relative overflow-hidden bg-[#EB0028] hover:bg-[#c40022] text-white font-medium px-6 py-2.5 rounded-xs transition-all">
-              {/* Hex Node pushing in from the corner on hover, matching feature cards */}
               <svg viewBox="0 0 50 50" className="absolute -bottom-4 -right-4 w-16 h-16 text-black opacity-0 group-hover:opacity-20 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-out pointer-events-none z-0">
                 <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
               </svg>
@@ -184,9 +204,7 @@ export function Home() {
               </span>
             </SpotlightButton>
 
-            {/* Outline Button */}
             <SpotlightButton to="/speakers" variant="outline" className="group relative overflow-hidden border-zinc-700 bg-black/60 hover:border-[#EB0028] text-zinc-200 px-6 py-2.5 rounded-xs transition-all">
-              {/* Hex Node pushing in from the corner on hover, matching feature cards */}
               <svg viewBox="0 0 50 50" className="absolute -bottom-4 -right-4 w-16 h-16 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-out pointer-events-none z-0">
                 <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
               </svg>
@@ -196,14 +214,12 @@ export function Home() {
               </span>
             </SpotlightButton>
           </div>
-
         </Reveal>
       </section>
 
       {/* EVENT OVERVIEW SECTION */}
       <section className="px-4 sm:px-12 md:px-16 py-20 border-t border-[#EB0028]/30 bg-black/80 backdrop-blur-md relative w-full z-10">
         <div className="max-w-7xl mx-auto">
-          
           <Reveal className="text-center mb-12 relative z-10">
             <h2 className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
               Event Overview
@@ -212,7 +228,6 @@ export function Home() {
 
           <Reveal className="mb-14 relative z-10">
             <div className="group rounded-xs border border-[#EB0028]/40 bg-[#0c0c10]/90 p-6 sm:p-10 relative overflow-hidden transition-colors hover:border-[#EB0028]/80">
-              
               <span className="absolute top-2 left-3 text-zinc-500 font-mono text-[10px] uppercase tracking-wider z-10">
                 TEDxYouth@CHIREC 2026
               </span>
@@ -251,14 +266,11 @@ export function Home() {
           </Reveal>
 
           <RevealGroup className="grid gap-6 md:grid-cols-3 relative z-10" stagger={0.1}>
-            
             {/* Feature Card 1 */}
             <motion.div variants={staggerItem} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
-              {/* Hex Nodes pushing in from the corner on hover */}
               <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
                 <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
               </svg>
-              
               <div className="relative z-10">
                 <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-110 transition-transform duration-500">
                   <Calendar className="h-6 w-6" />
@@ -274,7 +286,6 @@ export function Home() {
               <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
                 <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
               </svg>
-
               <div className="relative z-10">
                 <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-110 transition-transform duration-500">
                   <MapPin className="h-6 w-6" />
@@ -290,7 +301,6 @@ export function Home() {
               <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
                 <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
               </svg>
-
               <div className="relative z-10">
                 <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-110 transition-transform duration-500">
                   <Mic className="h-6 w-6" />
@@ -300,7 +310,6 @@ export function Home() {
                 <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Fast-paced 12-minute talks interspersed with networking breaks and interactive exhibits.</p>
               </div>
             </motion.div>
-
           </RevealGroup>
         </div>
       </section>
