@@ -117,15 +117,22 @@ export function Team() {
               <div key={category} className="relative flex flex-col items-center">
                 {/* Centered Department Header */}
                 <div className="mb-8 border-b border-[#EB0028]/30 pb-3 text-center w-full max-w-3xl flex justify-center">
-                  <h2 className="font-['Helvetica',sans-serif] text-lg sm:text-2xl md:text-3xl font-black uppercase tracking-wider text-white flex items-center justify-center gap-3">
-                    <span className="h-4 w-1 bg-[#EB0028] inline-block" />
+                  <h2 className="font-['Helvetica',sans-serif] text-lg sm:text-2xl md:text-3xl font-black uppercase tracking-wider text-white flex items-center justify-center gap-5 sm:gap-6">
+                    <span className="h-5 sm:h-7 md:h-8 w-1 bg-[#EB0028] inline-block" />
                     {category}
-                    <span className="h-4 w-1 bg-[#EB0028] inline-block" />
+                    <span className="h-5 sm:h-7 md:h-8 w-1 bg-[#EB0028] inline-block" />
                   </h2>
                 </div>
 
-                {/* Centered Member Cards Grid */}
-                <RevealGroup className="flex flex-wrap justify-center gap-5 w-full max-w-6xl mx-auto" stagger={0.05}>
+                {/* Centered Member Cards Grid — Communication uses a fixed 2-col grid (4 members) so it sits 2x2 instead of 3+1 */}
+                <RevealGroup
+                  className={
+                    category === "Communication"
+                      ? "grid grid-cols-1 sm:grid-cols-2 justify-items-center gap-5 w-full max-w-[600px] mx-auto"
+                      : "flex flex-wrap justify-center gap-5 w-full max-w-6xl mx-auto"
+                  }
+                  stagger={0.05}
+                >
                   {members.map((member) => (
                     <MemberCard key={member.id} member={member} onSelect={setSelectedMember} />
                   ))}
