@@ -137,6 +137,49 @@ export function Home() {
       <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-20 text-center min-h-[85vh] z-10">
         <AnimatedHexBackground />
 
+        {/* HERO THEME IMAGE — fills full viewport width, falls back to text box if it fails */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.97, y: 8 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+          className="w-full max-w-2xl mx-auto z-10 mb-8"
+        >
+          <img
+            src={`${(import.meta as any).env?.BASE_URL || "/"}tedx_theme_pic_cropped.jpeg`}
+            alt="The In-Between Space — TEDxYouth@CHIREC 2026"
+            className="w-full h-auto block"
+            onError={(e) => {
+              const img = e.currentTarget;
+              img.style.display = "none";
+              const fallback = img.nextElementSibling as HTMLElement | null;
+              if (fallback) fallback.style.display = "block";
+            }}
+          />
+
+          {/* FALLBACK: theme text box, hidden unless the image fails */}
+          <div
+            style={{ display: "none" }}
+            className="group relative mx-auto max-w-2xl border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs shadow-[0_0_60px_rgba(235,0,40,0.2)] overflow-hidden"
+          >
+            <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
+            <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
+            <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
+            <span className="absolute -bottom-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
+
+            <div className="flex flex-col items-center leading-none relative z-10">
+              <span className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-400 mb-2 tracking-[0.45em]">
+                THE
+              </span>
+              <h1 className="font-['Helvetica',sans-serif] text-[clamp(42px,9vw,96px)] font-black uppercase text-[#EB0028] tracking-tight py-1">
+                IN-BETWEEN
+              </h1>
+              <span className="font-['Helvetica',sans-serif] text-[clamp(32px,7.5vw,76px)] font-extralight uppercase tracking-[0.22em] text-white/95 mt-1">
+                SPACE
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
         <Reveal className="flex flex-col items-center z-10 max-w-4xl">
           <div className="inline-flex items-center px-4 py-1.5 rounded-xs border border-[#EB0028]/60 bg-black/80 backdrop-blur-md text-[11px] uppercase tracking-[0.35em] text-[#EB0028] font-mono mb-8 font-semibold relative overflow-hidden group">
             TEDxYouth@CHIREC • OCT 3, 2026
@@ -144,49 +187,6 @@ export function Home() {
               <circle cx="5" cy="5" r="2" fill="currentColor" />
             </svg>
           </div>
-          
-          {/* HERO THEME IMAGE — falls back to the text box if the image fails to load */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.97, y: 8 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-            className="my-2 max-w-2xl w-full"
-          >
-            <img
-              src={`${(import.meta as any).env?.BASE_URL || "/"}tedx_theme_pic.jpeg`}
-              alt="The In-Between Space — TEDxYouth@CHIREC 2026"
-              className="w-full h-auto rounded-xs"
-              onError={(e) => {
-                const img = e.currentTarget;
-                img.style.display = "none";
-                const fallback = img.nextElementSibling as HTMLElement | null;
-                if (fallback) fallback.style.display = "block";
-              }}
-            />
-
-            {/* FALLBACK: original theme box, hidden unless the image fails */}
-            <div
-              style={{ display: "none" }}
-              className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs shadow-[0_0_60px_rgba(235,0,40,0.2)] hover:border-[#EB0028] hover:shadow-[0_0_80px_rgba(235,0,40,0.3)] transition-all duration-500 overflow-hidden"
-            >
-              <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
-              <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
-              <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
-              <span className="absolute -bottom-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
-
-              <div className="flex flex-col items-center leading-none relative z-10">
-                <span className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-400 mb-2 tracking-[0.45em]">
-                  THE
-                </span>
-                <h1 className="font-['Helvetica',sans-serif] text-[clamp(42px,9vw,96px)] font-black uppercase text-[#EB0028] tracking-tight py-1">
-                  IN-BETWEEN
-                </h1>
-                <span className="font-['Helvetica',sans-serif] text-[clamp(32px,7.5vw,76px)] font-extralight uppercase tracking-[0.22em] text-white/95 mt-1">
-                  SPACE
-                </span>
-              </div>
-            </div>
-          </motion.div>
 
           <motion.div 
             initial={{ scaleX: 0, opacity: 0 }}
