@@ -144,43 +144,49 @@ export function Home() {
               <circle cx="5" cy="5" r="2" fill="currentColor" />
             </svg>
           </div>
+          
+          {/* HERO THEME IMAGE — falls back to the text box if the image fails to load */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            className="my-2 max-w-2xl w-full"
+          >
+            <img
+              src={`${(import.meta as any).env?.BASE_URL || "/"}tedx_theme_pic.jpeg`}
+              alt="The In-Between Space — TEDxYouth@CHIREC 2026"
+              className="w-full h-auto rounded-xs"
+              onError={(e) => {
+                const img = e.currentTarget;
+                img.style.display = "none";
+                const fallback = img.nextElementSibling as HTMLElement | null;
+                if (fallback) fallback.style.display = "block";
+              }}
+            />
 
-          {/* UNIFIED HERO BOX */}
-          <div className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs my-2 max-w-2xl w-full shadow-[0_0_60px_rgba(235,0,40,0.2)] hover:border-[#EB0028] hover:shadow-[0_0_80px_rgba(235,0,40,0.3)] transition-all duration-500 overflow-hidden">
-            <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
-            <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
-            <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
-            <span className="absolute -bottom-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
+            {/* FALLBACK: original theme box, hidden unless the image fails */}
+            <div
+              style={{ display: "none" }}
+              className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs shadow-[0_0_60px_rgba(235,0,40,0.2)] hover:border-[#EB0028] hover:shadow-[0_0_80px_rgba(235,0,40,0.3)] transition-all duration-500 overflow-hidden"
+            >
+              <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
+              <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
+              <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
+              <span className="absolute -bottom-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
 
-            <div className="flex flex-col items-center leading-none relative z-10">
-              <motion.span 
-                initial={{ opacity: 0, letterSpacing: "0.1em" }}
-                animate={{ opacity: 1, letterSpacing: "0.45em" }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-                className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-400 mb-2"
-              >
-                THE
-              </motion.span>
-
-              <motion.h1 
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-                className="font-['Helvetica',sans-serif] text-[clamp(42px,9vw,96px)] font-black uppercase text-[#EB0028] tracking-tight py-1"
-              >
-                IN-BETWEEN
-              </motion.h1>
-
-              <motion.span 
-                initial={{ opacity: 0, y: -4 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
-                className="font-['Helvetica',sans-serif] text-[clamp(32px,7.5vw,76px)] font-extralight uppercase tracking-[0.22em] text-white/95 mt-1"
-              >
-                SPACE
-              </motion.span>
+              <div className="flex flex-col items-center leading-none relative z-10">
+                <span className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-400 mb-2 tracking-[0.45em]">
+                  THE
+                </span>
+                <h1 className="font-['Helvetica',sans-serif] text-[clamp(42px,9vw,96px)] font-black uppercase text-[#EB0028] tracking-tight py-1">
+                  IN-BETWEEN
+                </h1>
+                <span className="font-['Helvetica',sans-serif] text-[clamp(32px,7.5vw,76px)] font-extralight uppercase tracking-[0.22em] text-white/95 mt-1">
+                  SPACE
+                </span>
+              </div>
             </div>
-          </div>
+          </motion.div>
 
           <motion.div 
             initial={{ scaleX: 0, opacity: 0 }}
