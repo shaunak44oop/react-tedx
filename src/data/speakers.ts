@@ -4,51 +4,61 @@ export type Speaker = {
   name: string;
   talkTitle: string;
   bio: string;
+  category: "guest" | "student";
 };
 
 // Edit this array to update your real lineup. Add or remove entries
-// freely — every page that lists speakers reads from here.
+// freely — the Speakers page groups them by `category` automatically.
 export const speakers: Speaker[] = [
+  // ---- GUEST SPEAKERS ----
   {
-    id: "sp-1",
+    id: "sp-guest-1",
     initials: "AB",
-    name: "Speaker Name",
+    name: "Guest Speaker Name",
     talkTitle: "Talk Title Goes Here",
-    bio: "One or two lines on who they are and why their idea matters — grade, role, or field, plus the hook.",
+    bio: "One or two lines on who they are and why their idea matters — role or field, plus the hook.",
+    category: "guest",
   },
   {
-    id: "sp-2",
+    id: "sp-guest-2",
     initials: "CD",
-    name: "Speaker Name",
+    name: "Guest Speaker Name",
     talkTitle: "Talk Title Goes Here",
-    bio: "One or two lines on who they are and why their idea matters — grade, role, or field, plus the hook.",
+    bio: "One or two lines on who they are and why their idea matters — role or field, plus the hook.",
+    category: "guest",
   },
+
+  // ---- STUDENT SPEAKERS ----
   {
-    id: "sp-3",
+    id: "sp-student-1",
     initials: "EF",
-    name: "Speaker Name",
+    name: "Student Speaker Name",
     talkTitle: "Talk Title Goes Here",
-    bio: "One or two lines on who they are and why their idea matters — grade, role, or field, plus the hook.",
+    bio: "One or two lines on who they are and why their idea matters — grade, plus the hook.",
+    category: "student",
   },
   {
-    id: "sp-4",
+    id: "sp-student-2",
     initials: "GH",
-    name: "Speaker Name",
+    name: "Student Speaker Name",
     talkTitle: "Talk Title Goes Here",
-    bio: "One or two lines on who they are and why their idea matters — grade, role, or field, plus the hook.",
+    bio: "One or two lines on who they are and why their idea matters — grade, plus the hook.",
+    category: "student",
   },
   {
-    id: "sp-5",
+    id: "sp-student-3",
     initials: "IJ",
-    name: "Speaker Name",
+    name: "Student Speaker Name",
     talkTitle: "Talk Title Goes Here",
-    bio: "One or two lines on who they are and why their idea matters — grade, role, or field, plus the hook.",
+    bio: "One or two lines on who they are and why their idea matters — grade, plus the hook.",
+    category: "student",
   },
   {
-    id: "sp-6",
+    id: "sp-student-4",
     initials: "KL",
-    name: "Speaker Name",
+    name: "Student Speaker Name",
     talkTitle: "Talk Title Goes Here",
-    bio: "One or two lines on who they are and why their idea matters — grade, role, or field, plus the hook.",
+    bio: "One or two lines on who they are and why their idea matters — grade, plus the hook.",
+    category: "student",
   },
 ];
