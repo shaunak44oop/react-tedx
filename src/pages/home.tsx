@@ -43,7 +43,7 @@ export function AnimatedHexBackground() {
       <motion.div
         animate={{ y: [0, -15, 0], rotate: [0, 6, 0] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-24 left-[8%] w-36 h-36 text-[#EB0028]/15 hidden md:block"
+        className="absolute top-24 left-[8%] w-36 h-36 text-[#EB0028]/20 hidden md:block"
       >
         <svg viewBox="0 0 100 100" className="w-full h-full stroke-current fill-none" strokeWidth="1">
           <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
@@ -54,7 +54,7 @@ export function AnimatedHexBackground() {
       <motion.div
         animate={{ y: [0, 18, 0], rotate: [0, -8, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-20 right-[10%] w-48 h-48 text-[#EB0028]/10 hidden md:block"
+        className="absolute bottom-20 right-[10%] w-48 h-48 text-[#EB0028]/15 hidden md:block"
       >
         <svg viewBox="0 0 100 100" className="w-full h-full stroke-current fill-none" strokeWidth="1.2">
           <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
@@ -134,7 +134,7 @@ export function Home() {
       <SharedSVGDefs />
 
       {/* HERO SECTION */}
-      <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-20 text-center min-h-[85vh] z-10">
+      <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-28 pb-20 text-center min-h-[85vh] z-10">
         <AnimatedHexBackground />
 
         {/* HERO THEME IMAGE — fills full viewport width, falls back to text box if it fails */}
@@ -142,19 +142,29 @@ export function Home() {
           initial={{ opacity: 0, scale: 0.97, y: 8 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="w-full max-w-2xl mx-auto z-10 mb-8"
+          className="w-full max-w-3xl mx-auto z-10 mb-8"
         >
-          <img
-            src={`${(import.meta as any).env?.BASE_URL || "/"}tedx_theme_pic_cropped.jpeg`}
-            alt="The In-Between Space — TEDxYouth@CHIREC 2026"
-            className="w-full h-auto block"
-            onError={(e) => {
-              const img = e.currentTarget;
-              img.style.display = "none";
-              const fallback = img.nextElementSibling as HTMLElement | null;
-              if (fallback) fallback.style.display = "block";
-            }}
-          />
+          <div className="relative w-full">
+            <img
+              src={`${(import.meta as any).env?.BASE_URL || "/"}tedx_theme_pic.jpeg`}
+              alt="The In-Between Space — TEDxYouth@CHIREC 2026"
+              className="w-full h-auto block"
+              onError={(e) => {
+                const img = e.currentTarget;
+                img.style.display = "none";
+                const fallback = img.parentElement?.nextElementSibling as HTMLElement | null;
+                if (fallback) fallback.style.display = "block";
+              }}
+            />
+            {/* Fake fading black border — sits over the image edges, blends into the page */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                boxShadow: "inset 0 0 40px 20px #050507",
+              }}
+            />
+          </div>
+          
 
           {/* FALLBACK: theme text box, hidden unless the image fails */}
           <div
