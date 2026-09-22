@@ -111,15 +111,6 @@ export function Footer() {
             © 2026 TEDxYouth@CHIREC. This is an independently organized TED event.
           </p>
 
-          <div className="group relative inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xs border border-[#EB0028]/40 bg-black/80 text-zinc-300 font-mono text-[11px] shadow-[0_0_20px_rgba(235,0,40,0.15)] hover:border-[#EB0028] transition-colors">
-            <span className="absolute -top-1 -left-1 text-[#EB0028] text-[9px] font-mono">+</span>
-            <span className="absolute -top-1 -right-1 text-[#EB0028] text-[9px] font-mono">+</span>
-            <span className="absolute -bottom-1 -left-1 text-[#EB0028] text-[9px] font-mono">+</span>
-            <span className="absolute -bottom-1 -right-1 text-[#EB0028] text-[9px] font-mono">+</span>
-
-            <Code className="w-3.5 h-3.5 text-[#EB0028]" />
-            <span>Engineered by <span className="text-white font-semibold">Technology Department</span></span>
-          </div>
         </div>
       </div>
     </footer>

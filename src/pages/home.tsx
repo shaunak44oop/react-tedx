@@ -142,7 +142,7 @@ export function Home() {
           initial={{ opacity: 0, scale: 0.97, y: 8 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="w-full max-w-3xl mx-auto z-10 mb-8"
+          className="w-full max-w-5xl mx-auto z-10 mb-8"
         >
           <div className="relative w-full">
             <img
@@ -190,43 +190,27 @@ export function Home() {
           </div>
         </motion.div>
 
-        <Reveal className="flex flex-col items-center z-10 max-w-4xl">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-xs border border-[#EB0028]/60 bg-black/80 backdrop-blur-md text-[11px] uppercase tracking-[0.35em] text-[#EB0028] font-mono mb-8 font-semibold relative overflow-hidden group">
-            TEDxYouth@CHIREC • OCT 3, 2026
-            <svg viewBox="0 0 10 10" className="absolute -right-1 -top-1 w-4 h-4 text-[#EB0028] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <circle cx="5" cy="5" r="2" fill="currentColor" />
-            </svg>
-          </div>
+        <Reveal className="flex flex-col items-center z-10 max-w-5xl">
 
-          <motion.div 
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={{ scaleX: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
-            className="my-8 h-[1px] w-28 bg-[#EB0028] origin-center" 
-          />
 
-          <p className="max-w-[54ch] text-base sm:text-lg text-zinc-200 font-light leading-relaxed mb-8 relative z-10">
-            Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape tomorrow.
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-4 relative z-10">
-            <SpotlightButton to="/register" className="group relative overflow-hidden bg-[#EB0028] hover:bg-[#c40022] text-white font-medium px-6 py-2.5 rounded-xs transition-all">
+          <div className="flex flex-wrap justify-center gap-4 relative z-10 mt-8 items-stretch">
+            <SpotlightButton to="/register" className="group relative overflow-hidden bg-[#EB0028] hover:bg-[#c40022] text-white font-medium px-8 py-3.5 rounded-xs transition-all w-56 whitespace-nowrap border border-transparent">
               <svg viewBox="0 0 50 50" className="absolute -bottom-4 -right-4 w-16 h-16 text-black opacity-0 group-hover:opacity-20 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-out pointer-events-none z-0">
                 <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
               </svg>
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="relative z-10 flex items-center justify-center gap-2">
                 Reserve Your Seat 
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </span>
             </SpotlightButton>
 
-            <SpotlightButton to="/speakers" variant="outline" className="group relative overflow-hidden border-zinc-700 bg-black/60 hover:border-[#EB0028] text-zinc-200 px-6 py-2.5 rounded-xs transition-all">
+            <SpotlightButton to="/speakers" variant="outline" className="group relative overflow-hidden border-zinc-700 bg-black/60 hover:border-[#EB0028] text-zinc-200 px-8 py-3.5 rounded-xs transition-all w-56 whitespace-nowrap">
               <svg viewBox="0 0 50 50" className="absolute -bottom-4 -right-4 w-16 h-16 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-out pointer-events-none z-0">
                 <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
               </svg>
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="relative z-10 flex items-center justify-center gap-2">
                 Explore Lineup
-                <Compass className="w-4 h-4 transition-transform group-hover:rotate-45 text-[#EB0028]" />
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </span>
             </SpotlightButton>
           </div>
