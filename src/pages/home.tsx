@@ -13,23 +13,18 @@ export function AnimatedHexBackground() {
   return null;
 }
 
-// Split Flap Digit Component
-const FlapDigit = memo(function FlapDigit({ digit }: { digit: string }) {
+// Clean Countdown Digit Component (Slim, tall numbers without split lines)
+const CountdownDigit = memo(function CountdownDigit({ digit }: { digit: string }) {
   return (
-    <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#0b0b0f] border border-[#EB0028]/30 rounded-xs flex items-center justify-center overflow-hidden select-none transform-gpu group hover:border-[#EB0028]/80 transition-colors">
-      <div className="absolute top-0 inset-x-0 h-1/2 bg-white/[0.04] border-b border-black/80 z-10 pointer-events-none" />
-      <div className="absolute top-1/2 inset-x-0 h-[2px] bg-[#050507] z-20 -translate-y-1/2" />
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#050507] rounded-r-xs z-30" />
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#050507] rounded-l-xs z-30" />
-
+    <div className="relative w-9 h-16 sm:w-12 sm:h-22 md:w-14 md:h-26 bg-[#0a0a0e] border border-zinc-800 rounded-xs flex items-center justify-center overflow-hidden select-none">
       <AnimatePresence mode="popLayout">
         <motion.span
           key={digit}
-          initial={{ y: "-100%", opacity: 0 }}
+          initial={{ y: "-40%", opacity: 0 }}
           animate={{ y: "0%", opacity: 1 }}
-          exit={{ y: "100%", opacity: 0 }}
-          transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-          className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-none z-10"
+          exit={{ y: "40%", opacity: 0 }}
+          transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          className="font-mono text-3xl sm:text-5xl md:text-6xl font-light text-white tracking-tighter leading-none"
         >
           {digit}
         </motion.span>
@@ -62,12 +57,12 @@ export function Home() {
     return () => clearInterval(timer);
   }, []);
 
-  const renderSplitFlapDigits = (value: number) => {
+  const renderDigits = (value: number) => {
     const digits = String(value).padStart(2, "0").split("");
     return (
-      <div className="flex gap-1 sm:gap-1.5">
+      <div className="flex gap-1.5 sm:gap-2">
         {digits.map((digit, idx) => (
-          <FlapDigit key={idx} digit={digit} />
+          <CountdownDigit key={idx} digit={digit} />
         ))}
       </div>
     );
@@ -161,38 +156,39 @@ export function Home() {
 
           <Reveal className="mb-14 relative z-10">
             <div className="rounded-xs border border-[#EB0028]/30 bg-[#0c0c10]/90 p-6 sm:p-10 relative overflow-hidden">
-              <span className="absolute top-3 left-4 text-zinc-500 font-mono text-[10px] uppercase tracking-wider z-10">
-                TEDxYouth@CHIREC 2026
-              </span>
-
-              <div className="flex items-center justify-between border-b border-zinc-800 pb-4 mb-8 mt-2 z-10 relative">
-                <div className="flex items-center gap-2.5">
+              {/* CLEAN ALIGNED HEADER */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-800/80 pb-4 mb-8 gap-2 z-10 relative">
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest">
+                    TEDxYouth@CHIREC 2026
+                  </span>
                   <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.25em] text-[#EB0028] font-bold">
                     EVENT COUNTDOWN
                   </span>
                 </div>
-                <div className="flex items-center gap-2 font-mono text-xs text-zinc-400">
+                <div className="flex items-center gap-2 font-mono text-xs text-zinc-400 self-start sm:self-auto">
                   <Timer className="w-3.5 h-3.5 text-[#EB0028]" />
                   <span>OCT 3, 2026 • 15:00 IST</span>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 justify-items-center z-10 relative">
-                <div className="flex flex-col items-center">
-                  {renderSplitFlapDigits(timeLeft.days)}
-                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">Days</span>
+              {/* EVENLY ALIGNED TIMER GRID */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 w-full max-w-4xl mx-auto justify-items-center z-10 relative">
+                <div className="flex flex-col items-center gap-3 w-full">
+                  {renderDigits(timeLeft.days)}
+                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-medium">Days</span>
                 </div>
-                <div className="flex flex-col items-center">
-                  {renderSplitFlapDigits(timeLeft.hours)}
-                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">Hours</span>
+                <div className="flex flex-col items-center gap-3 w-full">
+                  {renderDigits(timeLeft.hours)}
+                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-medium">Hours</span>
                 </div>
-                <div className="flex flex-col items-center">
-                  {renderSplitFlapDigits(timeLeft.minutes)}
-                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-bold mt-3">Minutes</span>
+                <div className="flex flex-col items-center gap-3 w-full">
+                  {renderDigits(timeLeft.minutes)}
+                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-medium">Minutes</span>
                 </div>
-                <div className="flex flex-col items-center">
-                  {renderSplitFlapDigits(timeLeft.seconds)}
-                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-[#EB0028] font-bold mt-3">Seconds</span>
+                <div className="flex flex-col items-center gap-3 w-full">
+                  {renderDigits(timeLeft.seconds)}
+                  <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-medium">Seconds</span>
                 </div>
               </div>
             </div>
