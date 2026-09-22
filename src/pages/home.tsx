@@ -4,13 +4,46 @@ import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
 import { Calendar, MapPin, Mic, ArrowRight, Timer, Hexagon } from "lucide-react";
 
-// Re-exported helper components to maintain compatibility with other pages
+// Re-exported SVG Defs used across multiple pages for hexagonal patterns
 export const SharedSVGDefs = memo(function SharedSVGDefs() {
-  return null;
+  return (
+    <svg className="absolute w-0 h-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <defs>
+        <pattern id="hex-grid" width="56" height="97" patternUnits="userSpaceOnUse">
+          <path
+            d="M28 0l28 16.166v32.333L28 64.666 0 48.499V16.166L28 0zm0 96.998l28-16.166V48.499L28 64.666 0 48.499v32.333L28 96.998z"
+            fill="none"
+            stroke="#EB0028"
+            strokeOpacity="0.08"
+            strokeWidth="1"
+          />
+        </pattern>
+        <linearGradient id="hex-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#EB0028" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="#050507" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
 });
 
+// Ambient Hexagonal Background Component imported by all pages
 export function AnimatedHexBackground() {
-  return null;
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {/* Hexagonal Pattern Overlay */}
+      <div 
+        className="absolute inset-0 opacity-60"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='56' height='97' viewBox='0 0 56 97' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 0l28 16.166v32.333L28 64.666 0 48.499V16.166L28 0zm0 96.998l28-16.166V48.499L28 64.666 0 48.499v32.333L28 96.998z' fill='none' stroke='%23EB0028' stroke-opacity='0.07' stroke-width='1'/%3E%3C/svg%3E")`,
+          backgroundSize: '56px 97px'
+        }}
+      />
+      {/* Soft Ambient Radial Lighting */}
+      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#EB0028]/10 rounded-full blur-[128px]" />
+      <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-[#EB0028]/10 rounded-full blur-[128px]" />
+    </div>
+  );
 }
 
 // Clean Borderless Digit Component
@@ -70,11 +103,8 @@ export function Home() {
 
   return (
     <div className="min-h-screen bg-[#050507] text-white overflow-hidden font-['Inter',sans-serif] selection:bg-[#EB0028] selection:text-white relative">
-      {/* Subtle Background Grid Pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none z-0" 
-        style={{ backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, backgroundSize: `24px 24px` }} 
-      />
+      <SharedSVGDefs />
+      <AnimatedHexBackground />
 
       {/* HERO SECTION */}
       <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-28 pb-20 text-center min-h-[85vh] z-10">
