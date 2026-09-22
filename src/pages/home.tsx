@@ -2,7 +2,7 @@ import { useState, useEffect, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
-import { Calendar, MapPin, Mic, ArrowRight, Compass, Timer } from "lucide-react";
+import { Calendar, MapPin, Mic, ArrowRight, Timer } from "lucide-react";
 
 // Shared SVG Definitions for geometric patterns & hexagonal elements
 export const SharedSVGDefs = memo(function SharedSVGDefs() {
@@ -164,7 +164,6 @@ export function Home() {
               }}
             />
           </div>
-          
 
           {/* FALLBACK: theme text box, hidden unless the image fails */}
           <div
@@ -191,26 +190,41 @@ export function Home() {
         </motion.div>
 
         <Reveal className="flex flex-col items-center z-10 max-w-5xl">
+          <p className="max-w-[54ch] text-base sm:text-lg text-zinc-200 font-light leading-relaxed mb-10 relative z-10">
+            Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape tomorrow.
+          </p>
 
+          {/* SINGLE HIGH-TECH HEXAGONAL CTA BUTTON */}
+          <div className="flex justify-center relative z-10">
+            <SpotlightButton 
+              to="/register" 
+              className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-xs border border-[#EB0028] bg-black/90 px-9 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-all duration-300 shadow-[0_0_25px_rgba(235,0,40,0.3)] hover:shadow-[0_0_45px_rgba(235,0,40,0.65)] hover:bg-[#EB0028] hover:border-[#EB0028]"
+            >
+              {/* Internal Subtle Hexagonal Pattern Grid */}
+              <div className="absolute inset-0 opacity-15 group-hover:opacity-25 transition-opacity duration-300 pointer-events-none z-0">
+                <svg className="w-full h-full" fill="none">
+                  <pattern id="btn-hex-pattern" width="16" height="16" patternUnits="userSpaceOnUse">
+                    <path d="M8 0 L16 4 L16 12 L8 16 L0 12 L0 4 Z" stroke="#EB0028" strokeWidth="0.8" fill="none" />
+                  </pattern>
+                  <rect width="100%" height="100%" fill="url(#btn-hex-pattern)" />
+                </svg>
+              </div>
 
-          <div className="flex flex-wrap justify-center gap-4 relative z-10 mt-8 items-stretch">
-            <SpotlightButton to="/register" className="group relative overflow-hidden bg-[#EB0028] hover:bg-[#c40022] text-white font-medium px-8 py-3.5 rounded-xs transition-all w-56 whitespace-nowrap border border-transparent">
-              <svg viewBox="0 0 50 50" className="absolute -bottom-4 -right-4 w-16 h-16 text-black opacity-0 group-hover:opacity-20 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-out pointer-events-none z-0">
-                <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
+              {/* Hex Node Decorative SVG Accent */}
+              <svg viewBox="0 0 50 50" className="absolute -bottom-5 -right-5 w-16 h-16 text-[#EB0028] group-hover:text-black opacity-30 group-hover:opacity-40 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-out pointer-events-none z-0">
+                <use href="#shape-hex-node" x="0" y="0" transform="scale(0.85)" />
               </svg>
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                Reserve Your Seat 
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </span>
-            </SpotlightButton>
 
-            <SpotlightButton to="/speakers" variant="outline" className="group relative overflow-hidden border-zinc-700 bg-black/60 hover:border-[#EB0028] text-zinc-200 px-8 py-3.5 rounded-xs transition-all w-56 whitespace-nowrap">
-              <svg viewBox="0 0 50 50" className="absolute -bottom-4 -right-4 w-16 h-16 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-out pointer-events-none z-0">
-                <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
-              </svg>
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                Explore Lineup
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              {/* Corner Tech Brackets */}
+              <span className="absolute top-1 left-1.5 text-[9px] font-mono text-[#EB0028] group-hover:text-white transition-colors pointer-events-none z-10">+</span>
+              <span className="absolute top-1 right-1.5 text-[9px] font-mono text-[#EB0028] group-hover:text-white transition-colors pointer-events-none z-10">+</span>
+              <span className="absolute bottom-1 left-1.5 text-[9px] font-mono text-[#EB0028] group-hover:text-white transition-colors pointer-events-none z-10">+</span>
+              <span className="absolute bottom-1 right-1.5 text-[9px] font-mono text-[#EB0028] group-hover:text-white transition-colors pointer-events-none z-10">+</span>
+
+              {/* Button Label & Animated Arrow */}
+              <span className="relative z-10 flex items-center gap-3">
+                <span>Reserve Your Seat</span>
+                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5 text-[#EB0028] group-hover:text-white" />
               </span>
             </SpotlightButton>
           </div>
