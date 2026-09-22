@@ -8,90 +8,22 @@ interface ScheduleItem {
   id: string;
   time: string;
   title: string;
-  subtitle?: string;
   icon: any;
   isBreak?: boolean;
 }
 
 const SCHEDULE_ITEMS: ScheduleItem[] = [
-  {
-    id: "1",
-    time: "3:00 PM",
-    title: "Registrations Open",
-    subtitle: "Attendee check-in and welcome desk opens",
-    icon: DoorOpen,
-  },
-  {
-    id: "2",
-    time: "3:45 PM",
-    title: "Doors Close",
-    subtitle: "Registration and entry closes",
-    icon: Clock,
-  },
-  {
-    id: "3",
-    time: "4:00 - 4:25 PM",
-    title: "Opening Ceremony",
-    subtitle: "Welcome address & theme introduction",
-    icon: Hexagon,
-  },
-  {
-    id: "4",
-    time: "4:30 - 4:50 PM",
-    title: "Guest Speaker",
-    subtitle: "Speaker 1",
-    icon: Mic,
-  },
-  {
-    id: "5",
-    time: "4:50 - 5:10 PM",
-    title: "Archit Khandelwal",
-    subtitle: "Speaker 2",
-    icon: Mic,
-  },
-  {
-    id: "6",
-    time: "5:10 - 5:30 PM",
-    title: "Sreenidi Sriram",
-    subtitle: "Speaker 3",
-    icon: Mic,
-  },
-  {
-    id: "7",
-    time: "5:30 - 6:00 PM",
-    title: "Refreshments & High Tea",
-    subtitle: "Networking break & interactive stalls",
-    icon: Coffee,
-    isBreak: true,
-  },
-  {
-    id: "8",
-    time: "6:00 - 6:20 PM",
-    title: "Guest Speaker",
-    subtitle: "Speaker 4",
-    icon: Mic,
-  },
-  {
-    id: "9",
-    time: "6:20 - 6:40 PM",
-    title: "Avirbhav Danamaraju",
-    subtitle: "Speaker 5",
-    icon: Mic,
-  },
-  {
-    id: "10",
-    time: "6:40 - 6:55 PM",
-    title: "Meghna Daka",
-    subtitle: "Speaker 6",
-    icon: Mic,
-  },
-  {
-    id: "11",
-    time: "6:55 - 7:00 PM",
-    title: "Closing & National Anthem",
-    subtitle: "Concluding remarks followed by the National Anthem",
-    icon: Flag,
-  },
+  { id: "1", time: "3:00 PM", title: "Registrations Open", icon: DoorOpen },
+  { id: "2", time: "3:45 PM", title: "Doors Close", icon: Clock },
+  { id: "3", time: "4:00 - 4:25 PM", title: "Opening Ceremony", icon: Hexagon },
+  { id: "4", time: "4:30 - 4:50 PM", title: "Guest Speaker 1", icon: Mic },
+  { id: "5", time: "4:50 - 5:10 PM", title: "Archit Khandelwal", icon: Mic },
+  { id: "6", time: "5:10 - 5:30 PM", title: "Sreenidi Sriram", icon: Mic },
+  { id: "7", time: "5:30 - 6:00 PM", title: "Refreshments & High Tea", icon: Coffee, isBreak: true },
+  { id: "8", time: "6:00 - 6:20 PM", title: "Guest Speaker 2", icon: Mic },
+  { id: "9", time: "6:20 - 6:40 PM", title: "Avirbhav Danamaraju", icon: Mic },
+  { id: "10", time: "6:40 - 6:55 PM", title: "Meghna Daka", icon: Mic },
+  { id: "11", time: "6:55 - 7:00 PM", title: "Closing & National Anthem", icon: Flag },
 ];
 
 export function Schedule() {
@@ -101,7 +33,7 @@ export function Schedule() {
       <AnimatedHexBackground />
 
       {/* HERO SECTION */}
-      <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-16 text-center z-10">
+      <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-12 text-center z-10">
         <Reveal className="flex flex-col items-center z-10 max-w-4xl w-full">
           <div className="inline-flex items-center gap-2 border border-[#EB0028]/30 bg-[#EB0028]/10 px-4 py-1.5 rounded-xs mb-6">
             <Calendar className="w-4 h-4 text-[#EB0028]" />
@@ -110,7 +42,7 @@ export function Schedule() {
             </span>
           </div>
 
-          <div className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs my-2 max-w-2xl w-full mx-auto shadow-[0_0_60px_rgba(235,0,40,0.15)] hover:border-[#EB0028] hover:shadow-[0_0_80px_rgba(235,0,40,0.3)] transition-all duration-500 overflow-hidden">
+          <div className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs my-2 max-w-2xl w-full mx-auto overflow-hidden">
             <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
             <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
             <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
@@ -132,65 +64,53 @@ export function Schedule() {
             transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
             className="my-6 h-[1px] w-28 bg-[#EB0028] origin-center"
           />
-
-          <p className="max-w-[56ch] text-base sm:text-lg text-zinc-300 font-light leading-relaxed mb-4 mx-auto z-10">
-            Doors open at 15:00 IST. Fast-paced talks interspersed with networking breaks and interactive exhibits.
-          </p>
         </Reveal>
       </section>
 
-      {/* CONTINUOUS LINEAR TIMELINE */}
+      {/* CENTERED ALTERNATING BEANSTALK TIMELINE */}
       <section className="relative z-10 px-4 sm:px-8 pb-24">
-        <div className="max-w-3xl mx-auto">
-          <RevealGroup className="relative border-l-2 border-[#EB0028]/30 ml-4 sm:ml-32 pl-6 sm:pl-10 space-y-6" stagger={0.05}>
-            {SCHEDULE_ITEMS.map((item) => {
+        <div className="max-w-4xl mx-auto relative">
+          {/* Central Trunk Line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 top-4 bottom-4 w-0.5 bg-[#EB0028]/40" />
+
+          <RevealGroup className="space-y-6 sm:space-y-8 relative" stagger={0.04}>
+            {SCHEDULE_ITEMS.map((item, idx) => {
               const IconComponent = item.icon;
+              const isEven = idx % 2 === 0;
+
               return (
                 <motion.div
                   key={item.id}
                   variants={staggerItem}
-                  className="relative group"
+                  className="relative flex items-center w-full"
                 >
-                  {/* Timeline Node Dot */}
-                  <div className="absolute -left-[31px] sm:-left-[47px] top-5 h-4 w-4 rounded-full bg-black border-2 border-[#EB0028] group-hover:scale-125 group-hover:bg-[#EB0028] transition-all duration-300 shadow-[0_0_10px_rgba(235,0,40,0.5)] z-10" />
+                  {/* Solid Center Node (No Glow) */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-black border-2 border-[#EB0028] z-20" />
 
-                  {/* Desktop Left Time Stamp */}
-                  <div className="hidden sm:block absolute -left-36 top-4 w-24 text-right font-mono text-xs font-bold text-[#EB0028] tracking-wider">
-                    {item.time}
-                  </div>
-
-                  {/* Card Container */}
-                  <div
-                    className={`rounded-xs border p-5 sm:p-6 transition-all duration-300 backdrop-blur-md ${
-                      item.isBreak
-                        ? "border-[#EB0028]/50 bg-[#EB0028]/10 hover:border-[#EB0028]"
-                        : "border-zinc-800/80 bg-black/80 hover:border-[#EB0028]/60"
-                    }`}
-                  >
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                      <div className="flex items-start sm:items-center gap-4">
-                        <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20">
-                          <IconComponent className="h-5 w-5" />
-                        </div>
-
-                        <div>
-                          <h3 className="font-['Helvetica',sans-serif] text-base sm:text-lg font-bold text-white tracking-tight">
-                            {item.title}
-                          </h3>
-                          {item.subtitle && (
-                            <p className="text-xs sm:text-sm text-zinc-400 font-normal mt-0.5">
-                              {item.subtitle}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Mobile Time Stamp */}
-                      <div className="sm:hidden self-start">
-                        <span className="inline-flex items-center gap-1.5 rounded-xs border border-[#EB0028]/30 bg-[#EB0028]/10 px-2.5 py-1 font-mono text-xs font-bold text-[#EB0028]">
+                  {/* Alternating Row */}
+                  <div className={`w-full flex ${isEven ? "justify-start pr-5 sm:pr-10 md:pr-14" : "justify-end pl-5 sm:pl-10 md:pl-14"}`}>
+                    <div
+                      className={`w-[calc(50%-0.75rem)] sm:w-[calc(50%-1.5rem)] rounded-xs border p-3.5 sm:p-5 backdrop-blur-md ${
+                        item.isBreak
+                          ? "border-[#EB0028]/60 bg-[#EB0028]/10"
+                          : "border-zinc-800 bg-black/90 hover:border-[#EB0028]/50"
+                      }`}
+                    >
+                      <div className={`flex flex-col ${isEven ? "items-end text-right" : "items-start text-left"} gap-1.5 sm:gap-2`}>
+                        <span className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs font-bold text-[#EB0028]">
                           <Clock className="w-3 h-3" />
                           {item.time}
                         </span>
+
+                        <div className={`flex items-center gap-2.5 ${isEven ? "flex-row-reverse" : "flex-row"}`}>
+                          <div className="inline-flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20">
+                            <IconComponent className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                          </div>
+
+                          <h3 className="font-['Helvetica',sans-serif] text-xs sm:text-base font-bold text-white uppercase tracking-tight">
+                            {item.title}
+                          </h3>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -202,19 +122,16 @@ export function Schedule() {
       </section>
 
       {/* CALL TO ACTION */}
-      <section className="relative z-10 border-t border-zinc-800/80 bg-black/80 backdrop-blur-md px-4 sm:px-8 py-20 text-center">
+      <section className="relative z-10 border-t border-zinc-800 bg-black/80 backdrop-blur-md px-4 sm:px-8 py-16 text-center">
         <div className="mx-auto flex max-w-xl flex-col items-center gap-6">
-          <h2 className="font-['Helvetica',sans-serif] font-extrabold text-2xl sm:text-4xl text-white tracking-tight">
+          <h2 className="font-['Helvetica',sans-serif] font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
             Reserve Your Seat for the Event
           </h2>
-          <p className="text-sm sm:text-base text-zinc-400 font-light max-w-md">
-            Join us on October 3, 2026, at CHIREC Kondapur Campus for an insightful afternoon of ideas worth spreading.
-          </p>
           
           <div className="pt-2">
             <SpotlightButton 
               to="/register" 
-              className="group relative inline-flex items-center justify-center gap-3 rounded-xs border border-[#EB0028] bg-black px-8 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-all duration-300 hover:bg-[#EB0028] hover:shadow-[0_0_30px_rgba(235,0,40,0.4)]"
+              className="group relative inline-flex items-center justify-center gap-3 rounded-xs border border-[#EB0028] bg-black px-8 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-colors hover:bg-[#EB0028]"
             >
               <span className="relative z-10 flex items-center gap-3">
                 <span>Reserve Your Seat</span>
