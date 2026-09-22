@@ -2,77 +2,12 @@ import { useState, useEffect, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
-import { Calendar, MapPin, Mic, ArrowRight, Timer } from "lucide-react";
-
-// Shared SVG Definitions for geometric patterns & hexagonal elements
-export const SharedSVGDefs = memo(function SharedSVGDefs() {
-  return (
-    <svg width="0" height="0" className="absolute pointer-events-none" aria-hidden="true">
-      <defs>
-        {/* Diagonal Lines Texture */}
-        <pattern id="pattern-diagonal" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
-          <line x1="0" y1="0" x2="0" y2="8" stroke="currentColor" strokeWidth="1.5" />
-        </pattern>
-        
-        {/* Hexagon with Nodes for Feature Cards & Buttons */}
-        <g id="shape-hex-node">
-          <path d="M25 5 L45 15 L45 35 L25 45 L5 35 L5 15 Z" stroke="currentColor" strokeWidth="1.5" fill="none" />
-          <path d="M45 35 L55 40" stroke="currentColor" strokeWidth="1.5" fill="none" />
-          <path d="M5 35 L-5 40" stroke="currentColor" strokeWidth="1.5" fill="none" />
-          <path d="M25 5 L25 -5" stroke="currentColor" strokeWidth="1.5" fill="none" />
-          <circle cx="25" cy="5" r="3" fill="currentColor" />
-          <circle cx="45" cy="35" r="3" fill="currentColor" />
-          <circle cx="5" cy="35" r="3" fill="currentColor" />
-        </g>
-      </defs>
-    </svg>
-  );
-});
-
-// Subtle Floating Hexagon Background Accent Component
-export function AnimatedHexBackground() {
-  return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-      {/* Background Dot Grid Pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.04]" 
-        style={{ backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, backgroundSize: `24px 24px` }} 
-      />
-
-      {/* Floating Hexagon Top-Left */}
-      <motion.div
-        animate={{ y: [0, -15, 0], rotate: [0, 6, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-24 left-[8%] w-36 h-36 text-[#EB0028]/20 hidden md:block"
-      >
-        <svg viewBox="0 0 100 100" className="w-full h-full stroke-current fill-none" strokeWidth="1">
-          <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
-        </svg>
-      </motion.div>
-
-      {/* Floating Hexagon Bottom-Right */}
-      <motion.div
-        animate={{ y: [0, 18, 0], rotate: [0, -8, 0] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-20 right-[10%] w-48 h-48 text-[#EB0028]/15 hidden md:block"
-      >
-        <svg viewBox="0 0 100 100" className="w-full h-full stroke-current fill-none" strokeWidth="1.2">
-          <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
-          <polygon points="50,15 82,32 82,68 50,85 18,68 18,32" strokeDasharray="4,4" />
-        </svg>
-      </motion.div>
-    </div>
-  );
-}
+import { Calendar, MapPin, Mic, ArrowRight, Timer, Hexagon } from "lucide-react";
 
 // Split Flap Digit Component
 const FlapDigit = memo(function FlapDigit({ digit }: { digit: string }) {
   return (
     <div className="relative w-10 h-16 sm:w-14 sm:h-22 md:w-18 md:h-28 bg-[#0b0b0f] border border-[#EB0028]/30 rounded-xs flex items-center justify-center overflow-hidden select-none transform-gpu group hover:border-[#EB0028]/80 transition-colors">
-      <div className="absolute inset-0 text-white opacity-5 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none z-0">
-        <svg className="w-full h-full"><rect width="100%" height="100%" fill="url(#pattern-diagonal)" /></svg>
-      </div>
-
       <div className="absolute top-0 inset-x-0 h-1/2 bg-white/[0.04] border-b border-black/80 z-10 pointer-events-none" />
       <div className="absolute top-1/2 inset-x-0 h-[2px] bg-[#050507] z-20 -translate-y-1/2" />
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-2 sm:w-1.5 sm:h-3 bg-[#050507] rounded-r-xs z-30" />
@@ -131,13 +66,15 @@ export function Home() {
 
   return (
     <div className="min-h-screen bg-[#050507] text-white overflow-hidden font-['Inter',sans-serif] selection:bg-[#EB0028] selection:text-white relative">
-      <SharedSVGDefs />
+      {/* Subtle Background Grid Pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] pointer-events-none z-0" 
+        style={{ backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`, backgroundSize: `24px 24px` }} 
+      />
 
       {/* HERO SECTION */}
       <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-28 pb-20 text-center min-h-[85vh] z-10">
-        <AnimatedHexBackground />
-
-        {/* HERO THEME IMAGE — fills full viewport width, falls back to text box if it fails */}
+        {/* HERO THEME IMAGE */}
         <motion.div
           initial={{ opacity: 0, scale: 0.97, y: 8 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -156,7 +93,6 @@ export function Home() {
                 if (fallback) fallback.style.display = "block";
               }}
             />
-            {/* Fake fading black border — sits over the image edges, blends into the page */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
@@ -165,16 +101,11 @@ export function Home() {
             />
           </div>
 
-          {/* FALLBACK: theme text box, hidden unless the image fails */}
+          {/* FALLBACK TEXT BOX */}
           <div
             style={{ display: "none" }}
-            className="group relative mx-auto max-w-2xl border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs shadow-[0_0_60px_rgba(235,0,40,0.2)] overflow-hidden"
+            className="group relative mx-auto max-w-2xl border border-[#EB0028]/40 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs shadow-[0_0_40px_rgba(235,0,40,0.15)] overflow-hidden"
           >
-            <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
-            <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
-            <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
-            <span className="absolute -bottom-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
-
             <div className="flex flex-col items-center leading-none relative z-10">
               <span className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-400 mb-2 tracking-[0.45em]">
                 THE
@@ -190,41 +121,20 @@ export function Home() {
         </motion.div>
 
         <Reveal className="flex flex-col items-center z-10 max-w-5xl">
-          <p className="max-w-[54ch] text-base sm:text-lg text-zinc-200 font-light leading-relaxed mb-10 relative z-10">
+          <p className="max-w-[54ch] text-base sm:text-lg text-zinc-300 font-light leading-relaxed mb-10 relative z-10">
             Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape tomorrow.
           </p>
 
-          {/* SINGLE HIGH-TECH HEXAGONAL CTA BUTTON */}
+          {/* MINIMAL CTA BUTTON WITH SINGLE HEXAGON ACCENT */}
           <div className="flex justify-center relative z-10">
             <SpotlightButton 
               to="/register" 
-              className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-xs border border-[#EB0028] bg-black/90 px-9 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-all duration-300 shadow-[0_0_25px_rgba(235,0,40,0.3)] hover:shadow-[0_0_45px_rgba(235,0,40,0.65)] hover:bg-[#EB0028] hover:border-[#EB0028]"
+              className="group relative inline-flex items-center justify-center gap-3 rounded-xs border border-[#EB0028] bg-black px-8 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-all duration-300 hover:bg-[#EB0028] hover:shadow-[0_0_30px_rgba(235,0,40,0.4)]"
             >
-              {/* Internal Subtle Hexagonal Pattern Grid */}
-              <div className="absolute inset-0 opacity-15 group-hover:opacity-25 transition-opacity duration-300 pointer-events-none z-0">
-                <svg className="w-full h-full" fill="none">
-                  <pattern id="btn-hex-pattern" width="16" height="16" patternUnits="userSpaceOnUse">
-                    <path d="M8 0 L16 4 L16 12 L8 16 L0 12 L0 4 Z" stroke="#EB0028" strokeWidth="0.8" fill="none" />
-                  </pattern>
-                  <rect width="100%" height="100%" fill="url(#btn-hex-pattern)" />
-                </svg>
-              </div>
-
-              {/* Hex Node Decorative SVG Accent */}
-              <svg viewBox="0 0 50 50" className="absolute -bottom-5 -right-5 w-16 h-16 text-[#EB0028] group-hover:text-black opacity-30 group-hover:opacity-40 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-out pointer-events-none z-0">
-                <use href="#shape-hex-node" x="0" y="0" transform="scale(0.85)" />
-              </svg>
-
-              {/* Corner Tech Brackets */}
-              <span className="absolute top-1 left-1.5 text-[9px] font-mono text-[#EB0028] group-hover:text-white transition-colors pointer-events-none z-10">+</span>
-              <span className="absolute top-1 right-1.5 text-[9px] font-mono text-[#EB0028] group-hover:text-white transition-colors pointer-events-none z-10">+</span>
-              <span className="absolute bottom-1 left-1.5 text-[9px] font-mono text-[#EB0028] group-hover:text-white transition-colors pointer-events-none z-10">+</span>
-              <span className="absolute bottom-1 right-1.5 text-[9px] font-mono text-[#EB0028] group-hover:text-white transition-colors pointer-events-none z-10">+</span>
-
-              {/* Button Label & Animated Arrow */}
               <span className="relative z-10 flex items-center gap-3">
                 <span>Reserve Your Seat</span>
-                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1.5 text-[#EB0028] group-hover:text-white" />
+                <Hexagon className="w-4 h-4 text-[#EB0028] group-hover:text-white transition-colors fill-[#EB0028]/20 group-hover:fill-white/20 stroke-[1.75]" />
+                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </span>
             </SpotlightButton>
           </div>
@@ -232,7 +142,7 @@ export function Home() {
       </section>
 
       {/* EVENT OVERVIEW SECTION */}
-      <section className="px-4 sm:px-12 md:px-16 py-20 border-t border-[#EB0028]/30 bg-black/80 backdrop-blur-md relative w-full z-10">
+      <section className="px-4 sm:px-12 md:px-16 py-20 border-t border-zinc-800/80 bg-black/80 backdrop-blur-md relative w-full z-10">
         <div className="max-w-7xl mx-auto">
           <Reveal className="text-center mb-12 relative z-10">
             <h2 className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
@@ -241,8 +151,8 @@ export function Home() {
           </Reveal>
 
           <Reveal className="mb-14 relative z-10">
-            <div className="group rounded-xs border border-[#EB0028]/40 bg-[#0c0c10]/90 p-6 sm:p-10 relative overflow-hidden transition-colors hover:border-[#EB0028]/80">
-              <span className="absolute top-2 left-3 text-zinc-500 font-mono text-[10px] uppercase tracking-wider z-10">
+            <div className="rounded-xs border border-[#EB0028]/30 bg-[#0c0c10]/90 p-6 sm:p-10 relative overflow-hidden">
+              <span className="absolute top-3 left-4 text-zinc-500 font-mono text-[10px] uppercase tracking-wider z-10">
                 TEDxYouth@CHIREC 2026
               </span>
 
@@ -281,47 +191,38 @@ export function Home() {
 
           <RevealGroup className="grid gap-6 md:grid-cols-3 relative z-10" stagger={0.1}>
             {/* Feature Card 1 */}
-            <motion.div variants={staggerItem} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
-              <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
-                <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
-              </svg>
+            <motion.div variants={staggerItem} className="group relative rounded-xs border border-zinc-800 bg-black/80 p-8 hover:border-[#EB0028]/60 transition-all cursor-default">
               <div className="relative z-10">
-                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-110 transition-transform duration-500">
+                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-105 transition-transform duration-300">
                   <Calendar className="h-6 w-6" />
                 </div>
                 <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Date & Time</h3>
                 <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">Saturday, October 3, 2026</p>
-                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Doors open at 15:00 IST. Please arrive 20 minutes early for check-in and seating.</p>
+                <p className="text-sm sm:text-base text-zinc-400 font-normal leading-relaxed">Doors open at 15:00 IST. Please arrive 20 minutes early for check-in and seating.</p>
               </div>
             </motion.div>
 
             {/* Feature Card 2 */}
-            <motion.div variants={staggerItem} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
-              <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
-                <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
-              </svg>
+            <motion.div variants={staggerItem} className="group relative rounded-xs border border-zinc-800 bg-black/80 p-8 hover:border-[#EB0028]/60 transition-all cursor-default">
               <div className="relative z-10">
-                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-110 transition-transform duration-500">
+                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-105 transition-transform duration-300">
                   <MapPin className="h-6 w-6" />
                 </div>
                 <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Location</h3>
                 <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">CHIREC Kondapur Campus</p>
-                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Botanical Garden Road, Kondapur, Hyderabad. Entrance & check-in located at Gate 1.</p>
+                <p className="text-sm sm:text-base text-zinc-400 font-normal leading-relaxed">Botanical Garden Road, Kondapur, Hyderabad. Entrance & check-in located at Gate 1.</p>
               </div>
             </motion.div>
 
             {/* Feature Card 3 */}
-            <motion.div variants={staggerItem} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
-              <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
-                <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
-              </svg>
+            <motion.div variants={staggerItem} className="group relative rounded-xs border border-zinc-800 bg-black/80 p-8 hover:border-[#EB0028]/60 transition-all cursor-default">
               <div className="relative z-10">
-                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-110 transition-transform duration-500">
+                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-105 transition-transform duration-300">
                   <Mic className="h-6 w-6" />
                 </div>
                 <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Event Format</h3>
                 <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">Talks & Performances</p>
-                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Fast-paced 12-minute talks interspersed with networking breaks and interactive exhibits.</p>
+                <p className="text-sm sm:text-base text-zinc-400 font-normal leading-relaxed">Fast-paced 12-minute talks interspersed with networking breaks and interactive exhibits.</p>
               </div>
             </motion.div>
           </RevealGroup>
