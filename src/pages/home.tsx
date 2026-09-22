@@ -4,6 +4,15 @@ import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
 import { Calendar, MapPin, Mic, ArrowRight, Timer, Hexagon } from "lucide-react";
 
+// Re-exported helper components to maintain compatibility with other pages
+export const SharedSVGDefs = memo(function SharedSVGDefs() {
+  return null;
+});
+
+export function AnimatedHexBackground() {
+  return null;
+}
+
 // Split Flap Digit Component
 const FlapDigit = memo(function FlapDigit({ digit }: { digit: string }) {
   return (
