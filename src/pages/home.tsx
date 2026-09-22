@@ -4,7 +4,7 @@ import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
 import { Calendar, MapPin, Mic, ArrowRight, Timer, Hexagon } from "lucide-react";
 
-// Re-exported SVG Defs used across multiple pages for hexagonal patterns
+// Re-exported SVG Defs used across pages for hexagonal grid filters
 export const SharedSVGDefs = memo(function SharedSVGDefs() {
   return (
     <svg className="absolute w-0 h-0 overflow-hidden pointer-events-none" aria-hidden="true">
@@ -27,19 +27,55 @@ export const SharedSVGDefs = memo(function SharedSVGDefs() {
   );
 });
 
-// Ambient Hexagonal Background Component imported by all pages
+// Animated Floating Hexagonal Background Component imported by all pages
 export function AnimatedHexBackground() {
+  const floatingHexes = [
+    { top: "12%", left: "6%", size: 64, duration: 12, delay: 0 },
+    { top: "28%", left: "84%", size: 88, duration: 16, delay: 2 },
+    { top: "58%", left: "10%", size: 72, duration: 11, delay: 1 },
+    { top: "72%", left: "82%", size: 96, duration: 18, delay: 3 },
+    { top: "42%", left: "92%", size: 52, duration: 14, delay: 0.5 },
+    { top: "82%", left: "48%", size: 68, duration: 13, delay: 2.5 },
+  ];
+
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Hexagonal Pattern Overlay */}
+      {/* SVG Hexagonal Grid Pattern Overlay */}
       <div 
-        className="absolute inset-0 opacity-60"
+        className="absolute inset-0 opacity-40"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='56' height='97' viewBox='0 0 56 97' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 0l28 16.166v32.333L28 64.666 0 48.499V16.166L28 0zm0 96.998l28-16.166V48.499L28 64.666 0 48.499v32.333L28 96.998z' fill='none' stroke='%23EB0028' stroke-opacity='0.07' stroke-width='1'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='56' height='97' viewBox='0 0 56 97' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 0l28 16.166v32.333L28 64.666 0 48.499V16.166L28 0zm0 96.998l28-16.166V48.499L28 64.666 0 48.499v32.333L28 96.998z' fill='none' stroke='%23EB0028' stroke-opacity='0.08' stroke-width='1'/%3E%3C/svg%3E")`,
           backgroundSize: '56px 97px'
         }}
       />
-      {/* Soft Ambient Radial Lighting */}
+
+      {/* Floating Glowing Animated SVG Hexagons */}
+      {floatingHexes.map((hex, i) => (
+        <motion.div
+          key={i}
+          className="absolute text-[#EB0028]/20 pointer-events-none"
+          style={{ top: hex.top, left: hex.left, width: hex.size, height: hex.size }}
+          animate={{
+            y: [-16, 16, -16],
+            rotate: [0, 60, 0],
+            opacity: [0.15, 0.4, 0.15],
+            scale: [0.95, 1.05, 0.95],
+          }}
+          transition={{
+            duration: hex.duration,
+            repeat: Infinity,
+            delay: hex.delay,
+            ease: "easeInOut",
+          }}
+        >
+          <svg viewBox="0 0 100 100" fill="none" className="w-full h-full stroke-current stroke-[1.5]">
+            <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
+            <polygon points="50,18 80,35 80,65 50,82 20,65 20,35" className="stroke-current stroke-[1] opacity-60" />
+          </svg>
+        </motion.div>
+      ))}
+
+      {/* Ambient Red Glow Lights */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#EB0028]/10 rounded-full blur-[128px]" />
       <div className="absolute bottom-1/3 -right-32 w-96 h-96 bg-[#EB0028]/10 rounded-full blur-[128px]" />
     </div>
@@ -185,7 +221,12 @@ export function Home() {
           </Reveal>
 
           <Reveal className="mb-14 relative z-10">
-            <div className="rounded-xs border border-[#EB0028]/30 bg-[#0c0c10]/90 p-6 sm:p-10 relative overflow-hidden">
+            <div className="group rounded-xs border border-[#EB0028]/30 bg-[#0c0c10]/90 p-6 sm:p-10 relative overflow-hidden transition-colors hover:border-[#EB0028]/60">
+              {/* SLIDING HEXAGON ACCENT ON OVERVIEW BOX HOVER */}
+              <div className="absolute top-4 right-4 text-[#EB0028] opacity-0 group-hover:opacity-100 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ease-out z-20">
+                <Hexagon className="w-5 h-5 fill-[#EB0028]/20 stroke-[1.75]" />
+              </div>
+
               {/* CLEAN ALIGNED HEADER */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-zinc-800/80 pb-4 mb-8 gap-2 z-10 relative">
                 <div className="flex flex-col gap-0.5">
@@ -226,7 +267,20 @@ export function Home() {
 
           <RevealGroup className="grid gap-6 md:grid-cols-3 relative z-10" stagger={0.1}>
             {/* Feature Card 1 */}
-            <motion.div variants={staggerItem} className="group relative rounded-xs border border-zinc-800 bg-black/80 p-8 hover:border-[#EB0028]/60 transition-all cursor-default">
+            <motion.div variants={staggerItem} className="group relative rounded-xs border border-zinc-800 bg-black/80 p-8 hover:border-[#EB0028]/60 transition-all cursor-default overflow-hidden">
+              {/* SLIDING TOP-RIGHT CORNER HEXAGON */}
+              <div className="absolute top-4 right-4 text-[#EB0028] opacity-0 group-hover:opacity-100 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ease-out z-20">
+                <Hexagon className="w-5 h-5 fill-[#EB0028]/20 stroke-[1.75]" />
+              </div>
+
+              {/* SLIDING BACKGROUND HEXAGON WATERMARK */}
+              <div className="absolute -right-6 -bottom-6 w-36 h-36 text-[#EB0028]/10 group-hover:text-[#EB0028]/25 opacity-40 group-hover:opacity-100 transform translate-x-6 translate-y-6 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-105 transition-all duration-500 ease-out pointer-events-none z-0">
+                <svg viewBox="0 0 100 100" fill="none" className="w-full h-full stroke-current stroke-[1.2]">
+                  <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
+                  <polygon points="50,15 82,33 82,67 50,85 18,67 18,33" strokeDasharray="4 2" />
+                </svg>
+              </div>
+
               <div className="relative z-10">
                 <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-105 transition-transform duration-300">
                   <Calendar className="h-6 w-6" />
@@ -238,7 +292,20 @@ export function Home() {
             </motion.div>
 
             {/* Feature Card 2 */}
-            <motion.div variants={staggerItem} className="group relative rounded-xs border border-zinc-800 bg-black/80 p-8 hover:border-[#EB0028]/60 transition-all cursor-default">
+            <motion.div variants={staggerItem} className="group relative rounded-xs border border-zinc-800 bg-black/80 p-8 hover:border-[#EB0028]/60 transition-all cursor-default overflow-hidden">
+              {/* SLIDING TOP-RIGHT CORNER HEXAGON */}
+              <div className="absolute top-4 right-4 text-[#EB0028] opacity-0 group-hover:opacity-100 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ease-out z-20">
+                <Hexagon className="w-5 h-5 fill-[#EB0028]/20 stroke-[1.75]" />
+              </div>
+
+              {/* SLIDING BACKGROUND HEXAGON WATERMARK */}
+              <div className="absolute -right-6 -bottom-6 w-36 h-36 text-[#EB0028]/10 group-hover:text-[#EB0028]/25 opacity-40 group-hover:opacity-100 transform translate-x-6 translate-y-6 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-105 transition-all duration-500 ease-out pointer-events-none z-0">
+                <svg viewBox="0 0 100 100" fill="none" className="w-full h-full stroke-current stroke-[1.2]">
+                  <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
+                  <polygon points="50,15 82,33 82,67 50,85 18,67 18,33" strokeDasharray="4 2" />
+                </svg>
+              </div>
+
               <div className="relative z-10">
                 <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-105 transition-transform duration-300">
                   <MapPin className="h-6 w-6" />
@@ -250,7 +317,20 @@ export function Home() {
             </motion.div>
 
             {/* Feature Card 3 */}
-            <motion.div variants={staggerItem} className="group relative rounded-xs border border-zinc-800 bg-black/80 p-8 hover:border-[#EB0028]/60 transition-all cursor-default">
+            <motion.div variants={staggerItem} className="group relative rounded-xs border border-zinc-800 bg-black/80 p-8 hover:border-[#EB0028]/60 transition-all cursor-default overflow-hidden">
+              {/* SLIDING TOP-RIGHT CORNER HEXAGON */}
+              <div className="absolute top-4 right-4 text-[#EB0028] opacity-0 group-hover:opacity-100 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ease-out z-20">
+                <Hexagon className="w-5 h-5 fill-[#EB0028]/20 stroke-[1.75]" />
+              </div>
+
+              {/* SLIDING BACKGROUND HEXAGON WATERMARK */}
+              <div className="absolute -right-6 -bottom-6 w-36 h-36 text-[#EB0028]/10 group-hover:text-[#EB0028]/25 opacity-40 group-hover:opacity-100 transform translate-x-6 translate-y-6 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-105 transition-all duration-500 ease-out pointer-events-none z-0">
+                <svg viewBox="0 0 100 100" fill="none" className="w-full h-full stroke-current stroke-[1.2]">
+                  <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
+                  <polygon points="50,15 82,33 82,67 50,85 18,67 18,33" strokeDasharray="4 2" />
+                </svg>
+              </div>
+
               <div className="relative z-10">
                 <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-105 transition-transform duration-300">
                   <Mic className="h-6 w-6" />
