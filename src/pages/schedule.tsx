@@ -13,17 +13,17 @@ interface ScheduleItem {
 }
 
 const SCHEDULE_ITEMS: ScheduleItem[] = [
-  { id: "1", time: "3:00 PM", title: "Registrations Open", icon: DoorOpen },
-  { id: "2", time: "3:45 PM", title: "Doors Close", icon: Clock },
-  { id: "3", time: "4:00 - 4:25 PM", title: "Opening Ceremony", icon: Hexagon },
-  { id: "4", time: "4:30 - 4:50 PM", title: "Guest Speaker 1", icon: Mic },
-  { id: "5", time: "4:50 - 5:10 PM", title: "Archit Khandelwal", icon: Mic },
-  { id: "6", time: "5:10 - 5:30 PM", title: "Sreenidi Sriram", icon: Mic },
-  { id: "7", time: "5:30 - 6:00 PM", title: "Refreshments & High Tea", icon: Coffee, isBreak: true },
-  { id: "8", time: "6:00 - 6:20 PM", title: "Guest Speaker 2", icon: Mic },
-  { id: "9", time: "6:20 - 6:40 PM", title: "Avirbhav Danamaraju", icon: Mic },
-  { id: "10", time: "6:40 - 6:55 PM", title: "Meghna Daka", icon: Mic },
-  { id: "11", time: "6:55 - 7:00 PM", title: "Closing & National Anthem", icon: Flag },
+  { id: "1", time: "3:00 PM", title: "Registrations open.", icon: DoorOpen },
+  { id: "2", time: "3:45 PM", title: "Doors close.", icon: Clock },
+  { id: "3", time: "4:00 - 4:25 PM", title: "Opening ceremony.", icon: Hexagon },
+  { id: "4", time: "4:30 - 4:50 PM", title: "Guest speaker 1.", icon: Mic },
+  { id: "5", time: "4:50 - 5:10 PM", title: "Archit Khandelwal.", icon: Mic },
+  { id: "6", time: "5:10 - 5:30 PM", title: "Sreenidi Sriram.", icon: Mic },
+  { id: "7", time: "5:30 - 6:00 PM", title: "Refreshments and high tea.", icon: Coffee, isBreak: true },
+  { id: "8", time: "6:00 - 6:20 PM", title: "Guest speaker 2.", icon: Mic },
+  { id: "9", time: "6:20 - 6:40 PM", title: "Avirbhav Danamaraju.", icon: Mic },
+  { id: "10", time: "6:40 - 6:55 PM", title: "Meghna Daka.", icon: Mic },
+  { id: "11", time: "6:55 - 7:00 PM", title: "Closing and National Anthem.", icon: Flag },
 ];
 
 export function Schedule() {
@@ -37,8 +37,8 @@ export function Schedule() {
         <Reveal className="flex flex-col items-center z-10 max-w-4xl w-full">
           <div className="inline-flex items-center gap-2 border border-[#EB0028]/30 bg-[#EB0028]/10 px-4 py-1.5 rounded-xs mb-6">
             <Calendar className="w-4 h-4 text-[#EB0028]" />
-            <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.25em] text-[#EB0028] font-bold">
-              SATURDAY • OCTOBER 3, 2026
+            <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.25em] text-[#EB0028] font-semibold">
+              Saturday • October 3, 2026
             </span>
           </div>
 
@@ -52,9 +52,9 @@ export function Schedule() {
               initial={{ opacity: 0, scale: 0.96, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-              className="font-['Helvetica',sans-serif] text-[clamp(36px,7vw,72px)] font-black uppercase text-[#EB0028] tracking-tight py-1"
+              className="font-['Helvetica',sans-serif] text-[clamp(32px,6vw,64px)] font-bold text-[#EB0028] tracking-tight py-1"
             >
-              EVENT SCHEDULE
+              Event Schedule
             </motion.h1>
           </div>
 
@@ -67,13 +67,29 @@ export function Schedule() {
         </Reveal>
       </section>
 
-      {/* CENTERED ALTERNATING BEANSTALK TIMELINE */}
-      <section className="relative z-10 px-4 sm:px-8 pb-24">
-        <div className="max-w-4xl mx-auto relative">
-          {/* Central Trunk Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 top-4 bottom-4 w-0.5 bg-[#EB0028]/40" />
+      {/* ZIGZAG BEANSTALK TIMELINE WITH HEXAGONAL NODES & CARDS */}
+      <section className="relative z-10 px-4 sm:px-8 pb-28">
+        <div className="max-w-5xl mx-auto relative">
+          
+          {/* SVG Zigzag Background Beanstalk Stem */}
+          <svg
+            className="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M 50% 30 L 48% 120 L 52% 220 L 48% 320 L 52% 420 L 48% 520 L 52% 620 L 48% 720 L 52% 820 L 48% 920 L 50% 1020"
+              fill="none"
+              stroke="#EB0028"
+              strokeWidth="2"
+              strokeOpacity="0.3"
+              strokeDasharray="6 4"
+            />
+          </svg>
 
-          <RevealGroup className="space-y-6 sm:space-y-8 relative" stagger={0.04}>
+          {/* Straight stem fallback for mobile */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 top-6 bottom-6 w-0.5 bg-[#EB0028]/30 md:hidden" />
+
+          <RevealGroup className="space-y-10 sm:space-y-12 relative" stagger={0.05}>
             {SCHEDULE_ITEMS.map((item, idx) => {
               const IconComponent = item.icon;
               const isEven = idx % 2 === 0;
@@ -82,37 +98,58 @@ export function Schedule() {
                 <motion.div
                   key={item.id}
                   variants={staggerItem}
-                  className="relative flex items-center w-full"
+                  className="relative flex flex-col md:flex-row items-center w-full"
                 >
-                  {/* Solid Center Node (No Glow) */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-black border-2 border-[#EB0028] z-20" />
+                  {/* REPOSITIONED TIME: Central Hexagonal Badge Node */}
+                  <motion.div 
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 z-20 mb-3 md:mb-0"
+                  >
+                    <div className="relative flex items-center justify-center px-4 py-1.5 bg-black border border-[#EB0028]/70 shadow-md [clip-path:polygon(10px_0,_calc(100%-10px)_0,_100%_50%,_calc(100%-10px)_100%,_10px_100%,_0_50%)] hover:border-[#EB0028] transition-colors">
+                      <span className="font-mono text-xs font-semibold text-[#EB0028] tracking-wider whitespace-nowrap">
+                        {item.time}
+                      </span>
+                    </div>
+                  </motion.div>
 
-                  {/* Alternating Row */}
-                  <div className={`w-full flex ${isEven ? "justify-start pr-5 sm:pr-10 md:pr-14" : "justify-end pl-5 sm:pl-10 md:pl-14"}`}>
-                    <div
-                      className={`w-[calc(50%-0.75rem)] sm:w-[calc(50%-1.5rem)] rounded-xs border p-3.5 sm:p-5 backdrop-blur-md ${
+                  {/* Connector Line from Center Node to Card */}
+                  <div 
+                    className={`hidden md:block absolute top-1/2 w-10 sm:w-16 h-[1px] bg-gradient-to-r ${
+                      isEven 
+                        ? "right-[50%] from-[#EB0028]/60 to-transparent" 
+                        : "left-[50%] from-[#EB0028]/60 to-transparent"
+                    }`}
+                  />
+
+                  {/* Alternating Event Card Container */}
+                  <div className={`w-full flex ${isEven ? "md:justify-start md:pr-16" : "md:justify-end md:pl-16"}`}>
+                    <motion.div
+                      whileHover={{ y: -3, scale: 1.01 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className={`group relative w-full md:w-[calc(50%-2.5rem)] p-5 backdrop-blur-md transition-all duration-300 [clip-path:polygon(14px_0,_calc(100%-14px)_0,_100%_14px,_100%_calc(100%-14px),_calc(100%-14px)_100%,_14px_100%,_0_calc(100%-14px),_0_14px)] ${
                         item.isBreak
-                          ? "border-[#EB0028]/60 bg-[#EB0028]/10"
-                          : "border-zinc-800 bg-black/90 hover:border-[#EB0028]/50"
+                          ? "bg-[#EB0028]/10 border border-[#EB0028]/60 hover:bg-[#EB0028]/15"
+                          : "bg-black/85 border border-zinc-800 hover:border-[#EB0028]/60"
                       }`}
                     >
-                      <div className={`flex flex-col ${isEven ? "items-end text-right" : "items-start text-left"} gap-1.5 sm:gap-2`}>
-                        <span className="inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs font-bold text-[#EB0028]">
-                          <Clock className="w-3 h-3" />
-                          {item.time}
-                        </span>
-
-                        <div className={`flex items-center gap-2.5 ${isEven ? "flex-row-reverse" : "flex-row"}`}>
-                          <div className="inline-flex h-7 w-7 sm:h-8 sm:w-8 shrink-0 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20">
-                            <IconComponent className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                          </div>
-
-                          <h3 className="font-['Helvetica',sans-serif] text-xs sm:text-base font-bold text-white uppercase tracking-tight">
-                            {item.title}
-                          </h3>
-                        </div>
+                      {/* Subtly Animated Hex Corner Overlay Accent */}
+                      <div className="absolute top-2 right-2 opacity-15 group-hover:opacity-40 transition-opacity duration-300 pointer-events-none">
+                        <Hexagon className="w-8 h-8 text-[#EB0028] stroke-[1]" />
                       </div>
-                    </div>
+
+                      <div className={`flex items-center gap-4 ${isEven ? "md:flex-row-reverse md:text-right" : "md:flex-row md:text-left"}`}>
+                        {/* Icon Container with Hex Chamfer */}
+                        <div className="inline-flex h-9 w-9 shrink-0 items-center justify-center bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/30 [clip-path:polygon(6px_0,_calc(100%-6px)_0,_100%_50%,_calc(100%-6px)_100%,_6px_100%,_0_50%)]">
+                          <IconComponent className="h-4 w-4" />
+                        </div>
+
+                        {/* Title with Proper Capitalization and Punctuation */}
+                        <h3 className="font-['Helvetica',sans-serif] text-sm sm:text-base font-normal text-zinc-100 tracking-normal group-hover:text-white transition-colors">
+                          {item.title}
+                        </h3>
+                      </div>
+                    </motion.div>
                   </div>
                 </motion.div>
               );
@@ -122,21 +159,21 @@ export function Schedule() {
       </section>
 
       {/* CALL TO ACTION */}
-      <section className="relative z-10 border-t border-zinc-800 bg-black/80 backdrop-blur-md px-4 sm:px-8 py-16 text-center">
+      <section className="relative z-10 border-t border-zinc-800/80 bg-black/80 backdrop-blur-md px-4 sm:px-8 py-16 text-center">
         <div className="mx-auto flex max-w-xl flex-col items-center gap-6">
-          <h2 className="font-['Helvetica',sans-serif] font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
-            Reserve Your Seat for the Event
+          <h2 className="font-['Helvetica',sans-serif] font-bold text-xl sm:text-2xl text-white tracking-tight">
+            Reserve your seat for the event
           </h2>
           
           <div className="pt-2">
             <SpotlightButton 
               to="/register" 
-              className="group relative inline-flex items-center justify-center gap-3 rounded-xs border border-[#EB0028] bg-black px-8 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-colors hover:bg-[#EB0028]"
+              className="group relative inline-flex items-center justify-center gap-3 rounded-xs border border-[#EB0028] bg-black px-8 py-3.5 text-white font-['Helvetica',sans-serif] font-medium text-sm tracking-widest uppercase transition-colors hover:bg-[#EB0028]"
             >
               <span className="relative z-10 flex items-center gap-3">
-                <span>Reserve Your Seat</span>
+                <span>Reserve your seat</span>
                 <Hexagon className="w-4 h-4 text-[#EB0028] group-hover:text-white transition-colors fill-[#EB0028]/20 group-hover:fill-white/20 stroke-[1.75]" />
-                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </span>
             </SpotlightButton>
           </div>
