@@ -1,5 +1,4 @@
-import { motion } from "motion/react";
-import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
+import { Reveal } from "../components/kokonutui/reveal";
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
 import { Calendar, Clock, Hexagon, ArrowRight, Coffee, Mic, Flag, DoorOpen } from "lucide-react";
 import { SharedSVGDefs, AnimatedHexBackground } from "./home";
@@ -48,113 +47,72 @@ export function Schedule() {
             <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
             <span className="absolute -bottom-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
 
-            <motion.h1 
-              initial={{ opacity: 0, scale: 0.96, y: 8 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-              className="font-['Helvetica',sans-serif] text-[clamp(32px,6vw,64px)] font-bold text-[#EB0028] tracking-tight py-1"
-            >
+            <h1 className="font-['Helvetica',sans-serif] text-[clamp(32px,6vw,64px)] font-bold text-[#EB0028] tracking-tight py-1">
               Event Schedule
-            </motion.h1>
+            </h1>
           </div>
 
-          <motion.div
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={{ scaleX: 1, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
-            className="my-6 h-[1px] w-28 bg-[#EB0028] origin-center"
-          />
+          <div className="my-6 h-[1px] w-28 bg-[#EB0028] origin-center" />
         </Reveal>
       </section>
 
-      {/* ZIGZAG BEANSTALK TIMELINE WITH HEXAGONAL NODES & CARDS */}
+      {/* STABLE BEANSTALK TIMELINE WITH CENTRAL NODES & RECTANGULAR CARDS */}
       <section className="relative z-10 px-4 sm:px-8 pb-28">
-        <div className="max-w-5xl mx-auto relative">
+        <div className="max-w-4xl mx-auto relative">
           
-          {/* SVG Zigzag Background Beanstalk Stem */}
-          <svg
-            className="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M 50% 30 L 48% 120 L 52% 220 L 48% 320 L 52% 420 L 48% 520 L 52% 620 L 48% 720 L 52% 820 L 48% 920 L 50% 1020"
-              fill="none"
-              stroke="#EB0028"
-              strokeWidth="2"
-              strokeOpacity="0.3"
-              strokeDasharray="6 4"
-            />
-          </svg>
+          {/* Solid Center Beanstalk Line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 top-4 bottom-4 w-[2px] bg-gradient-to-b from-[#EB0028]/20 via-[#EB0028]/50 to-[#EB0028]/20" />
 
-          {/* Straight stem fallback for mobile */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 top-6 bottom-6 w-0.5 bg-[#EB0028]/30 md:hidden" />
-
-          <RevealGroup className="space-y-10 sm:space-y-12 relative" stagger={0.05}>
+          <div className="space-y-8 sm:space-y-10 relative">
             {SCHEDULE_ITEMS.map((item, idx) => {
               const IconComponent = item.icon;
               const isEven = idx % 2 === 0;
 
               return (
-                <motion.div
+                <div
                   key={item.id}
-                  variants={staggerItem}
                   className="relative flex flex-col md:flex-row items-center w-full"
                 >
-                  {/* REPOSITIONED TIME: Central Hexagonal Badge Node */}
-                  <motion.div 
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 z-20 mb-3 md:mb-0"
-                  >
-                    <div className="relative flex items-center justify-center px-4 py-1.5 bg-black border border-[#EB0028]/70 shadow-md [clip-path:polygon(10px_0,_calc(100%-10px)_0,_100%_50%,_calc(100%-10px)_100%,_10px_100%,_0_50%)] hover:border-[#EB0028] transition-colors">
+                  {/* STATIC CENTRAL TIME NODE (NO GLITCH) */}
+                  <div className="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 z-20 mb-3 md:mb-0">
+                    <div className="px-3.5 py-1.5 bg-black border border-[#EB0028]/80 rounded-xs shadow-md">
                       <span className="font-mono text-xs font-semibold text-[#EB0028] tracking-wider whitespace-nowrap">
                         {item.time}
                       </span>
                     </div>
-                  </motion.div>
+                  </div>
 
-                  {/* Connector Line from Center Node to Card */}
-                  <div 
-                    className={`hidden md:block absolute top-1/2 w-10 sm:w-16 h-[1px] bg-gradient-to-r ${
-                      isEven 
-                        ? "right-[50%] from-[#EB0028]/60 to-transparent" 
-                        : "left-[50%] from-[#EB0028]/60 to-transparent"
-                    }`}
-                  />
-
-                  {/* Alternating Event Card Container */}
+                  {/* ALTERNATING RECTANGULAR CARDS */}
                   <div className={`w-full flex ${isEven ? "md:justify-start md:pr-16" : "md:justify-end md:pl-16"}`}>
-                    <motion.div
-                      whileHover={{ y: -3, scale: 1.01 }}
-                      transition={{ duration: 0.25, ease: "easeOut" }}
-                      className={`group relative w-full md:w-[calc(50%-2.5rem)] p-5 backdrop-blur-md transition-all duration-300 [clip-path:polygon(14px_0,_calc(100%-14px)_0,_100%_14px,_100%_calc(100%-14px),_calc(100%-14px)_100%,_14px_100%,_0_calc(100%-14px),_0_14px)] ${
+                    <div
+                      className={`group relative w-full md:w-[calc(50%-2rem)] p-5 rounded-xs border transition-colors duration-200 overflow-hidden ${
                         item.isBreak
-                          ? "bg-[#EB0028]/10 border border-[#EB0028]/60 hover:bg-[#EB0028]/15"
-                          : "bg-black/85 border border-zinc-800 hover:border-[#EB0028]/60"
+                          ? "bg-[#EB0028]/10 border-[#EB0028]/60 hover:bg-[#EB0028]/15"
+                          : "bg-black/90 border-zinc-800 hover:border-[#EB0028]/60 hover:bg-zinc-950"
                       }`}
                     >
-                      {/* Subtly Animated Hex Corner Overlay Accent */}
-                      <div className="absolute top-2 right-2 opacity-15 group-hover:opacity-40 transition-opacity duration-300 pointer-events-none">
-                        <Hexagon className="w-8 h-8 text-[#EB0028] stroke-[1]" />
+                      {/* HEXAGON ELEMENT ANIMATING INSIDE CARD ON HOVER */}
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 opacity-20 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                        <Hexagon className="w-10 h-10 text-[#EB0028] stroke-[1.25] transition-transform duration-500 ease-out group-hover:scale-125 group-hover:rotate-45" />
                       </div>
 
-                      <div className={`flex items-center gap-4 ${isEven ? "md:flex-row-reverse md:text-right" : "md:flex-row md:text-left"}`}>
-                        {/* Icon Container with Hex Chamfer */}
-                        <div className="inline-flex h-9 w-9 shrink-0 items-center justify-center bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/30 [clip-path:polygon(6px_0,_calc(100%-6px)_0,_100%_50%,_calc(100%-6px)_100%,_6px_100%,_0_50%)]">
+                      <div className={`flex items-center gap-3.5 ${isEven ? "md:flex-row-reverse md:text-right" : "md:flex-row md:text-left"}`}>
+                        {/* Icon Container */}
+                        <div className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/30">
                           <IconComponent className="h-4 w-4" />
                         </div>
 
-                        {/* Title with Proper Capitalization and Punctuation */}
-                        <h3 className="font-['Helvetica',sans-serif] text-sm sm:text-base font-normal text-zinc-100 tracking-normal group-hover:text-white transition-colors">
+                        {/* Title Text */}
+                        <h3 className="font-['Helvetica',sans-serif] text-sm sm:text-base font-normal text-zinc-200 group-hover:text-white transition-colors pr-6 md:pr-0">
                           {item.title}
                         </h3>
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
-          </RevealGroup>
+          </div>
         </div>
       </section>
 
