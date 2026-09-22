@@ -1,11 +1,10 @@
 import { useState, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X } from "lucide-react";
+import { X, Hexagon } from "lucide-react";
 import { teamMembers, TeamMember } from "../data/team";
 import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
 import { SharedSVGDefs, AnimatedHexBackground } from "./home";
 
-// Optimized Member Card component
 const MemberCard = memo(function MemberCard({
   member,
   onSelect,
@@ -20,13 +19,16 @@ const MemberCard = memo(function MemberCard({
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
       onClick={() => onSelect(member)}
-      className="group relative rounded-xs border border-[#EB0028]/25 bg-black/80 p-3 hover:border-[#EB0028] transition-all cursor-pointer overflow-hidden touch-manipulation backdrop-blur-sm w-full max-w-[280px]"
+      className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-3 hover:border-[#EB0028] hover:shadow-[0_0_25px_rgba(235,0,40,0.25)] transition-all cursor-pointer overflow-hidden touch-manipulation backdrop-blur-md w-full max-w-[280px]"
     >
-      <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-24 h-24 text-[#EB0028] opacity-0 group-hover:opacity-25 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-out pointer-events-none z-0">
-        <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
-      </svg>
+      {/* Corner Plus Accents */}
+      <span className="absolute -top-1 -left-1 text-[#EB0028] text-[10px] font-mono z-20 opacity-0 group-hover:opacity-100 transition-opacity">+</span>
+      <span className="absolute -top-1 -right-1 text-[#EB0028] text-[10px] font-mono z-20 opacity-0 group-hover:opacity-100 transition-opacity">+</span>
+      <span className="absolute -bottom-1 -left-1 text-[#EB0028] text-[10px] font-mono z-20 opacity-0 group-hover:opacity-100 transition-opacity">+</span>
+      <span className="absolute -bottom-1 -right-1 text-[#EB0028] text-[10px] font-mono z-20 opacity-0 group-hover:opacity-100 transition-opacity">+</span>
 
-      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xs border border-white/5 bg-[#0c0c10]">
+      {/* Photo Frame */}
+      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xs border border-white/10 bg-[#0c0c10] z-10">
         <img
           src={member.image}
           alt={member.name}
@@ -41,12 +43,13 @@ const MemberCard = memo(function MemberCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-70 group-hover:opacity-85 transition-opacity" />
 
         <div className="absolute bottom-3 left-0 right-0 text-center z-20 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-          <span className="inline-block rounded-xs border border-[#EB0028] bg-black/90 px-3 py-1 font-['Helvetica',sans-serif] text-[10px] font-bold uppercase tracking-[0.2em] text-white">
+          <span className="inline-block rounded-xs border border-[#EB0028] bg-black/90 px-3 py-1 font-['Helvetica',sans-serif] text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-md">
             View Profile
           </span>
         </div>
       </div>
 
+      {/* Member Details */}
       <div className="pt-3 pb-1 px-1 text-center relative z-10">
         <h3 className="font-['Helvetica',sans-serif] text-base sm:text-lg font-bold text-white mb-0.5 uppercase tracking-wide group-hover:text-[#EB0028] transition-colors">
           {member.name}
@@ -66,18 +69,19 @@ export function Team() {
   return (
     <div className="min-h-screen text-white overflow-hidden font-['Inter',sans-serif] selection:bg-[#EB0028] selection:text-white relative bg-[#050507]">
       <SharedSVGDefs />
+      <AnimatedHexBackground />
 
       {/* HERO SECTION */}
       <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-14 text-center z-10">
-        <AnimatedHexBackground />
-
         <Reveal className="flex flex-col items-center z-10 max-w-4xl w-full">
-          <p className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.35em] text-[#EB0028] font-mono font-semibold mb-6">
-            BEHIND THE STAGE
-          </p>
+          <div className="inline-flex items-center gap-2 border border-[#EB0028]/30 bg-[#EB0028]/10 px-4 py-1.5 rounded-xs mb-6">
+            <Hexagon className="w-4 h-4 text-[#EB0028] fill-[#EB0028]/20 stroke-[1.75]" />
+            <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.25em] text-[#EB0028] font-bold">
+              BEHIND THE STAGE
+            </span>
+          </div>
 
-          {/* UNIFIED HERO BOX */}
-          <div className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs my-2 max-w-2xl w-full mx-auto shadow-[0_0_60px_rgba(235,0,40,0.2)] hover:border-[#EB0028] hover:shadow-[0_0_80px_rgba(235,0,40,0.3)] transition-all duration-500 overflow-hidden">
+          <div className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs my-2 max-w-2xl w-full mx-auto shadow-[0_0_60px_rgba(235,0,40,0.15)] hover:border-[#EB0028] hover:shadow-[0_0_80px_rgba(235,0,40,0.3)] transition-all duration-500 overflow-hidden">
             <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
             <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
             <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
@@ -110,26 +114,26 @@ export function Team() {
 
       {/* CORE TEAM DEPARTMENTS GRID */}
       <section className="relative z-10 px-4 sm:px-8 md:px-12 pb-28 flex flex-col items-center">
-        <div className="w-full max-w-7xl space-y-14 sm:space-y-16">
+        <div className="w-full max-w-7xl space-y-16 sm:space-y-20">
           {categories.map((category) => {
             const members = teamMembers.filter((m) => m.category === category);
             return (
               <div key={category} className="relative flex flex-col items-center">
-                {/* Centered Department Header */}
-                <div className="mb-8 border-b border-[#EB0028]/30 pb-3 text-center w-full max-w-3xl flex justify-center">
-                  <h2 className="font-['Helvetica',sans-serif] text-lg sm:text-2xl md:text-3xl font-black uppercase tracking-wider text-white flex items-center justify-center gap-5 sm:gap-6">
-                    <span className="h-5 sm:h-7 md:h-8 w-1 bg-[#EB0028] inline-block" />
+                <Reveal className="mb-8 flex items-center justify-center gap-4 w-full max-w-3xl">
+                  <div className="h-2 w-2 bg-[#EB0028] rounded-full shadow-[0_0_8px_#EB0028]" />
+                  <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#EB0028]/40 to-transparent" />
+                  <h2 className="font-['Helvetica',sans-serif] text-base sm:text-2xl md:text-3xl font-black uppercase tracking-wider text-white text-center px-2">
                     {category}
-                    <span className="h-5 sm:h-7 md:h-8 w-1 bg-[#EB0028] inline-block" />
                   </h2>
-                </div>
+                  <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-[#EB0028]/40 to-transparent" />
+                  <div className="h-2 w-2 bg-[#EB0028] rounded-full shadow-[0_0_8px_#EB0028]" />
+                </Reveal>
 
-                {/* Centered Member Cards Grid — Communication uses a fixed 2-col grid (4 members) so it sits 2x2 instead of 3+1 */}
                 <RevealGroup
                   className={
                     category === "Communication"
-                      ? "grid grid-cols-1 sm:grid-cols-2 justify-items-center gap-5 w-full max-w-[600px] mx-auto"
-                      : "flex flex-wrap justify-center gap-5 w-full max-w-6xl mx-auto"
+                      ? "grid grid-cols-1 sm:grid-cols-2 justify-items-center gap-6 w-full max-w-[600px] mx-auto"
+                      : "flex flex-wrap justify-center gap-6 w-full max-w-6xl mx-auto"
                   }
                   stagger={0.05}
                 >
@@ -147,7 +151,6 @@ export function Team() {
       <AnimatePresence>
         {selectedMember && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pt-20 sm:p-6">
-            {/* Dark Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -163,13 +166,11 @@ export function Team() {
               transition={{ duration: 0.2, ease: "easeOut" }}
               className="relative z-10 w-full max-w-2xl overflow-hidden rounded-xs border border-[#EB0028]/50 bg-[#0c0c10] p-5 pt-12 sm:p-8 shadow-[0_0_50px_rgba(235,0,40,0.2)] max-h-[82dvh] sm:max-h-[90vh] overflow-y-auto"
             >
-              {/* Corner Plus Accents */}
               <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-20">+</span>
               <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-20">+</span>
               <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-20">+</span>
               <span className="absolute -bottom-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-20">+</span>
 
-              {/* Mobile-Optimized Exit Button */}
               <button
                 onClick={() => setSelectedMember(null)}
                 aria-label="Close profile modal"
@@ -179,7 +180,6 @@ export function Team() {
               </button>
 
               <div className="flex flex-col sm:flex-row gap-5 sm:gap-6 items-center sm:items-start">
-                {/* Profile Image */}
                 <div className="w-40 sm:w-56 flex-shrink-0 aspect-[3/4] rounded-xs border border-[#EB0028]/30 overflow-hidden bg-black relative">
                   <img
                     src={selectedMember.image}
@@ -191,7 +191,6 @@ export function Team() {
                   />
                 </div>
 
-                {/* Details Column */}
                 <div className="flex flex-col justify-center text-center sm:text-left w-full py-1">
                   <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-3xl font-black text-white uppercase tracking-tight mb-1">
                     {selectedMember.name}

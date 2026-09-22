@@ -4,139 +4,93 @@ import { SpotlightButton } from "../components/kokonutui/spotlight-button";
 import { Calendar, Clock, Hexagon, ArrowRight, Coffee, Mic, Flag, DoorOpen } from "lucide-react";
 import { SharedSVGDefs, AnimatedHexBackground } from "./home";
 
-// Structured Schedule Data with Sections
 interface ScheduleItem {
   id: string;
   time: string;
   title: string;
   subtitle?: string;
-  category: "arrival" | "ceremony" | "speaker" | "break" | "closing";
   icon: any;
+  isBreak?: boolean;
 }
 
-interface ScheduleSection {
-  sectionTitle: string;
-  items: ScheduleItem[];
-}
-
-const SCHEDULE_DATA: ScheduleSection[] = [
+const SCHEDULE_ITEMS: ScheduleItem[] = [
   {
-    sectionTitle: "Venue Arrival",
-    items: [
-      {
-        id: "arr-1",
-        time: "3:00 PM",
-        title: "Registrations Open",
-        subtitle: "Registrations for attendees open",
-        category: "arrival",
-        icon: DoorOpen,
-      },
-      {
-        id: "arr-2",
-        time: "3:45 PM",
-        title: "Doors Close",
-        subtitle: "Registrations and entry closes",
-        category: "arrival",
-        icon: Clock,
-      },
-    ],
+    id: "1",
+    time: "3:00 PM",
+    title: "Registrations Open",
+    subtitle: "Attendee check-in and welcome desk opens",
+    icon: DoorOpen,
   },
   {
-    sectionTitle: "Event Begins",
-    items: [
-      {
-        id: "cer-1",
-        time: "4:00 - 4:25 PM",
-        title: "Opening Ceremony",
-        subtitle: "Welcome address & theme introduction",
-        category: "ceremony",
-        icon: Hexagon,
-      },
-    ],
+    id: "2",
+    time: "3:45 PM",
+    title: "Doors Close",
+    subtitle: "Registration and entry closes",
+    icon: Clock,
   },
   {
-    sectionTitle: "Speaker Sessions — Part 1",
-    items: [
-      {
-        id: "spk-1",
-        time: "4:30 - 4:50 PM",
-        title: "Guest Speaker",
-        subtitle: "Speaker 1",
-        category: "speaker",
-        icon: Mic,
-      },
-      {
-        id: "spk-2",
-        time: "4:50 - 5:10 PM",
-        title: "Archit Khandelwal",
-        subtitle: "Speaker 2",
-        category: "speaker",
-        icon: Mic,
-      },
-      {
-        id: "spk-3",
-        time: "5:10 - 5:30 PM",
-        title: "Sreenidi Sriram",
-        subtitle: "Speaker 3",
-        category: "speaker",
-        icon: Mic,
-      },
-    ],
+    id: "3",
+    time: "4:00 - 4:25 PM",
+    title: "Opening Ceremony",
+    subtitle: "Welcome address & theme introduction",
+    icon: Hexagon,
   },
   {
-    sectionTitle: "High Tea Break",
-    items: [
-      {
-        id: "brk-1",
-        time: "5:30 - 6:00 PM",
-        title: "Refreshments & High Tea",
-        subtitle: "Networking break & interactive stalls",
-        category: "break",
-        icon: Coffee,
-      },
-    ],
+    id: "4",
+    time: "4:30 - 4:50 PM",
+    title: "Guest Speaker",
+    subtitle: "Speaker 1",
+    icon: Mic,
   },
   {
-    sectionTitle: "Speaker Sessions — Part 2",
-    items: [
-      {
-        id: "spk-4",
-        time: "6:00 - 6:20 PM",
-        title: "Guest Speaker",
-        subtitle: "Speaker 4",
-        category: "speaker",
-        icon: Mic,
-      },
-      {
-        id: "spk-5",
-        time: "6:20 - 6:40 PM",
-        title: "Avirbhav Danamaraju",
-        subtitle: "Speaker 5",
-        category: "speaker",
-        icon: Mic,
-      },
-      {
-        id: "spk-6",
-        time: "6:40 - 6:55 PM",
-        title: "Meghna Daka",
-        subtitle: "Speaker 6",
-        category: "speaker",
-        icon: Mic,
-      },
-    ],
+    id: "5",
+    time: "4:50 - 5:10 PM",
+    title: "Archit Khandelwal",
+    subtitle: "Speaker 2",
+    icon: Mic,
   },
   {
-    sectionTitle: "Closing",
-    items: [
-      {
-        id: "cls-1",
-        time: "6:55 - 7:00 PM",
-        title: "Closing & National Anthem",
-        subtitle: "Concluding remarks followed by the National Anthem",
-        category: "closing",
-        icon: Flag,
-      },
-    ],
+    id: "6",
+    time: "5:10 - 5:30 PM",
+    title: "Sreenidi Sriram",
+    subtitle: "Speaker 3",
+    icon: Mic,
+  },
+  {
+    id: "7",
+    time: "5:30 - 6:00 PM",
+    title: "Refreshments & High Tea",
+    subtitle: "Networking break & interactive stalls",
+    icon: Coffee,
+    isBreak: true,
+  },
+  {
+    id: "8",
+    time: "6:00 - 6:20 PM",
+    title: "Guest Speaker",
+    subtitle: "Speaker 4",
+    icon: Mic,
+  },
+  {
+    id: "9",
+    time: "6:20 - 6:40 PM",
+    title: "Avirbhav Danamaraju",
+    subtitle: "Speaker 5",
+    icon: Mic,
+  },
+  {
+    id: "10",
+    time: "6:40 - 6:55 PM",
+    title: "Meghna Daka",
+    subtitle: "Speaker 6",
+    icon: Mic,
+  },
+  {
+    id: "11",
+    time: "6:55 - 7:00 PM",
+    title: "Closing & National Anthem",
+    subtitle: "Concluding remarks followed by the National Anthem",
+    icon: Flag,
   },
 ];
 
@@ -156,7 +110,6 @@ export function Schedule() {
             </span>
           </div>
 
-          {/* UNIFIED HERO BOX WITH CORNER ACCENTS */}
           <div className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs my-2 max-w-2xl w-full mx-auto shadow-[0_0_60px_rgba(235,0,40,0.15)] hover:border-[#EB0028] hover:shadow-[0_0_80px_rgba(235,0,40,0.3)] transition-all duration-500 overflow-hidden">
             <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
             <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
@@ -186,76 +139,65 @@ export function Schedule() {
         </Reveal>
       </section>
 
-      {/* TIMELINE SECTION */}
+      {/* CONTINUOUS LINEAR TIMELINE */}
       <section className="relative z-10 px-4 sm:px-8 pb-24">
-        <div className="max-w-4xl mx-auto">
-          {SCHEDULE_DATA.map((section, sectionIdx) => (
-            <div key={sectionIdx} className="mb-14 last:mb-0">
-              {/* SECTION HEADER BADGE */}
-              <Reveal className="mb-6 flex items-center gap-3">
-                <div className="h-2 w-2 bg-[#EB0028] rounded-full shadow-[0_0_8px_#EB0028]" />
-                <h2 className="font-['Helvetica',sans-serif] text-sm sm:text-base font-bold uppercase tracking-[0.25em] text-[#EB0028]">
-                  {section.sectionTitle}
-                </h2>
-                <div className="h-[1px] flex-1 bg-gradient-to-r from-[#EB0028]/40 to-transparent ml-2" />
-              </Reveal>
+        <div className="max-w-3xl mx-auto">
+          <RevealGroup className="relative border-l-2 border-[#EB0028]/30 ml-4 sm:ml-32 pl-6 sm:pl-10 space-y-6" stagger={0.05}>
+            {SCHEDULE_ITEMS.map((item) => {
+              const IconComponent = item.icon;
+              return (
+                <motion.div
+                  key={item.id}
+                  variants={staggerItem}
+                  className="relative group"
+                >
+                  {/* Timeline Node Dot */}
+                  <div className="absolute -left-[31px] sm:-left-[47px] top-5 h-4 w-4 rounded-full bg-black border-2 border-[#EB0028] group-hover:scale-125 group-hover:bg-[#EB0028] transition-all duration-300 shadow-[0_0_10px_rgba(235,0,40,0.5)] z-10" />
 
-              {/* SECTION ITEMS GRID */}
-              <RevealGroup className="grid gap-4" stagger={0.06}>
-                {section.items.map((item) => {
-                  const IconComponent = item.icon;
-                  return (
-                    <motion.div
-                      key={item.id}
-                      variants={staggerItem}
-                      className="group relative rounded-xs border border-zinc-800 bg-black/80 p-5 sm:p-6 hover:border-[#EB0028]/60 transition-all cursor-default overflow-hidden backdrop-blur-md"
-                    >
-                      {/* SLIDING TOP-RIGHT CORNER HEXAGON */}
-                      <div className="absolute top-4 right-4 text-[#EB0028] opacity-0 group-hover:opacity-100 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ease-out z-20">
-                        <Hexagon className="w-5 h-5 fill-[#EB0028]/20 stroke-[1.75]" />
-                      </div>
+                  {/* Desktop Left Time Stamp */}
+                  <div className="hidden sm:block absolute -left-36 top-4 w-24 text-right font-mono text-xs font-bold text-[#EB0028] tracking-wider">
+                    {item.time}
+                  </div>
 
-                      {/* SLIDING BACKGROUND HEXAGON WATERMARK */}
-                      <div className="absolute -right-6 -bottom-6 w-32 h-32 text-[#EB0028]/10 group-hover:text-[#EB0028]/25 opacity-30 group-hover:opacity-100 transform translate-x-6 translate-y-6 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-105 transition-all duration-500 ease-out pointer-events-none z-0">
-                        <svg viewBox="0 0 100 100" fill="none" className="w-full h-full stroke-current stroke-[1.2]">
-                          <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
-                          <polygon points="50,15 82,33 82,67 50,85 18,67 18,33" strokeDasharray="4 2" />
-                        </svg>
-                      </div>
-
-                      <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <div className="flex items-start sm:items-center gap-4">
-                          {/* ICON BOX */}
-                          <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-105 transition-transform duration-300">
-                            <IconComponent className="h-5 h-5" />
-                          </div>
-
-                          <div>
-                            <h3 className="font-['Helvetica',sans-serif] text-lg sm:text-xl font-bold text-white tracking-tight group-hover:text-white transition-colors">
-                              {item.title}
-                            </h3>
-                            {item.subtitle && (
-                              <p className="text-xs sm:text-sm text-zinc-400 font-normal mt-0.5">
-                                {item.subtitle}
-                              </p>
-                            )}
-                          </div>
+                  {/* Card Container */}
+                  <div
+                    className={`rounded-xs border p-5 sm:p-6 transition-all duration-300 backdrop-blur-md ${
+                      item.isBreak
+                        ? "border-[#EB0028]/50 bg-[#EB0028]/10 hover:border-[#EB0028]"
+                        : "border-zinc-800/80 bg-black/80 hover:border-[#EB0028]/60"
+                    }`}
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="flex items-start sm:items-center gap-4">
+                        <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20">
+                          <IconComponent className="h-5 w-5" />
                         </div>
 
-                        {/* TIME BADGE */}
-                        <div className="self-start sm:self-auto shrink-0">
-                          <span className="inline-flex items-center gap-2 rounded-xs border border-[#EB0028]/30 bg-[#EB0028]/10 px-3 py-1.5 font-mono text-xs font-bold text-[#EB0028] tracking-wider group-hover:border-[#EB0028]/60 group-hover:bg-[#EB0028]/20 transition-all">
-                            <Clock className="w-3.5 h-3.5" />
-                            {item.time}
-                          </span>
+                        <div>
+                          <h3 className="font-['Helvetica',sans-serif] text-base sm:text-lg font-bold text-white tracking-tight">
+                            {item.title}
+                          </h3>
+                          {item.subtitle && (
+                            <p className="text-xs sm:text-sm text-zinc-400 font-normal mt-0.5">
+                              {item.subtitle}
+                            </p>
+                          )}
                         </div>
                       </div>
-                    </motion.div>
-                  );
-                })}
-              </RevealGroup>
-            </div>
-          ))}
+
+                      {/* Mobile Time Stamp */}
+                      <div className="sm:hidden self-start">
+                        <span className="inline-flex items-center gap-1.5 rounded-xs border border-[#EB0028]/30 bg-[#EB0028]/10 px-2.5 py-1 font-mono text-xs font-bold text-[#EB0028]">
+                          <Clock className="w-3 h-3" />
+                          {item.time}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </RevealGroup>
         </div>
       </section>
 
