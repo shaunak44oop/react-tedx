@@ -13,10 +13,10 @@ export function AnimatedHexBackground() {
   return null;
 }
 
-// Clean Countdown Digit Component (Slim, tall numbers without split lines)
+// Clean Borderless Digit Component
 const CountdownDigit = memo(function CountdownDigit({ digit }: { digit: string }) {
   return (
-    <div className="relative w-9 h-16 sm:w-12 sm:h-22 md:w-14 md:h-26 bg-[#0a0a0e] border border-zinc-800 rounded-xs flex items-center justify-center overflow-hidden select-none">
+    <div className="relative h-12 sm:h-16 md:h-20 flex items-center justify-center overflow-hidden select-none min-w-[0.6em]">
       <AnimatePresence mode="popLayout">
         <motion.span
           key={digit}
@@ -24,7 +24,7 @@ const CountdownDigit = memo(function CountdownDigit({ digit }: { digit: string }
           animate={{ y: "0%", opacity: 1 }}
           exit={{ y: "40%", opacity: 0 }}
           transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="font-mono text-3xl sm:text-5xl md:text-6xl font-light text-white tracking-tighter leading-none"
+          className="font-mono text-4xl sm:text-6xl md:text-7xl font-light text-white tracking-tighter leading-none"
         >
           {digit}
         </motion.span>
@@ -60,7 +60,7 @@ export function Home() {
   const renderDigits = (value: number) => {
     const digits = String(value).padStart(2, "0").split("");
     return (
-      <div className="flex gap-1.5 sm:gap-2">
+      <div className="flex items-center justify-center gap-0.5">
         {digits.map((digit, idx) => (
           <CountdownDigit key={idx} digit={digit} />
         ))}
@@ -172,21 +172,21 @@ export function Home() {
                 </div>
               </div>
 
-              {/* EVENLY ALIGNED TIMER GRID */}
+              {/* BORDERLESS NUMBERS COUNTDOWN GRID */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 w-full max-w-4xl mx-auto justify-items-center z-10 relative">
-                <div className="flex flex-col items-center gap-3 w-full">
+                <div className="flex flex-col items-center gap-2 w-full">
                   {renderDigits(timeLeft.days)}
                   <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-medium">Days</span>
                 </div>
-                <div className="flex flex-col items-center gap-3 w-full">
+                <div className="flex flex-col items-center gap-2 w-full">
                   {renderDigits(timeLeft.hours)}
                   <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-medium">Hours</span>
                 </div>
-                <div className="flex flex-col items-center gap-3 w-full">
+                <div className="flex flex-col items-center gap-2 w-full">
                   {renderDigits(timeLeft.minutes)}
                   <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-medium">Minutes</span>
                 </div>
-                <div className="flex flex-col items-center gap-3 w-full">
+                <div className="flex flex-col items-center gap-2 w-full">
                   {renderDigits(timeLeft.seconds)}
                   <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.2em] text-zinc-400 font-medium">Seconds</span>
                 </div>
