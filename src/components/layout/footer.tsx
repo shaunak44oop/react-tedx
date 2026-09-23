@@ -76,12 +76,12 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <a
-                  href="mailto:tedx.technology@chirec.ac.in"
+                  href="mailto:tedx@chirec.ac.in"
                   className="group relative p-3 rounded-xs border border-[#EB0028]/25 bg-black/60 hover:border-[#EB0028] flex items-center justify-between transition-all duration-300 backdrop-blur-sm overflow-hidden"
                 >
                   <div className="flex items-center gap-3 text-zinc-300 group-hover:text-white">
                     <Mail className="w-4 h-4 text-[#EB0028]" />
-                    <span className="font-mono text-xs">tedx.technology@chirec.ac.in</span>
+                    <span className="font-mono text-xs">tedx@chirec.ac.in</span>
                   </div>
                   <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500 group-hover:text-[#EB0028] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>

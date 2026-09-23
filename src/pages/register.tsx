@@ -128,8 +128,8 @@ export function Register() {
                 <li>Bring a valid school ID if your ticket is student-priced.</li>
                 <li>
                   Questions? Contact{" "}
-                  <a href="mailto:tedx.technology@chirec.ac.in" className="text-[#EB0028] hover:underline font-semibold">
-                    tedx.technology@chirec.ac.in
+                  <a href="mailto:tedx@chirec.ac.in" className="text-[#EB0028] hover:underline font-semibold">
+                    tedx@chirec.ac.in
                   </a>
                 </li>
               </ul>

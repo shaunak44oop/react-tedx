@@ -2,80 +2,80 @@ export type ScheduleItem = {
   id: string;
   time: string;
   title: string;
-  subtitle: string;
+  section?: string;
   tag?: "Break";
 };
 
 // Edit this array to update the day-of program. Order matters — items
-// render top to bottom exactly as listed here.
+// render top to bottom exactly as listed here. `section` groups items
+// under a heading; the heading shows once, above the first item that
+// carries a new section value.
 export const schedule: ScheduleItem[] = [
   {
     id: "sc-1",
-    time: "16:00 IST Onwards",
-    title: "Doors open at 15:00 IST",
-    subtitle: "Check in, grab a seat, browse the program",
-    tag: "Break",
+    section: "Venue Arrival",
+    time: "3:00 PM",
+    title: "Registrations open",
   },
   {
     id: "sc-2",
-    time: "9:00 – 9:10 AM",
-    title: "Welcome & opening remarks",
-    subtitle: "Organizing Team",
+    section: "Venue Arrival",
+    time: "3:45 PM",
+    title: "Registrations & entry close",
   },
   {
     id: "sc-3",
-    time: "9:10 – 9:22 AM",
-    title: '"Talk Title Goes Here"',
-    subtitle: "Speaker Name",
+    section: "Event Begins",
+    time: "4:00 – 4:25 PM",
+    title: "Welcome",
   },
   {
     id: "sc-4",
-    time: "9:22 – 9:34 AM",
-    title: '"Talk Title Goes Here"',
-    subtitle: "Speaker Name",
+    section: "Speaker Sessions — Part 1",
+    time: "4:30 – 4:50 PM",
+    title: "[Guest]",
   },
   {
     id: "sc-5",
-    time: "9:34 – 9:46 AM",
-    title: '"Talk Title Goes Here"',
-    subtitle: "Speaker Name",
+    section: "Speaker Sessions — Part 1",
+    time: "4:50 – 5:10 PM",
+    title: "Archit Khandelwal",
   },
   {
     id: "sc-6",
-    time: "9:46 – 10:05 AM",
-    title: "Morning break",
-    subtitle: "Coffee, snacks, and a stretch",
-    tag: "Break",
+    section: "Speaker Sessions — Part 1",
+    time: "5:10 – 5:30 PM",
+    title: "Sreenidi Sriram",
   },
   {
     id: "sc-7",
-    time: "10:05 – 10:17 AM",
-    title: '"Talk Title Goes Here"',
-    subtitle: "Speaker Name",
+    section: "High Tea Break",
+    time: "5:30 – 6:00 PM",
+    title: "Refreshments",
+    tag: "Break",
   },
   {
     id: "sc-8",
-    time: "10:17 – 10:29 AM",
-    title: '"Talk Title Goes Here"',
-    subtitle: "Speaker Name",
+    section: "Speaker Sessions — Part 2",
+    time: "6:00 – 6:20 PM",
+    title: "[Guest]",
   },
   {
     id: "sc-9",
-    time: "10:29 – 10:41 AM",
-    title: '"Talk Title Goes Here"',
-    subtitle: "Speaker Name",
+    section: "Speaker Sessions — Part 2",
+    time: "6:20 – 6:40 PM",
+    title: "Avirbhav Danamaraju",
   },
   {
     id: "sc-10",
-    time: "10:45 – 11:00 AM",
-    title: "Closing remarks",
-    subtitle: "Organizing Team",
+    section: "Speaker Sessions — Part 2",
+    time: "6:40 – 6:55 PM",
+    title: "Meghna Daka",
   },
   {
     id: "sc-11",
-    time: "11:00 – 11:30 AM",
-    title: "Reception",
-    subtitle: "Meet the speakers in the lobby",
-    tag: "Break",
+    section: "Closing",
+    time: "6:55 – 7:00 PM",
+    title: "National Anthem",
   },
 ];

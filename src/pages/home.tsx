@@ -265,7 +265,7 @@ export function Home() {
             </div>
           </Reveal>
 
-          <RevealGroup className="grid gap-6 md:grid-cols-3 relative z-10" stagger={0.1}>
+          <RevealGroup className="grid gap-6 md:grid-cols-2 mx-auto relative z-10" stagger={0.1}>
             {/* Feature Card 1 */}
             <motion.div variants={staggerItem} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
               <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
@@ -277,7 +277,7 @@ export function Home() {
                 </div>
                 <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Date & Time</h3>
                 <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">Saturday, October 3, 2026</p>
-                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Doors open at 15:00 IST. Please arrive 20 minutes early for check-in and seating.</p>
+                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Doors open at 3:00 PM. No entry permitted after 3:45 PM. <br />Please arrive on time for check-in and seating.</p>
               </div>
             </motion.div>
 
@@ -292,24 +292,10 @@ export function Home() {
                 </div>
                 <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Location</h3>
                 <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">CHIREC Kondapur Campus</p>
-                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Botanical Garden Road, Kondapur, Hyderabad. Entrance & check-in located at Gate 1.</p>
+                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Botanical Garden Road, Kondapur, Hyderabad. <br />Entrance & check-in located at Gate 1.</p>
               </div>
             </motion.div>
 
-            {/* Feature Card 3 */}
-            <motion.div variants={staggerItem} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
-              <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
-                <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
-              </svg>
-              <div className="relative z-10">
-                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-110 transition-transform duration-500">
-                  <Mic className="h-6 w-6" />
-                </div>
-                <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Event Format</h3>
-                <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">Talks & Performances</p>
-                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Fast-paced 12-minute talks interspersed with networking breaks and interactive exhibits.</p>
-              </div>
-            </motion.div>
           </RevealGroup>
         </div>
       </section>
