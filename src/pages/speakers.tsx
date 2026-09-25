@@ -26,7 +26,7 @@ const SCHEDULE_ITEMS: ScheduleItem[] = [
   { id: "11", time: "6:55 - 7:00 PM", title: "Closing & National Anthem", icon: Flag },
 ];
 
-export function Schedule() {
+export function Speakers() {
   return (
     <div className="min-h-screen bg-[#050507] text-white overflow-hidden font-['Inter',sans-serif] font-light relative selection:bg-[#EB0028] selection:text-white">
       <SharedSVGDefs />
