@@ -114,13 +114,18 @@ export function Navbar() {
 
           {/* Desktop Register Button */}
           <div className="hidden items-center justify-end md:flex">
-            <SpotlightButton to="/register" className="group relative overflow-hidden !px-5 !py-[9px] !text-[13px]">
+            <a
+              href="https://forms.cloud.microsoft/e/pPZzzULCnr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-brand bg-brand px-5 py-[9px] text-[13px] font-semibold text-white shadow-[0_0_15px_rgba(235,0,40,0.3)] transition-all duration-300 hover:bg-brand/90"
+            >
               {/* Button Hover Node */}
               <svg viewBox="0 0 50 50" className="absolute -bottom-3 -right-3 w-10 h-10 text-white opacity-0 group-hover:opacity-20 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-out pointer-events-none z-0">
                 <use href="#nav-shape-hex-node" x="0" y="0" transform="scale(0.6)" />
               </svg>
               <span className="relative z-10">Register</span>
-            </SpotlightButton>
+            </a>
           </div>
 
           {/* Mobile Hamburger Toggle */}
@@ -165,13 +170,19 @@ export function Navbar() {
                   </li>
                 ))}
                 <li className="pt-4">
-                  <SpotlightButton to="/register" className="group relative overflow-hidden w-full justify-center text-center">
+                  <a
+                    href="https://forms.cloud.microsoft/e/pPZzzULCnr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setOpen(false)}
+                    className="group relative inline-flex w-full items-center justify-center overflow-hidden rounded-full border border-brand bg-brand py-3 text-center text-sm font-semibold text-white shadow-[0_0_15px_rgba(235,0,40,0.3)] transition-all duration-300 hover:bg-brand/90"
+                  >
                     {/* Mobile Button Hover Node */}
                     <svg viewBox="0 0 50 50" className="absolute -bottom-4 -right-4 w-12 h-12 text-black opacity-0 group-hover:opacity-20 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-out pointer-events-none z-0">
                       <use href="#nav-shape-hex-node" x="0" y="0" transform="scale(0.8)" />
                     </svg>
                     <span className="relative z-10">Register</span>
-                  </SpotlightButton>
+                  </a>
                 </li>
               </ul>
             </motion.div>

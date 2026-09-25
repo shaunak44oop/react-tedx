@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
-import { Mail, Instagram, ArrowUpRight, Code } from "lucide-react";
+import { Mail, Instagram, ArrowUpRight } from "lucide-react";
 
 export function Footer() {
+  const navItems = [
+    { label: "Speakers", path: "/speakers", isExternal: false },
+    { label: "Team", path: "/team", isExternal: false },
+    { label: "Schedule", path: "/schedule", isExternal: false },
+    { label: "Venue & FAQ", path: "/venue", isExternal: false },
+    { label: "Register", path: "https://forms.cloud.microsoft/e/pPZzzULCnr", isExternal: true },
+  ];
+
   return (
     <footer className="relative bg-[#050507] border-t border-[#EB0028]/30 pt-16 pb-10 text-white overflow-hidden font-['Inter',sans-serif]">
       {/* Background Red Glow Accent */}
@@ -44,25 +52,35 @@ export function Footer() {
               <span className="w-1.5 h-1.5 bg-[#EB0028] inline-block" /> Event
             </h4>
             <ul className="space-y-2.5 text-sm">
-              {[
-                { label: "Speakers", path: "/speakers" },
-                { label: "Team", path: "/team" },
-                { label: "Schedule", path: "/schedule" },
-                { label: "Venue & FAQ", path: "/venue" },
-                { label: "Register", path: "/register" },
-              ].map((item) => (
-                <li key={item.path}>
-                  <Link
-                    to={item.path}
-                    className="group inline-flex items-center text-zinc-300 hover:text-white transition-colors duration-200"
-                  >
-                    <span className="text-[#EB0028] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-200 mr-1.5 font-mono text-xs">
-                      ›
-                    </span>
-                    <span className="group-hover:translate-x-0.5 transition-transform duration-200">
-                      {item.label}
-                    </span>
-                  </Link>
+              {navItems.map((item) => (
+                <li key={item.label}>
+                  {item.isExternal ? (
+                    <a
+                      href={item.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group inline-flex items-center text-zinc-300 hover:text-white transition-colors duration-200"
+                    >
+                      <span className="text-[#EB0028] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-200 mr-1.5 font-mono text-xs">
+                        ›
+                      </span>
+                      <span className="group-hover:translate-x-0.5 transition-transform duration-200">
+                        {item.label}
+                      </span>
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.path}
+                      className="group inline-flex items-center text-zinc-300 hover:text-white transition-colors duration-200"
+                    >
+                      <span className="text-[#EB0028] opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all duration-200 mr-1.5 font-mono text-xs">
+                        ›
+                      </span>
+                      <span className="group-hover:translate-x-0.5 transition-transform duration-200">
+                        {item.label}
+                      </span>
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -110,7 +128,6 @@ export function Footer() {
           <p className="text-center sm:text-left">
             © 2026 TEDxYouth@CHIREC. This is an independently organized TED event.
           </p>
-
         </div>
       </div>
     </footer>
