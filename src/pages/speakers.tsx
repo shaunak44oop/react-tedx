@@ -8,9 +8,9 @@ interface Speaker {
   id: string;
   name: string;
   role: string;
-  talkTitle: string;
+  talkTitle?: string;
   image: string;
-  bio: string;
+  bio?: string;
 }
 
 const SPEAKERS: Speaker[] = [
