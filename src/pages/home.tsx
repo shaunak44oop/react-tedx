@@ -545,8 +545,7 @@ export function Home() {
 
           {/* MINIMAL CTA BUTTON WITH SINGLE HEXAGON ACCENT */}
           <div className="flex justify-center relative z-10">
-            <SpotlightButton 
-              to="/register" 
+            <SpotlightButton href="https://forms.cloud.microsoft/e/pPZzzULCnr" 
               className="group relative inline-flex items-center justify-center gap-3 rounded-xs border border-[#EB0028] bg-black px-8 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-all duration-300 hover:bg-[#EB0028] hover:shadow-[0_0_30px_rgba(235,0,40,0.4)]"
             >
               <span className="relative z-10 flex items-center gap-3">
