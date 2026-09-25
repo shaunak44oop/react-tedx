@@ -1,6 +1,6 @@
 import { useState, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Hexagon } from "lucide-react";
+import { X } from "lucide-react";
 import { teamMembers, TeamMember } from "../data/team";
 import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
 import { SharedSVGDefs, AnimatedHexBackground } from "./home";
@@ -71,39 +71,34 @@ export function Team() {
       <SharedSVGDefs />
       <AnimatedHexBackground />
 
-      {/* HERO SECTION */}
-      <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-14 text-center z-10">
+      {/* HERO SECTION — EXACT MATCH TO SPEAKERS & SCHEDULE HERO STYLE */}
+      <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-12 text-center z-10">
         <Reveal className="flex flex-col items-center z-10 max-w-4xl w-full">
-          <div className="inline-flex items-center gap-2 border border-[#EB0028]/30 bg-[#EB0028]/10 px-4 py-1.5 rounded-xs mb-6">
-            <Hexagon className="w-4 h-4 text-[#EB0028] fill-[#EB0028]/20 stroke-[1.75]" />
-            <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.25em] text-[#EB0028] font-bold">
-              BEHIND THE STAGE
-            </span>
-          </div>
+          <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.35em] text-[#EB0028] font-bold mb-4">
+            BEHIND THE STAGE
+          </span>
 
-          <div className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs my-2 max-w-2xl w-full mx-auto shadow-[0_0_60px_rgba(235,0,40,0.15)] hover:border-[#EB0028] hover:shadow-[0_0_80px_rgba(235,0,40,0.3)] transition-all duration-500 overflow-hidden">
+          <div className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs my-2 max-w-2xl w-full mx-auto overflow-hidden">
             <span className="absolute -top-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
             <span className="absolute -top-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
             <span className="absolute -bottom-1.5 -left-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
             <span className="absolute -bottom-1.5 -right-1.5 text-[#EB0028] text-xs font-mono z-10">+</span>
 
-            <div className="flex flex-col items-center leading-none relative z-10">
-              <motion.h1
-                initial={{ opacity: 0, scale: 0.96, y: 8 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-                className="font-['Helvetica',sans-serif] text-[clamp(32px,7vw,72px)] font-black uppercase text-[#EB0028] tracking-tight py-1"
-              >
-                MEET THE TEAM
-              </motion.h1>
-            </div>
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.96, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+              className="font-['Helvetica',sans-serif] text-[clamp(36px,7vw,72px)] font-black uppercase text-[#EB0028] tracking-tight py-1"
+            >
+              TEAM
+            </motion.h1>
           </div>
 
           <motion.div
             initial={{ scaleX: 0, opacity: 0 }}
             animate={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
-            className="my-8 h-[1px] w-28 bg-[#EB0028] origin-center"
+            className="my-6 h-[1px] w-28 bg-[#EB0028] origin-center"
           />
 
           <p className="max-w-[54ch] text-base sm:text-lg text-zinc-300 font-light leading-relaxed mb-2 relative z-10 px-2 mx-auto">
