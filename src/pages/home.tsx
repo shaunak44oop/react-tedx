@@ -350,7 +350,7 @@ import { useState, useEffect, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
-import { Calendar, MapPin, Mic, ArrowRight, Timer, Hexagon } from "lucide-react";
+import { Calendar, MapPin, Mic, ArrowRight, Timer, Hexagon, ExternalLink } from "lucide-react";
 
 // Re-exported SVG Defs used across pages for hexagonal grid filters
 export const SharedSVGDefs = memo(function SharedSVGDefs() {
@@ -539,9 +539,7 @@ export function Home() {
         </motion.div>
 
         <Reveal className="flex flex-col items-center z-10 max-w-5xl">
-          <p className="max-w-[54ch] text-base sm:text-lg text-zinc-300 font-light leading-relaxed mb-10 relative z-10">
-            Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape tomorrow.
-          </p>
+
 
           {/* MINIMAL CTA BUTTON WITH SINGLE HEXAGON ACCENT */}
           <div className="flex justify-center relative z-10">
@@ -612,75 +610,46 @@ export function Home() {
             </div>
           </Reveal>
 
-          <RevealGroup className="grid gap-6 md:grid-cols-3 relative z-10" stagger={0.1}>
+
+          <RevealGroup className="grid gap-6 md:grid-cols-2 mx-auto relative z-10" stagger={0.1}>
             {/* Feature Card 1 */}
-            <motion.div variants={staggerItem} className="group relative rounded-xs border border-zinc-800 bg-black/80 p-8 hover:border-[#EB0028]/60 transition-all cursor-default overflow-hidden">
-              <div className="absolute top-4 right-4 text-[#EB0028] opacity-0 group-hover:opacity-100 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ease-out z-20">
-                <Hexagon className="w-5 h-5 fill-[#EB0028]/20 stroke-[1.75]" />
-              </div>
-
-              <div className="absolute -right-6 -bottom-6 w-36 h-36 text-[#EB0028]/10 group-hover:text-[#EB0028]/25 opacity-40 group-hover:opacity-100 transform translate-x-6 translate-y-6 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-105 transition-all duration-500 ease-out pointer-events-none z-0">
-                <svg viewBox="0 0 100 100" fill="none" className="w-full h-full stroke-current stroke-[1.2]">
-                  <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
-                  <polygon points="50,15 82,33 82,67 50,85 18,67 18,33" strokeDasharray="4 2" />
-                </svg>
-              </div>
-
+            <motion.div variants={staggerItem} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
+              <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
+                <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
+              </svg>
               <div className="relative z-10">
-                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-105 transition-transform duration-300">
+                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-110 transition-transform duration-500">
                   <Calendar className="h-6 w-6" />
                 </div>
                 <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Date & Time</h3>
                 <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">Saturday, October 3, 2026</p>
-                <p className="text-sm sm:text-base text-zinc-400 font-normal leading-relaxed">Doors open at 15:00 IST. Please arrive 20 minutes early for check-in and seating.</p>
+                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Doors open at 3:00 PM. No entry permitted after 3:45 PM. <br />Please arrive on time for check-in and seating.</p>
               </div>
             </motion.div>
 
             {/* Feature Card 2 */}
-            <motion.div variants={staggerItem} className="group relative rounded-xs border border-zinc-800 bg-black/80 p-8 hover:border-[#EB0028]/60 transition-all cursor-default overflow-hidden">
-              <div className="absolute top-4 right-4 text-[#EB0028] opacity-0 group-hover:opacity-100 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ease-out z-20">
-                <Hexagon className="w-5 h-5 fill-[#EB0028]/20 stroke-[1.75]" />
-              </div>
-
-              <div className="absolute -right-6 -bottom-6 w-36 h-36 text-[#EB0028]/10 group-hover:text-[#EB0028]/25 opacity-40 group-hover:opacity-100 transform translate-x-6 translate-y-6 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-105 transition-all duration-500 ease-out pointer-events-none z-0">
-                <svg viewBox="0 0 100 100" fill="none" className="w-full h-full stroke-current stroke-[1.2]">
-                  <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
-                  <polygon points="50,15 82,33 82,67 50,85 18,67 18,33" strokeDasharray="4 2" />
-                </svg>
-              </div>
-
+            <motion.div variants={staggerItem} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
+              <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
+                <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
+              </svg>
               <div className="relative z-10">
-                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-105 transition-transform duration-300">
+                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-110 transition-transform duration-500">
                   <MapPin className="h-6 w-6" />
                 </div>
                 <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Location</h3>
-                <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">CHIREC Kondapur Campus</p>
-                <p className="text-sm sm:text-base text-zinc-400 font-normal leading-relaxed">Botanical Garden Road, Kondapur, Hyderabad. Entrance & check-in located at Gate 1.</p>
+                <a         
+                  href="https://maps.app.goo.gl/JPhHnKjHJxeRBVzg7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/link inline-flex items-center gap-1.5 text-sm sm:text-base text-[#EB0028] mb-3 font-semibold hover:underline underline-offset-4 relative z-10"
+                >
+                  CHIREC Kondapur Campus
+                  <ExternalLink className="w-3.5 h-3.5 opacity-70 group-hover/link:opacity-100 transition-opacity" />
+                </a>
+                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Botanical Garden Road, Kondapur, Hyderabad. <br />Entrance & check-in located at Gate 1.</p>
               </div>
             </motion.div>
 
-            {/* Feature Card 3 */}
-            <motion.div variants={staggerItem} className="group relative rounded-xs border border-zinc-800 bg-black/80 p-8 hover:border-[#EB0028]/60 transition-all cursor-default overflow-hidden">
-              <div className="absolute top-4 right-4 text-[#EB0028] opacity-0 group-hover:opacity-100 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ease-out z-20">
-                <Hexagon className="w-5 h-5 fill-[#EB0028]/20 stroke-[1.75]" />
-              </div>
-
-              <div className="absolute -right-6 -bottom-6 w-36 h-36 text-[#EB0028]/10 group-hover:text-[#EB0028]/25 opacity-40 group-hover:opacity-100 transform translate-x-6 translate-y-6 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:scale-105 transition-all duration-500 ease-out pointer-events-none z-0">
-                <svg viewBox="0 0 100 100" fill="none" className="w-full h-full stroke-current stroke-[1.2]">
-                  <polygon points="50,3 93,25 93,75 50,97 7,75 7,25" />
-                  <polygon points="50,15 82,33 82,67 50,85 18,67 18,33" strokeDasharray="4 2" />
-                </svg>
-              </div>
-
-              <div className="relative z-10">
-                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xs bg-[#EB0028]/10 text-[#EB0028] border border-[#EB0028]/20 group-hover:scale-105 transition-transform duration-300">
-                  <Mic className="h-6 w-6" />
-                </div>
-                <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Event Format</h3>
-                <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">Talks & Performances</p>
-                <p className="text-sm sm:text-base text-zinc-400 font-normal leading-relaxed">Fast-paced 12-minute talks interspersed with networking breaks and interactive exhibits.</p>
-              </div>
-            </motion.div>
           </RevealGroup>
         </div>
       </section>

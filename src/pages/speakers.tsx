@@ -39,33 +39,33 @@ const SPEAKERS: Speaker[] = [
     id: "archit-khandelwal",
     name: "Archit Khandelwal",
     role: "Student Speaker",
-    talkTitle: "Reframing Modern Perspectives",
+    //talkTitle: "Reframing Modern Perspectives",
     image: "/speakers/archit.jpg",
-    bio: "Archit is a passionate student thinker driven by curiosity and innovation. Through his talk, he explores how young minds can navigate complex modern challenges with fresh perspectives. His insights challenge conventional wisdom and inspire actionable change.",
+    //bio: "Archit is a passionate student thinker driven by curiosity and innovation. Through his talk, he explores how young minds can navigate complex modern challenges with fresh perspectives. His insights challenge conventional wisdom and inspire actionable change.",
   },
   {
     id: "sreenidi-sriram",
     name: "Sreenidi Sriram",
     role: "Student Speaker",
-    talkTitle: "The Power of Expression",
+    //talkTitle: "The Power of Expression",
     image: "/speakers/sreenidi.jpg",
-    bio: "Sreenidi focuses on the impact of youth expression and storytelling in shaping community culture. She delves into how communication bridges divides and fosters empathy across diverse audiences. Her passion for creative problem-solving highlights the transformative potential of original ideas.",
+    //bio: "Sreenidi focuses on the impact of youth expression and storytelling in shaping community culture. She delves into how communication bridges divides and fosters empathy across diverse audiences. Her passion for creative problem-solving highlights the transformative potential of original ideas.",
   },
   {
     id: "avirbhav-danamaraju",
     name: "Avirbhav Danamaraju",
     role: "Student Speaker",
-    talkTitle: "Innovating for Tomorrow",
+    //talkTitle: "Innovating for Tomorrow",
     image: "/speakers/avirbhav.jpg",
-    bio: "Avirbhav investigates the intersection of technology, design, and human capability. He shares how critical thinking and iterative development empower students to turn ambitious concepts into reality. His talk emphasizes resilience, technological ethics, and continuous learning.",
+    //bio: "Avirbhav investigates the intersection of technology, design, and human capability. He shares how critical thinking and iterative development empower students to turn ambitious concepts into reality. His talk emphasizes resilience, technological ethics, and continuous learning.",
   },
   {
     id: "meghna-daka",
     name: "Meghna Daka",
     role: "Student Speaker",
-    talkTitle: "Unlocking Emotional Leadership",
+    //talkTitle: "Unlocking Emotional Leadership",
     image: "/speakers/meghna.jpg",
-    bio: "Meghna shares compelling insights into self-discovery, leadership, and emotional intelligence. She highlights how embracing vulnerability and personal growth can lead to profound leadership breakthroughs. Her narrative encourages peers to embrace unique journeys with confidence.",
+    //bio: "Meghna shares compelling insights into self-discovery, leadership, and emotional intelligence. She highlights how embracing vulnerability and personal growth can lead to profound leadership breakthroughs. Her narrative encourages peers to embrace unique journeys with confidence.",
   },
 ];
 
@@ -79,9 +79,9 @@ export function Speakers() {
       <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-12 text-center z-10">
         <Reveal className="flex flex-col items-center z-10 max-w-4xl w-full">
           <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.35em] text-[#EB0028] font-bold mb-4 flex items-center gap-2">
-            <Hexagon className="w-3.5 h-3.5 fill-[#EB0028]/20 stroke-[#EB0028]" />
+  
             VOICES OF TOMORROW
-            <Hexagon className="w-3.5 h-3.5 fill-[#EB0028]/20 stroke-[#EB0028]" />
+
           </span>
 
           <div className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs my-2 max-w-2xl w-full mx-auto overflow-hidden">
@@ -196,8 +196,7 @@ export function Speakers() {
           </h2>
 
           <div className="pt-2">
-            <SpotlightButton
-              to="/register"
+            <SpotlightButton href="https://forms.cloud.microsoft/e/pPZzzULCnr"
               className="group relative inline-flex items-center justify-center gap-3 rounded-xs border border-[#EB0028] bg-[#EB0028] hover:bg-[#c00020] px-8 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-all duration-300 shadow-[0_0_25px_rgba(235,0,40,0.35)] hover:shadow-[0_0_35px_rgba(235,0,40,0.6)]"
             >
               <span className="relative z-10 flex items-center gap-3">

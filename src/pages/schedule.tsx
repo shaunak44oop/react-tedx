@@ -129,8 +129,7 @@ export function Schedule() {
           </h2>
           
           <div className="pt-2">
-            <SpotlightButton 
-              to="/register" 
+            <SpotlightButton href="https://forms.cloud.microsoft/e/pPZzzULCnr"
               className="group relative inline-flex items-center justify-center gap-3 rounded-xs border border-[#EB0028] bg-black px-8 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-colors hover:bg-[#EB0028]"
             >
               <span className="relative z-10 flex items-center gap-3">

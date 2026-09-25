@@ -44,10 +44,10 @@ export function Venue() {
           />
 
           <p className="max-w-[56ch] text-base sm:text-lg text-zinc-300 font-light leading-relaxed mb-8 mx-auto z-10">
-            CHIREC Kondapur Campus. Entrance through Gate 1 — signs will point you to check-in. Parking is available next to the school.
+            CHIREC Kondapur Campus. Entrance through Gate 1. <br />Parking is available next to the school.
           </p>
 
-          <SpotlightButton href="https://share.google/9lqyTxAmB7yLQNhXW" className="group relative overflow-hidden bg-[#EB0028] hover:bg-[#c40022] text-white font-medium px-8 py-3 rounded-xs transition-all z-10">
+          <SpotlightButton href="https://maps.app.goo.gl/JPhHnKjHJxeRBVzg7" className="group relative overflow-hidden bg-[#EB0028] hover:bg-[#c40022] text-white font-medium px-8 py-3 rounded-xs transition-all z-10">
             <svg viewBox="0 0 50 50" className="absolute -bottom-4 -right-4 w-16 h-16 text-black opacity-0 group-hover:opacity-20 group-hover:-translate-x-1 group-hover:-translate-y-1 transition-all duration-500 ease-out pointer-events-none z-0">
               <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
             </svg>
@@ -65,7 +65,7 @@ export function Venue() {
           <div className="w-full h-[400px] sm:h-[500px] rounded-xs overflow-hidden border border-[#EB0028]/30 shadow-[0_0_60px_rgba(235,0,40,0.15)] bg-black/80 backdrop-blur-md">
             <iframe
               className="h-full w-full grayscale contrast-[1.1] opacity-90 hover:opacity-100 transition-opacity"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.273618197171!2d78.3615364!3d17.470535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93cc13e59543%3A0xb3bd0f1e84a22b78!2sCHIREC%20International%20School%2C%20Kondapur%20Campus!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.939447031184!2d78.34886021045025!3d17.462612100565174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93b241cd072f%3A0xa6160d79d214758c!2sCHIREC%20International%20School%20-%20Kondapur%20(CBSE)%20Campus!5e0!3m2!1sen!2sin!4v1790348692262!5m2!1sen!2sin"
               title="Map to venue"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

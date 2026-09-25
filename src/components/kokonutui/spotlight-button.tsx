@@ -87,7 +87,7 @@ export function SpotlightButton({
   if (href) {
     return (
       <motion.div whileTap="tap" variants={tapVariants} className="inline-block">
-        <a href={href} className={classes} onMouseMove={onMouseMove}>
+        <a href={href} target="_blank" rel="noopener noreferrer" className={classes} onMouseMove={onMouseMove}>
           {inner}
         </a>
       </motion.div>
