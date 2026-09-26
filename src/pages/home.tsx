@@ -143,79 +143,78 @@ export function Home() {
       <AnimatedHexBackground />
 
       {/* HERO SECTION */}
-      <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-28 pb-20 text-center min-h-[85vh] z-10">
-        {/* HERO ANIMATION VIDEO */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97, y: 8 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="w-full max-w-5xl mx-auto z-10 mb-8"
+      <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-28 pb-20 text-center min-h-[85vh] z-10 overflow-hidden">
+        {/* FULL-BLEED BACKGROUND ANIMATION — covers the whole hero, edge to edge, down to the divider under the CTA */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster={`${(import.meta as any).env?.BASE_URL || "/"}tedx-hero-poster.jpg`}
+          className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <div className="relative w-full">
-            <video
-              src={`${(import.meta as any).env?.BASE_URL || "/"}tedxanimationvideo.mp4`}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-auto block"
-            />
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                boxShadow: "inset 0 0 40px 20px #050507",
-              }}
-            />
+          <source src={`${(import.meta as any).env?.BASE_URL || "/"}tedxanimationvideo.mp4`} type="video/mp4" />
+        </video>
 
-            {/* TEXT OVERLAY ON TOP OF THE ANIMATION */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center pointer-events-none">
-              {/* EVENT NAME + DATE BADGE */}
-              <div className="mb-5 sm:mb-8">
-                <div className="font-['Helvetica',sans-serif] font-extrabold text-base sm:text-2xl uppercase tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
-                  <span className="text-[#EB0028]">TEDx</span>
-                  <span className="text-white"> CHIREC International School Youth</span>
-                </div>
-                <div className="w-24 sm:w-40 h-px bg-white/50 mx-auto my-2 sm:my-3" />
-                <p className="font-['Helvetica',sans-serif] text-xs sm:text-base uppercase tracking-[0.3em] text-zinc-200 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-                  October 3rd 2026
-                </p>
-              </div>
+        {/* THIN BLACK VEIL SO THE TEXT STAYS READABLE OVER THE ANIMATION */}
+        <div className="absolute inset-0 bg-black/35 z-[1] pointer-events-none" />
 
-              {/* MAIN TITLE */}
-              <div className="flex flex-col items-center leading-none">
-                <span className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-200 mb-1 sm:mb-2 tracking-[0.45em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-                  THE
-                </span>
-                <h1 className="font-['Helvetica',sans-serif] text-[clamp(34px,8vw,88px)] font-black uppercase tracking-tight py-1 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
-                  <span className="text-[#EB0028]">IN</span>
-                  <span className="text-white">-BETWEEN</span>
-                </h1>
-                <span className="font-['Helvetica',sans-serif] text-[clamp(26px,6.5vw,68px)] font-extralight uppercase tracking-[0.22em] text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
-                  SPACE
-                </span>
-              </div>
+        {/* SOFT FADE AT THE BOTTOM SO THE VIDEO BLENDS INTO THE DIVIDER / NEXT SECTION */}
+        <div className="absolute inset-x-0 bottom-0 h-28 sm:h-40 bg-gradient-to-b from-transparent to-[#050507] z-[1] pointer-events-none" />
+
+        {/* HERO CONTENT */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+          className="relative z-10 flex flex-col items-center"
+        >
+          {/* EVENT NAME + DATE BADGE */}
+          <div className="mb-5 sm:mb-8">
+            <div className="font-['Helvetica',sans-serif] font-extrabold text-base sm:text-2xl uppercase tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+              <span className="text-[#EB0028]">TEDx</span>
+              <span className="text-white"> CHIREC International School Youth</span>
             </div>
+            <div className="w-24 sm:w-40 h-px bg-white/50 mx-auto my-2 sm:my-3" />
+            <p className="font-['Helvetica',sans-serif] text-xs sm:text-base uppercase tracking-[0.3em] text-zinc-200 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+              October 3rd 2026
+            </p>
           </div>
+
+          {/* MAIN TITLE */}
+          <div className="flex flex-col items-center leading-none mb-8 sm:mb-10">
+            <span className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-200 mb-1 sm:mb-2 tracking-[0.45em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+              THE
+            </span>
+            <h1 className="font-['Helvetica',sans-serif] text-[clamp(34px,8vw,88px)] font-black uppercase tracking-tight py-1 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+              <span className="text-[#EB0028]">IN</span>
+              <span className="text-white">-BETWEEN</span>
+            </h1>
+            <span className="font-['Helvetica',sans-serif] text-[clamp(26px,6.5vw,68px)] font-extralight uppercase tracking-[0.22em] text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+              SPACE
+            </span>
+          </div>
+
+          <Reveal className="flex flex-col items-center max-w-5xl">
+            <p className="max-w-[54ch] text-base sm:text-lg text-zinc-200 font-light leading-relaxed mb-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+              Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape tomorrow.
+            </p>
+
+            {/* MINIMAL CTA BUTTON WITH SINGLE HEXAGON ACCENT */}
+            <div className="flex justify-center">
+              <SpotlightButton href="https://forms.cloud.microsoft/e/pPZzzULCnr" 
+                className="group relative inline-flex items-center justify-center gap-3 rounded-xs border border-[#EB0028] bg-black px-8 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-all duration-300 hover:bg-[#EB0028] hover:shadow-[0_0_30px_rgba(235,0,40,0.4)]"
+              >
+                <span className="relative z-10 flex items-center gap-3">
+                  <span>Reserve Your Seat</span>
+                  <Hexagon className="w-4 h-4 text-[#EB0028] group-hover:text-white transition-colors fill-[#EB0028]/20 group-hover:fill-white/20 stroke-[1.75]" />
+                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </SpotlightButton>
+            </div>
+          </Reveal>
         </motion.div>
-
-        <Reveal className="flex flex-col items-center z-10 max-w-5xl">
-          <p className="max-w-[54ch] text-base sm:text-lg text-zinc-300 font-light leading-relaxed mb-10 relative z-10">
-            Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape tomorrow.
-          </p>
-
-          {/* MINIMAL CTA BUTTON WITH SINGLE HEXAGON ACCENT */}
-          <div className="flex justify-center relative z-10">
-            <SpotlightButton href="https://forms.cloud.microsoft/e/pPZzzULCnr" 
-              className="group relative inline-flex items-center justify-center gap-3 rounded-xs border border-[#EB0028] bg-black px-8 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-all duration-300 hover:bg-[#EB0028] hover:shadow-[0_0_30px_rgba(235,0,40,0.4)]"
-            >
-              <span className="relative z-10 flex items-center gap-3">
-                <span>Reserve Your Seat</span>
-                <Hexagon className="w-4 h-4 text-[#EB0028] group-hover:text-white transition-colors fill-[#EB0028]/20 group-hover:fill-white/20 stroke-[1.75]" />
-                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
-            </SpotlightButton>
-          </div>
-        </Reveal>
       </section>
 
       {/* EVENT OVERVIEW SECTION */}
