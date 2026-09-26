@@ -115,7 +115,7 @@ export function Navbar() {
           {/* Desktop Register Button */}
           <div className="hidden items-center justify-end md:flex">
             <a
-              href="https://forms.cloud.microsoft/e/pPZzzULCnr"
+              href="https://forms.gle/AHbwZmCSSGgkBUj4A"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-brand bg-brand px-5 py-[9px] text-[13px] font-semibold text-white shadow-[0_0_15px_rgba(235,0,40,0.3)] transition-all duration-300 hover:bg-brand/90"
@@ -171,7 +171,7 @@ export function Navbar() {
                 ))}
                 <li className="pt-4">
                   <a
-                    href="https://forms.cloud.microsoft/e/pPZzzULCnr"
+                    href="https://forms.gle/AHbwZmCSSGgkBUj4A"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setOpen(false)}
