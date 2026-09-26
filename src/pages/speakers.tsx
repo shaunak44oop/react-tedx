@@ -23,7 +23,7 @@ const SPEAKERS: Speaker[] = [
     id: "archit-khandelwal",
     name: "Archit Khandelwal",
     role: "Student Speaker",
-    image: "public/speakers/ARCHIT.png",
+    image: "speakers/ARCHIT.png",
     bio: "Archit Khandelwal is a 10th grader at CHIREC International School and founder of Headlinne, an AI-powered news platform. Passionate about AI, robotics, and entrepreneurship, he loves turning ideas into practical, real-world tools. He is thrilled to be a student speaker at this year’s TEDxYouth@CHIREC!",
   },
   {
