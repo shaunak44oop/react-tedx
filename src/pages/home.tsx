@@ -1,6 +1,5 @@
 import { useState, useEffect, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
 import { Calendar, MapPin, Mic, ArrowRight, Timer, Hexagon, ExternalLink } from "lucide-react";
 
@@ -41,7 +40,7 @@ export function AnimatedHexBackground() {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       {/* SVG Hexagonal Grid Pattern Overlay */}
-      <div 
+      <div
         className="absolute inset-0 opacity-40"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='56' height='97' viewBox='0 0 56 97' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 0l28 16.166v32.333L28 64.666 0 48.499V16.166L28 0zm0 96.998l28-16.166V48.499L28 64.666 0 48.499v32.333L28 96.998z' fill='none' stroke='%23EB0028' stroke-opacity='0.08' stroke-width='1'/%3E%3C/svg%3E")`,
@@ -102,6 +101,36 @@ const CountdownDigit = memo(function CountdownDigit({ digit }: { digit: string }
   );
 });
 
+// Local scroll-reveal primitives (guaranteed to fire on scroll into view)
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const staggerContainer = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12 } },
+};
+
+const staggerCard = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
+function ScrollReveal({ className, children }: { className?: string; children: React.ReactNode }) {
+  return (
+    <motion.div
+      className={className}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 export function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
@@ -143,7 +172,7 @@ export function Home() {
       <AnimatedHexBackground />
 
       {/* HERO SECTION */}
-      <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-28 pb-20 text-center min-h-[85vh] z-10 overflow-hidden">
+      <section className="relative flex flex-col justify-end px-4 sm:px-8 md:px-14 pt-28 pb-20 min-h-[85vh] z-10 overflow-hidden">
         {/* FULL-BLEED BACKGROUND ANIMATION — covers the whole hero, edge to edge, down to the divider under the CTA */}
         <video
           autoPlay
@@ -163,47 +192,47 @@ export function Home() {
         {/* SOFT FADE AT THE BOTTOM SO THE VIDEO BLENDS INTO THE DIVIDER / NEXT SECTION */}
         <div className="absolute inset-x-0 bottom-0 h-28 sm:h-40 bg-gradient-to-b from-transparent to-[#050507] z-[1] pointer-events-none" />
 
-        {/* HERO CONTENT */}
+        {/* HERO CONTENT — stacks centered on mobile, splits left/right from sm: up */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="relative z-10 flex flex-col items-center"
+          className="relative z-10 w-full flex flex-col gap-10"
         >
-          {/* EVENT NAME + DATE BADGE */}
-          <div className="mb-5 sm:mb-8">
+          {/* EVENT NAME + DATE BADGE — LEFT ALIGNED */}
+          <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
             <div className="font-['Helvetica',sans-serif] font-extrabold text-base sm:text-2xl uppercase tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
               <span className="text-[#EB0028]">TEDx</span>
               <span className="text-white"> CHIREC International School Youth</span>
             </div>
-            <div className="w-24 sm:w-40 h-px bg-white/50 mx-auto my-2 sm:my-3" />
+            <div className="w-24 sm:w-40 h-px bg-white/50 my-2 sm:my-3" />
             <p className="font-['Helvetica',sans-serif] text-xs sm:text-base uppercase tracking-[0.3em] text-zinc-200 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
               October 3rd 2026
             </p>
           </div>
 
-          {/* MAIN TITLE */}
-          <div className="flex flex-col items-center leading-none mb-8 sm:mb-10">
-            <span className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-200 mb-1 sm:mb-2 tracking-[0.45em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-              THE
-            </span>
-            <h1 className="font-['Helvetica',sans-serif] text-[clamp(34px,8vw,88px)] font-black uppercase tracking-tight py-1 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
-              <span className="text-[#EB0028]">IN</span>
-              <span className="text-white">-BETWEEN</span>
-            </h1>
-            <span className="font-['Helvetica',sans-serif] text-[clamp(26px,6.5vw,68px)] font-extralight uppercase tracking-[0.22em] text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
-              SPACE
-            </span>
-          </div>
+          {/* MAIN TITLE + DESCRIPTION + CTA — RIGHT ALIGNED from sm: up */}
+          <div className="flex flex-col items-center text-center w-full sm:items-end sm:text-right sm:max-w-2xl sm:ml-auto sm:self-end">
+            <div className="flex flex-col items-center sm:items-end leading-none mb-8 sm:mb-10">
+              <span className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-200 mb-1 sm:mb-2 tracking-[0.45em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+                THE
+              </span>
+              <h1 className="font-['Helvetica',sans-serif] text-[clamp(34px,8vw,88px)] font-black uppercase tracking-tight py-1 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+                <span className="text-[#EB0028]">IN</span>
+                <span className="text-white">-BETWEEN</span>
+              </h1>
+              <span className="font-['Helvetica',sans-serif] text-[clamp(26px,6.5vw,68px)] font-extralight uppercase tracking-[0.22em] text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+                SPACE
+              </span>
+            </div>
 
-          <Reveal className="flex flex-col items-center max-w-5xl">
-            <p className="max-w-[54ch] text-base sm:text-lg text-zinc-200 font-light leading-relaxed mb-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+            <p className="max-w-[54ch] sm:max-w-[42ch] text-base sm:text-lg text-zinc-200 font-light leading-relaxed mb-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] text-center sm:text-right">
               Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape tomorrow.
             </p>
 
-            {/* MINIMAL CTA BUTTON WITH SINGLE HEXAGON ACCENT */}
-            <div className="flex justify-center">
-              <SpotlightButton href="https://forms.cloud.microsoft/e/pPZzzULCnr" 
+            <div className="flex justify-center sm:justify-end">
+              <SpotlightButton
+                href="https://forms.cloud.microsoft/e/pPZzzULCnr"
                 className="group relative inline-flex items-center justify-center gap-3 rounded-xs border border-[#EB0028] bg-black px-8 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-all duration-300 hover:bg-[#EB0028] hover:shadow-[0_0_30px_rgba(235,0,40,0.4)]"
               >
                 <span className="relative z-10 flex items-center gap-3">
@@ -213,20 +242,20 @@ export function Home() {
                 </span>
               </SpotlightButton>
             </div>
-          </Reveal>
+          </div>
         </motion.div>
       </section>
 
       {/* EVENT OVERVIEW SECTION */}
       <section className="px-4 sm:px-12 md:px-16 py-20 border-t border-zinc-800/80 bg-black/80 backdrop-blur-md relative w-full z-10">
         <div className="max-w-7xl mx-auto">
-          <Reveal className="text-center mb-12 relative z-10">
+          <ScrollReveal className="text-center mb-12 relative z-10">
             <h2 className="font-['Helvetica',sans-serif] text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
               Event Overview
             </h2>
-          </Reveal>
+          </ScrollReveal>
 
-          <Reveal className="mb-14 relative z-10">
+          <ScrollReveal className="mb-14 relative z-10">
             <div className="group rounded-xs border border-[#EB0028]/30 bg-[#0c0c10]/90 p-6 sm:p-10 relative overflow-hidden transition-colors hover:border-[#EB0028]/60">
               {/* SLIDING HEXAGON ACCENT ON OVERVIEW BOX HOVER */}
               <div className="absolute top-4 right-4 text-[#EB0028] opacity-0 group-hover:opacity-100 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 ease-out z-20">
@@ -269,12 +298,17 @@ export function Home() {
                 </div>
               </div>
             </div>
-          </Reveal>
+          </ScrollReveal>
 
-
-          <RevealGroup className="grid gap-6 md:grid-cols-2 mx-auto relative z-10" stagger={0.1}>
+          <motion.div
+            className="grid gap-6 md:grid-cols-2 mx-auto relative z-10"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+          >
             {/* Feature Card 1 */}
-            <motion.div variants={staggerItem} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
+            <motion.div variants={staggerCard} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
               <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
                 <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
               </svg>
@@ -289,7 +323,7 @@ export function Home() {
             </motion.div>
 
             {/* Feature Card 2 */}
-            <motion.div variants={staggerItem} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
+            <motion.div variants={staggerCard} className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-8 hover:border-[#EB0028] transition-all cursor-default overflow-hidden">
               <svg viewBox="0 0 50 50" className="absolute -bottom-6 -right-6 w-32 h-32 text-[#EB0028] opacity-0 group-hover:opacity-40 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-700 ease-out pointer-events-none z-0">
                 <use href="#shape-hex-node" x="0" y="0" transform="scale(0.8)" />
               </svg>
@@ -298,7 +332,7 @@ export function Home() {
                   <MapPin className="h-6 w-6" />
                 </div>
                 <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Location</h3>
-                <a         
+                <a
                   href="https://maps.app.goo.gl/JPhHnKjHJxeRBVzg7"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -310,8 +344,7 @@ export function Home() {
                 <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Botanical Garden Road, Kondapur, Hyderabad. <br />Entrance & check-in located at Gate 1.</p>
               </div>
             </motion.div>
-
-          </RevealGroup>
+          </motion.div>
         </div>
       </section>
     </div>
