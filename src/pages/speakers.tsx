@@ -196,7 +196,7 @@ export function Speakers() {
           </h2>
 
           <div className="pt-2">
-            <SpotlightButton href="https://forms.cloud.microsoft/e/pPZzzULCnr"
+            <SpotlightButton href="https://forms.gle/AHbwZmCSSGgkBUj4A"
               className="group relative inline-flex items-center justify-center gap-3 rounded-xs border border-[#EB0028] bg-[#EB0028] hover:bg-[#c00020] px-8 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-all duration-300 shadow-[0_0_25px_rgba(235,0,40,0.35)] hover:shadow-[0_0_35px_rgba(235,0,40,0.6)]"
             >
               <span className="relative z-10 flex items-center gap-3">

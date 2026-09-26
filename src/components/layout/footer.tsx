@@ -69,7 +69,7 @@ export function Footer() {
             {/* Flat Solid Footer Register Button (Zero Glow / Zero Shadow) */}
             <div className="mt-6">
               <a
-                href="https://forms.cloud.microsoft/e/pPZzzULCnr"
+                href="https://forms.gle/AHbwZmCSSGgkBUj4A"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-between gap-3 w-full max-w-[200px] border-2 border-[#EB0028] bg-[#EB0028] px-4 py-2.5 font-mono text-xs font-bold uppercase tracking-wider text-white transition-all duration-200 hover:bg-white hover:border-white hover:text-black"
