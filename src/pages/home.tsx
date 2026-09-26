@@ -200,16 +200,19 @@ export function Home() {
           className="relative z-10 w-full flex flex-col gap-10"
         >
           {/* EVENT NAME + DATE BADGE — LEFT ALIGNED */}
-          <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
-            <div className="font-['Helvetica',sans-serif] font-extrabold text-base sm:text-2xl uppercase tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
-              <span className="text-[#EB0028]">TEDx</span>
-              <span className="text-white"> CHIREC International School Youth</span>
-            </div>
-            <div className="w-24 sm:w-40 h-px bg-white/50 my-2 sm:my-3" />
-            <p className="font-['Helvetica',sans-serif] text-xs sm:text-base uppercase tracking-[0.3em] text-zinc-200 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-              October 3rd 2026
-            </p>
-          </div>
+<div className="flex flex-col items-center text-center sm:items-start sm:text-left">
+  <div className="font-['Helvetica',sans-serif] font-extrabold leading-[1.15] drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+    <div className="text-[#EB0028] text-xl sm:text-3xl">TEDx</div>
+    <div className="text-white text-lg sm:text-2xl font-semibold">CHIREC International</div>
+    <div className="text-white text-lg sm:text-2xl">
+      <span className="font-normal">School</span> <span className="font-extrabold">Youth</span>
+    </div>
+  </div>
+  <div className="w-24 sm:w-40 h-px bg-white/50 my-3 sm:my-4" />
+  <p className="font-['Helvetica',sans-serif] font-bold text-xl sm:text-3xl text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+    October 3rd 2026
+  </p>
+</div>
 
           {/* MAIN TITLE + DESCRIPTION + CTA — RIGHT ALIGNED from sm: up */}
           <div className="flex flex-col items-center text-center w-full sm:items-end sm:text-right sm:max-w-2xl sm:ml-auto sm:self-end">
