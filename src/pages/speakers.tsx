@@ -4,6 +4,11 @@ import { SpotlightButton } from "../components/kokonutui/spotlight-button";
 import { Hexagon, ArrowRight, Mic, Sparkles } from "lucide-react";
 import { SharedSVGDefs, AnimatedHexBackground } from "./home";
 
+// Resolves paths against Vite's configured base ("/react-tedx/" for this
+// project), so images work both in local dev and once deployed — the same
+// pattern already used for images in home.tsx and venue.tsx.
+const withBase = (path: string) => `${(import.meta as any).env?.BASE_URL || "/"}${path}`;
+
 interface Speaker {
   id: string;
   name: string;
@@ -14,57 +19,32 @@ interface Speaker {
 }
 
 const SPEAKERS: Speaker[] = [
-  /* =================================================================
-     GUEST SPEAKERS (PLACEHOLDERS — UNCOMMENT WHEN ANNOUNCED)
-     =================================================================
-  {
-    id: "guest-1",
-    name: "Guest Speaker 1",
-    role: "Keynote Speaker",
-    talkTitle: "To Be Announced",
-    image: "/speakers/guest1.jpg",
-    bio: "Keynote speaker bio coming soon. Stay tuned for our full speaker lineup reveal for TEDxYouth@CHIREC 2026!",
-  },
-  {
-    id: "guest-2",
-    name: "Guest Speaker 2",
-    role: "Keynote Speaker",
-    talkTitle: "To Be Announced",
-    image: "/speakers/guest2.jpg",
-    bio: "Keynote speaker bio coming soon. Stay tuned for our full speaker lineup reveal for TEDxYouth@CHIREC 2026!",
-  },
-  ================================================================= */
-
   {
     id: "archit-khandelwal",
     name: "Archit Khandelwal",
     role: "Student Speaker",
-    //talkTitle: "Reframing Modern Perspectives",
-    image: "/speakers/ARCHIT.png",
+    image: "speakers/ARCHIT.png",
     bio: "Archit Khandelwal is a 10th grader at CHIREC International School and founder of Headlinne, an AI-powered news platform. Passionate about AI, robotics, and entrepreneurship, he loves turning ideas into practical, real-world tools. He is thrilled to be a student speaker at this year’s TEDxYouth@CHIREC!",
   },
   {
     id: "srinidhi-sriram",
     name: "Srinidhi Sriram",
     role: "Student Speaker",
-    //talkTitle: "The Power of Expression",
-    image: "/speakers/SRINIDHI.png",
+    image: "speakers/SRINIDHI.png",
     bio: "Srinidhi Sriram is an IBDP Year 1 student at CHIREC International School with a passion for bioengineering. A chatterbox at heart, she uses speech, debate, and connection to learn and share with the world. Outside academics, she enjoys dance, music, sports, and time with family and friends.",
   },
   {
     id: "avirbhav-danamaraju",
     name: "Avirbhav Danamaraju",
     role: "Student Speaker",
-    //talkTitle: "Innovating for Tomorrow",
-    image: "/speakers/AVIRBHAV.png",
+    image: "speakers/AVIRBHAV.png",
     bio: "Avirbhav Danamaraju is a CBSE 12th grader at CHIREC International School with a strong interest in history, finance, politics, and public speaking, having participated in over 50 MUN conferences, and is excited to serve as a student speaker at this year’s TEDxYouth@CHIREC.",
   },
   {
     id: "meghna-daka",
     name: "Meghna Daka",
     role: "Student Speaker",
-    //talkTitle: "Unlocking Emotional Leadership",
-    image: "/speakers/MEGHNA.png",
+    image: "speakers/MEGHNA.png",
     bio: "Meghna Daka is a Grade 12 IBDP student at CHIREC International School building healthcare technology like wearable gait-tracking devices, pursuing palaeontology software, and serving as a TEDx speaker sharing insights on holding onto loved ones through change.",
   },
 ];
@@ -79,9 +59,7 @@ export function Speakers() {
       <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-36 pb-12 text-center z-10">
         <Reveal className="flex flex-col items-center z-10 max-w-4xl w-full">
           <span className="font-['Helvetica',sans-serif] text-xs sm:text-sm uppercase tracking-[0.35em] text-[#EB0028] font-bold mb-4 flex items-center gap-2">
-  
             VOICES OF TOMORROW
-
           </span>
 
           <div className="group relative border border-[#EB0028]/50 bg-black/80 backdrop-blur-md p-8 sm:p-12 rounded-xs my-2 max-w-2xl w-full mx-auto overflow-hidden">
@@ -125,36 +103,30 @@ export function Speakers() {
                 transition={{ duration: 0.2, ease: "easeOut" }}
                 className="group relative rounded-xs border border-[#EB0028]/30 bg-black/80 p-6 sm:p-8 hover:border-[#EB0028] hover:shadow-[0_0_30px_rgba(235,0,40,0.2)] transition-all overflow-hidden backdrop-blur-md flex flex-col justify-between"
               >
-                {/* Corner Accents */}
                 <span className="absolute -top-1 -left-1 text-[#EB0028] text-[10px] font-mono z-20 opacity-40 group-hover:opacity-100 transition-opacity">+</span>
                 <span className="absolute -top-1 -right-1 text-[#EB0028] text-[10px] font-mono z-20 opacity-40 group-hover:opacity-100 transition-opacity">+</span>
                 <span className="absolute -bottom-1 -left-1 text-[#EB0028] text-[10px] font-mono z-20 opacity-40 group-hover:opacity-100 transition-opacity">+</span>
                 <span className="absolute -bottom-1 -right-1 text-[#EB0028] text-[10px] font-mono z-20 opacity-40 group-hover:opacity-100 transition-opacity">+</span>
 
-                {/* Top Section: Photo & Header */}
                 <div>
                   <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 mb-6">
-                    {/* Speaker Image Frame */}
                     <div className="relative w-32 h-40 sm:w-36 sm:h-44 shrink-0 rounded-xs border border-white/10 bg-[#0c0c10] overflow-hidden group-hover:border-[#EB0028]/60 transition-colors">
                       <img
-                        src={speaker.image}
+                        src={withBase(speaker.image)}
                         alt={speaker.name}
                         loading="lazy"
                         decoding="async"
                         className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                         onError={(e) => {
-                          (e.target as HTMLImageElement).src = "/tedx-logo.png";
+                          (e.target as HTMLImageElement).src = withBase("tedx-logo.png");
                         }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                      
-                      {/* Floating Hex Icon badge */}
                       <div className="absolute bottom-2 right-2 h-7 w-7 rounded-xs bg-black/90 border border-[#EB0028] flex items-center justify-center text-[#EB0028]">
                         <Hexagon className="w-4 h-4 fill-[#EB0028]/20 stroke-[#EB0028]" />
                       </div>
                     </div>
 
-                    {/* Speaker Name & Title */}
                     <div className="flex flex-col text-center sm:text-left justify-center pt-1">
                       <span className="inline-flex items-center gap-1.5 justify-center sm:justify-start font-['Helvetica',sans-serif] text-[11px] font-bold uppercase tracking-[0.2em] text-[#EB0028] mb-1.5">
                         <Mic className="w-3 h-3" />
@@ -174,10 +146,8 @@ export function Speakers() {
                     </div>
                   </div>
 
-                  {/* Divider */}
                   <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#EB0028]/30 to-transparent my-4" />
 
-                  {/* Speaker Bio */}
                   <p className="text-sm text-zinc-300 font-light leading-relaxed">
                     {speaker.bio}
                   </p>
