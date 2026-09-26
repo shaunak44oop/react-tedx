@@ -173,21 +173,15 @@ export function Home() {
 
       {/* HERO SECTION */}
       <section className="relative flex flex-col justify-end px-4 sm:px-8 md:px-14 pt-28 pb-20 min-h-[85vh] z-10 overflow-hidden">
-        {/* FULL-BLEED BACKGROUND ANIMATION — covers the whole hero, edge to edge, down to the divider under the CTA */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster={`${(import.meta as any).env?.BASE_URL || "/"}tedx-hero-poster.jpg`}
+        {/* FULL-BLEED BACKGROUND IMAGE — covers the whole hero, edge to edge, down to the divider under the CTA */}
+        <img
+          src={`${(import.meta as any).env?.BASE_URL || "/"}tedx-hero-poster.png`}
+          alt=""
           className="absolute inset-0 w-full h-full object-cover z-0"
-        >
-          <source src={`${(import.meta as any).env?.BASE_URL || "/"}tedxanimationvideo.mp4`} type="video/mp4" />
-        </video>
+        />
 
-        {/* THIN BLACK VEIL SO THE TEXT STAYS READABLE OVER THE ANIMATION */}
-        <div className="absolute inset-0 bg-black/35 z-[1] pointer-events-none" />
+        {/* THIN BLACK VEIL SO THE TEXT STAYS READABLE OVER THE IMAGE */}
+        <div className="absolute inset-0 bg-black/20 z-[1] pointer-events-none" />
 
         {/* SOFT FADE AT THE BOTTOM SO THE VIDEO BLENDS INTO THE DIVIDER / NEXT SECTION */}
         <div className="absolute inset-x-0 bottom-0 h-28 sm:h-40 bg-gradient-to-b from-transparent to-[#050507] z-[1] pointer-events-none" />
@@ -200,19 +194,16 @@ export function Home() {
           className="relative z-10 w-full flex flex-col gap-10"
         >
           {/* EVENT NAME + DATE BADGE — LEFT ALIGNED */}
-<div className="flex flex-col items-center text-center sm:items-start sm:text-left">
-  <div className="font-['Helvetica',sans-serif] font-extrabold leading-[1.15] drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
-    <div className="text-[#EB0028] text-xl sm:text-3xl">TEDx</div>
-    <div className="text-white text-lg sm:text-2xl font-semibold">CHIREC International</div>
-    <div className="text-white text-lg sm:text-2xl">
-      <span className="font-normal">School</span> <span className="font-extrabold">Youth</span>
-    </div>
-  </div>
-  <div className="w-24 sm:w-40 h-px bg-white/50 my-3 sm:my-4" />
-  <p className="font-['Helvetica',sans-serif] font-bold text-xl sm:text-3xl text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-    October 3rd 2026
-  </p>
-</div>
+          <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
+            <div className="font-['Helvetica',sans-serif] font-extrabold text-base sm:text-2xl uppercase tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+              <span className="text-[#EB0028]">TEDx</span>
+              <span className="text-white"> CHIREC International School Youth</span>
+            </div>
+            <div className="w-24 sm:w-40 h-px bg-white/50 my-2 sm:my-3" />
+            <p className="font-['Helvetica',sans-serif] text-xs sm:text-base uppercase tracking-[0.3em] text-zinc-200 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+              October 3rd 2026
+            </p>
+          </div>
 
           {/* MAIN TITLE + DESCRIPTION + CTA — RIGHT ALIGNED from sm: up */}
           <div className="flex flex-col items-center text-center w-full sm:items-end sm:text-right sm:max-w-2xl sm:ml-auto sm:self-end">
