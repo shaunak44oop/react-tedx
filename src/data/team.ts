@@ -138,7 +138,7 @@ export const teamMembers: TeamMember[] = [
   // Heads of Marketing
   {
     id: "15",
-    name: "Rithvika Palapu",
+    name: "Rithvika Palepu",
     role: "Head of Marketing",
     category: "Marketing",
     image: `${base}teampics/RITHVIKA.JPG`,

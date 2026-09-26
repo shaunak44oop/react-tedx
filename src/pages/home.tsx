@@ -308,7 +308,7 @@ export function Home() {
                 </div>
                 <h3 className="font-['Helvetica',sans-serif] text-xl sm:text-2xl font-bold text-white mb-1.5">Date & Time</h3>
                 <p className="text-sm sm:text-base text-[#EB0028] mb-3 font-semibold">Saturday, October 3, 2026</p>
-                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Doors open at 3:00 PM. No entry permitted after 3:45 PM. <br />Please arrive on time for check-in and seating.</p>
+                <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">Doors open at 3:00 PM. No entry permitted after 3:30 PM. <br />Please arrive on time for check-in and seating.</p>
               </div>
             </motion.div>
 

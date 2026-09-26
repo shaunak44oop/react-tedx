@@ -14,7 +14,7 @@ interface ScheduleItem {
 
 const SCHEDULE_ITEMS: ScheduleItem[] = [
   { id: "1", time: "3:00 PM", title: "Registrations Open", icon: DoorOpen },
-  { id: "2", time: "3:45 PM", title: "Doors Close", icon: Clock },
+  { id: "2", time: "3:30 PM", title: "Doors Close", icon: Clock },
   { id: "3", time: "4:00 - 4:25 PM", title: "Opening Ceremony", icon: Hexagon },
   { id: "4", time: "4:30 - 4:50 PM", title: "Guest Speaker 1", icon: Mic },
   { id: "5", time: "4:50 - 5:10 PM", title: "Archit Khandelwal", icon: Mic },
