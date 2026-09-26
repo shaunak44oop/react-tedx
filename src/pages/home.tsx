@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, memo } from "react";
+import { useState, useEffect, memo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Reveal, RevealGroup, staggerItem } from "../components/kokonutui/reveal";
 import { SpotlightButton } from "../components/kokonutui/spotlight-button";
@@ -104,30 +104,6 @@ const CountdownDigit = memo(function CountdownDigit({ digit }: { digit: string }
 
 export function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
-
-  // Force the hero animation to autoplay reliably on every browser/device.
-  // React doesn't always sync the "muted" attribute to the underlying DOM
-  // property before the browser checks autoplay eligibility, which is why
-  // the video was only starting after a click. Setting it explicitly on
-  // the element (and calling play() ourselves) fixes that.
-  useEffect(() => {
-    const vid = heroVideoRef.current;
-    if (!vid) return;
-    vid.muted = true;
-    vid.defaultMuted = true;
-    const playPromise = vid.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // If the browser still blocks it, resume on the first tap/click anywhere.
-        const resume = () => {
-          vid.play().catch(() => {});
-          window.removeEventListener("pointerdown", resume);
-        };
-        window.addEventListener("pointerdown", resume, { once: true });
-      });
-    }
-  }, []);
 
   useEffect(() => {
     const targetDate = new Date("2026-10-03T15:00:00+05:30").getTime();
@@ -167,10 +143,9 @@ export function Home() {
       <AnimatedHexBackground />
 
       {/* HERO SECTION */}
-      <section className="relative min-h-[85vh] z-10 overflow-hidden">
+      <section className="relative flex flex-col items-center justify-center px-4 sm:px-8 pt-28 pb-20 text-center min-h-[85vh] z-10 overflow-hidden">
         {/* FULL-BLEED BACKGROUND ANIMATION — covers the whole hero, edge to edge, down to the divider under the CTA */}
         <video
-          ref={heroVideoRef}
           autoPlay
           loop
           muted
@@ -182,60 +157,52 @@ export function Home() {
           <source src={`${(import.meta as any).env?.BASE_URL || "/"}tedxanimationvideo.mp4`} type="video/mp4" />
         </video>
 
-        {/* BLACK VEIL SO THE TEXT STAYS READABLE OVER THE ANIMATION */}
-        <div className="absolute inset-0 bg-black/60 z-[1] pointer-events-none" />
+        {/* THIN BLACK VEIL SO THE TEXT STAYS READABLE OVER THE ANIMATION */}
+        <div className="absolute inset-0 bg-black/35 z-[1] pointer-events-none" />
 
         {/* SOFT FADE AT THE BOTTOM SO THE VIDEO BLENDS INTO THE DIVIDER / NEXT SECTION */}
         <div className="absolute inset-x-0 bottom-0 h-28 sm:h-40 bg-gradient-to-b from-transparent to-[#050507] z-[1] pointer-events-none" />
 
-        {/* EVENT NAME + DATE BADGE — TOP LEFT */}
+        {/* HERO CONTENT */}
         <motion.div
-          initial={{ opacity: 0, y: -8 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-          className="absolute top-24 left-4 sm:top-28 sm:left-10 z-10 text-left max-w-[75%] sm:max-w-xs"
+          className="relative z-10 flex flex-col items-center"
         >
-          <div className="font-['Helvetica',sans-serif] font-extrabold text-sm sm:text-xl md:text-2xl uppercase leading-tight tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
-            <span className="text-[#EB0028]">TEDx</span>
-            <span className="text-white"> CHIREC International School Youth</span>
+          {/* EVENT NAME + DATE BADGE */}
+          <div className="mb-5 sm:mb-8">
+            <div className="font-['Helvetica',sans-serif] font-extrabold text-base sm:text-2xl uppercase tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+              <span className="text-[#EB0028]">TEDx</span>
+              <span className="text-white"> CHIREC International School Youth</span>
+            </div>
+            <div className="w-24 sm:w-40 h-px bg-white/50 mx-auto my-2 sm:my-3" />
+            <p className="font-['Helvetica',sans-serif] text-xs sm:text-base uppercase tracking-[0.3em] text-zinc-200 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+              October 3rd 2026
+            </p>
           </div>
-          <div className="w-16 sm:w-28 h-px bg-white/50 my-2 sm:my-3" />
-          <p className="font-['Helvetica',sans-serif] text-[10px] sm:text-sm uppercase tracking-[0.3em] text-zinc-200 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
-            October 3rd 2026
-          </p>
-        </motion.div>
 
-        {/* MAIN CONTENT — CENTER-RIGHT, BIG TITLE + DESCRIPTION RIGHT UNDER IT */}
-        <div className="absolute inset-0 z-10 flex flex-col items-end justify-center px-4 sm:px-10 md:px-16 text-right gap-6 sm:gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
-            className="flex flex-col items-end leading-none"
-          >
-            <span className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-200 mb-1 sm:mb-2 tracking-[0.45em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+          {/* MAIN TITLE */}
+          <div className="flex flex-col items-center leading-none mb-8 sm:mb-10">
+            <span className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-200 mb-1 sm:mb-2 tracking-[0.45em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
               THE
             </span>
-            <h1 className="font-['Helvetica',sans-serif] text-[clamp(38px,9vw,100px)] font-black uppercase tracking-tight py-1">
-              <span className="text-[#EB0028] [text-shadow:0_0_12px_rgba(235,0,40,0.95),0_0_32px_rgba(235,0,40,0.75),0_0_70px_rgba(235,0,40,0.5)]">
-                IN
-              </span>
-              <span className="text-white [text-shadow:0_0_10px_rgba(255,255,255,0.85),0_0_30px_rgba(255,255,255,0.5),0_0_60px_rgba(235,0,40,0.3)]">
-                -BETWEEN
-              </span>
+            <h1 className="font-['Helvetica',sans-serif] text-[clamp(34px,8vw,88px)] font-black uppercase tracking-tight py-1 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+              <span className="text-[#EB0028]">IN</span>
+              <span className="text-white">-BETWEEN</span>
             </h1>
-            <span className="font-['Helvetica',sans-serif] text-[clamp(28px,7vw,76px)] font-extralight uppercase tracking-[0.22em] text-white [text-shadow:0_0_10px_rgba(255,255,255,0.85),0_0_30px_rgba(255,255,255,0.5),0_0_60px_rgba(235,0,40,0.3)]">
+            <span className="font-['Helvetica',sans-serif] text-[clamp(26px,6.5vw,68px)] font-extralight uppercase tracking-[0.22em] text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
               SPACE
             </span>
-          </motion.div>
+          </div>
 
-          <Reveal className="flex flex-col items-end max-w-[46ch]">
-            <p className="text-base sm:text-lg text-zinc-200 font-light leading-relaxed mb-8 text-right drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
+          <Reveal className="flex flex-col items-center max-w-5xl">
+            <p className="max-w-[54ch] text-base sm:text-lg text-zinc-200 font-light leading-relaxed mb-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
               Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape tomorrow.
             </p>
 
             {/* MINIMAL CTA BUTTON WITH SINGLE HEXAGON ACCENT */}
-            <div className="flex justify-end">
+            <div className="flex justify-center">
               <SpotlightButton href="https://forms.cloud.microsoft/e/pPZzzULCnr" 
                 className="group relative inline-flex items-center justify-center gap-3 rounded-xs border border-[#EB0028] bg-black px-8 py-4 text-white font-['Helvetica',sans-serif] font-bold text-sm sm:text-base tracking-[0.15em] uppercase transition-all duration-300 hover:bg-[#EB0028] hover:shadow-[0_0_30px_rgba(235,0,40,0.4)]"
               >
@@ -247,7 +214,7 @@ export function Home() {
               </SpotlightButton>
             </div>
           </Reveal>
-        </div>
+        </motion.div>
       </section>
 
       {/* EVENT OVERVIEW SECTION */}
