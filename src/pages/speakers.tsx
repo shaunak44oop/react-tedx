@@ -41,7 +41,7 @@ const SPEAKERS: Speaker[] = [
     role: "Student Speaker",
     //talkTitle: "Reframing Modern Perspectives",
     image: "/speakers/ARCHIT.png",
-    //bio: "Archit is a passionate student thinker driven by curiosity and innovation. Through his talk, he explores how young minds can navigate complex modern challenges with fresh perspectives. His insights challenge conventional wisdom and inspire actionable change.",
+    bio: "Archit Khandelwal is a 10th grader at CHIREC International School and founder of Headlinne, an AI-powered news platform. Passionate about AI, robotics, and entrepreneurship, he loves turning ideas into practical, real-world tools. He is thrilled to be a student speaker at this year’s TEDxYouth@CHIREC!",
   },
   {
     id: "srinidhi-sriram",
@@ -49,7 +49,7 @@ const SPEAKERS: Speaker[] = [
     role: "Student Speaker",
     //talkTitle: "The Power of Expression",
     image: "/speakers/SRINIDHI.png",
-    //bio: "Srinidhi focuses on the impact of youth expression and storytelling in shaping community culture. She delves into how communication bridges divides and fosters empathy across diverse audiences. Her passion for creative problem-solving highlights the transformative potential of original ideas.",
+    bio: "Srinidhi Sriram is an IBDP Year 1 student at CHIREC International School with a passion for bioengineering. A chatterbox at heart, she uses speech, debate, and connection to learn and share with the world. Outside academics, she enjoys dance, music, sports, and time with family and friends.",
   },
   {
     id: "avirbhav-danamaraju",
@@ -57,7 +57,7 @@ const SPEAKERS: Speaker[] = [
     role: "Student Speaker",
     //talkTitle: "Innovating for Tomorrow",
     image: "/speakers/AVIRBHAV.png",
-    //bio: "Avirbhav investigates the intersection of technology, design, and human capability. He shares how critical thinking and iterative development empower students to turn ambitious concepts into reality. His talk emphasizes resilience, technological ethics, and continuous learning.",
+    bio: "Avirbhav Danamaraju is a CBSE 12th grader at CHIREC International School with a strong interest in history, finance, politics, and public speaking, having participated in over 50 MUN conferences, and is excited to serve as a student speaker at this year’s TEDxYouth@CHIREC.",
   },
   {
     id: "meghna-daka",
@@ -65,7 +65,7 @@ const SPEAKERS: Speaker[] = [
     role: "Student Speaker",
     //talkTitle: "Unlocking Emotional Leadership",
     image: "/speakers/MEGHNA.png",
-    //bio: "Meghna shares compelling insights into self-discovery, leadership, and emotional intelligence. She highlights how embracing vulnerability and personal growth can lead to profound leadership breakthroughs. Her narrative encourages peers to embrace unique journeys with confidence.",
+    bio: "Meghna Daka is a Grade 12 IBDP student at CHIREC International School building healthcare technology like wearable gait-tracking devices, pursuing palaeontology software, and serving as a TEDx speaker sharing insights on holding onto loved ones through change.",
   },
 ];
 
