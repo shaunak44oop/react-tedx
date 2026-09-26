@@ -194,10 +194,18 @@ export function Home() {
           className="relative z-10 w-full flex flex-col gap-10"
         >
           {/* EVENT NAME + DATE BADGE — LEFT ALIGNED */}
+
           <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
-            <div className="font-['Helvetica',sans-serif] font-extrabold text-base sm:text-2xl uppercase tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
-              <span className="text-[#EB0028]">TEDx</span>
-              <span className="text-white"> CHIREC Youth</span>
+            <div className="font-['Helvetica',sans-serif] leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+              <span className="block font-black text-lg sm:text-3xl tracking-tight">
+                <span className="text-[#EB0028]">TED</span><span className="text-[#EB0028] text-base sm:text-2xl align-super">x</span>
+              </span>
+              <span className="block text-white font-normal text-base sm:text-2xl tracking-tight">
+                CHIREC International
+              </span>
+              <span className="block text-white text-base sm:text-2xl tracking-tight">
+                School <span className="font-bold">Youth</span>
+              </span>
             </div>
             <div className="w-24 sm:w-40 h-px bg-white/50 my-2 sm:my-3" />
             <p className="font-['Helvetica',sans-serif] text-xs sm:text-base uppercase tracking-[0.3em] text-zinc-200 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
