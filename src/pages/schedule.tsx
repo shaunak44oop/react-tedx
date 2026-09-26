@@ -18,7 +18,7 @@ const SCHEDULE_ITEMS: ScheduleItem[] = [
   { id: "3", time: "4:00 - 4:25 PM", title: "Opening Ceremony", icon: Hexagon },
   { id: "4", time: "4:30 - 4:50 PM", title: "Guest Speaker 1", icon: Mic },
   { id: "5", time: "4:50 - 5:10 PM", title: "Archit Khandelwal", icon: Mic },
-  { id: "6", time: "5:10 - 5:30 PM", title: "Sreenidi Sriram", icon: Mic },
+  { id: "6", time: "5:10 - 5:30 PM", title: "Srinidhi Sriram", icon: Mic },
   { id: "7", time: "5:30 - 6:00 PM", title: "Refreshments & High Tea", icon: Coffee, isBreak: true },
   { id: "8", time: "6:00 - 6:20 PM", title: "Guest Speaker 2", icon: Mic },
   { id: "9", time: "6:20 - 6:40 PM", title: "Avirbhav Danamaraju", icon: Mic },
