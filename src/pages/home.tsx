@@ -166,6 +166,35 @@ export function Home() {
                 boxShadow: "inset 0 0 40px 20px #050507",
               }}
             />
+
+            {/* TEXT OVERLAY ON TOP OF THE ANIMATION */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center pointer-events-none">
+              {/* EVENT NAME + DATE BADGE */}
+              <div className="mb-5 sm:mb-8">
+                <div className="font-['Helvetica',sans-serif] font-extrabold text-base sm:text-2xl uppercase tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
+                  <span className="text-[#EB0028]">TEDx</span>
+                  <span className="text-white"> CHIREC International School Youth</span>
+                </div>
+                <div className="w-24 sm:w-40 h-px bg-white/50 mx-auto my-2 sm:my-3" />
+                <p className="font-['Helvetica',sans-serif] text-xs sm:text-base uppercase tracking-[0.3em] text-zinc-200 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+                  October 3rd 2026
+                </p>
+              </div>
+
+              {/* MAIN TITLE */}
+              <div className="flex flex-col items-center leading-none">
+                <span className="font-['Helvetica',sans-serif] font-light text-xs sm:text-base uppercase text-zinc-200 mb-1 sm:mb-2 tracking-[0.45em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+                  THE
+                </span>
+                <h1 className="font-['Helvetica',sans-serif] text-[clamp(34px,8vw,88px)] font-black uppercase tracking-tight py-1 drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+                  <span className="text-[#EB0028]">IN</span>
+                  <span className="text-white">-BETWEEN</span>
+                </h1>
+                <span className="font-['Helvetica',sans-serif] text-[clamp(26px,6.5vw,68px)] font-extralight uppercase tracking-[0.22em] text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+                  SPACE
+                </span>
+              </div>
+            </div>
           </div>
         </motion.div>
 
