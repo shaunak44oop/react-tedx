@@ -197,7 +197,7 @@ export function Home() {
           <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
             <div className="font-['Helvetica',sans-serif] font-extrabold text-base sm:text-2xl uppercase tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
               <span className="text-[#EB0028]">TEDx</span>
-              <span className="text-white"> CHIREC International School Youth</span>
+              <span className="text-white"> CHIREC Youth</span>
             </div>
             <div className="w-24 sm:w-40 h-px bg-white/50 my-2 sm:my-3" />
             <p className="font-['Helvetica',sans-serif] text-xs sm:text-base uppercase tracking-[0.3em] text-zinc-200 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
@@ -219,10 +219,6 @@ export function Home() {
                 SPACE
               </span>
             </div>
-
-            <p className="max-w-[54ch] sm:max-w-[42ch] text-base sm:text-lg text-zinc-200 font-light leading-relaxed mb-10 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] text-center sm:text-right">
-              Exploring the threshold where potential meets reality, ideas spark transformation, and voices shape tomorrow.
-            </p>
 
             <div className="flex justify-center sm:justify-end">
               <SpotlightButton
