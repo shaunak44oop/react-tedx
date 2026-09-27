@@ -115,7 +115,7 @@ export const teamMembers: TeamMember[] = [
     name: "Sahasra Devisetty",
     role: "Head of Technology",
     category: "Technology",
-    image: `${base}teampics/SAHASRA.JPG`,
+    image: `${base}teampics/SAHASRA.jpg`,
     bio: "Sahasra Devisetty is a DP2 student studying Math, Physics and Computer science at the higher level. She’s planning on pursuing Quantitative Finance in the future. Warm and easy to talk to, when she’s not rewatching Pulp Fiction for the 99th time, you will find her brainstorming new UGC ideas and arguing that Tiramisu from True Black is overrated. Sahasra is excited to be part of TEDx and looks forward to creating memories and contributing to an experience that everyone can take something away from.",
   },
   {
