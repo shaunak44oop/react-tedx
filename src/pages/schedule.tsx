@@ -21,7 +21,7 @@ const SCHEDULE_ITEMS: ScheduleItem[] = [
   { id: "6", time: "5:10 - 5:30 PM", title: "Srinidhi Sriram", icon: Mic },
   { id: "7", time: "5:30 - 6:00 PM", title: "Refreshments Break", icon: Coffee, isBreak: true },
   { id: "8", time: "6:00 - 6:20 PM", title: "Archit Khandelwal", icon: Mic },
-  { id: "9", time: "6:20 - 6:40 PM", title: "Kalpana Ramesh", icon: Mic },
+  { id: "9", time: "6:20 - 6:40 PM", title: "Ms. Kalpana Ramesh", icon: Mic },
   { id: "10", time: "6:40 - 6:55 PM", title: "Meghna Daka", icon: Mic },
   { id: "11", time: "6:55 - 7:00 PM", title: "Closing & National Anthem", icon: Flag },
 ];

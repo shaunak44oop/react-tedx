@@ -20,6 +20,20 @@ interface Speaker {
 
 const SPEAKERS: Speaker[] = [
   {
+    id: "lalitha-munagala",
+    name: "Dr. Lalitha Munagala",
+    role: "Guest Speaker",
+    image: "speakers/Lalitha_Munagala.png",
+    bio: "Dr. Ar. Lalitha Munagala is an architect, academician, and sustainability researcher with over four decades of experience. She leads Lalitha Associates and founded SPECTRuN Sustainability Systems, advancing sustainable architecture and rural community action.",
+  },
+  {
+    id: "kalpana-ramesh",
+    name: "Ms. Kalpana Ramesh",
+    role: "Guest Speaker",
+    image: "speakers/Kalpana_Ramesh.png",
+    bio: "⁠Ms. Kalpana Ramesh is an environmentalist, designer, and CEO of The Rainwater Project. Known as a 'water warrior,' she leads community-driven initiatives reviving historic stepwells and promoting sustainable rainwater harvesting across Telangana.",
+  },
+  {
     id: "archit-khandelwal",
     name: "Archit Khandelwal",
     role: "Student Speaker",
